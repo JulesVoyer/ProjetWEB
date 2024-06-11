@@ -72,6 +72,7 @@ CREATE TABLE `trip` (
   `departure_time` datetime NOT NULL,
   `driver_id` int DEFAULT NULL,
   `vehicle_id` int DEFAULT NULL,
+  `nb_passengers` int NOT NULL DEFAULT '4',	
   `status` tinyint(1) NOT NULL,
   `meetup_point` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id`),
