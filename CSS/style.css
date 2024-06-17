@@ -9,7 +9,7 @@ body {
 
 #banner {
     /* Insertion de l'image de fond de la bannière d'entête */
-    background-image: url("../ressources/encre_rectangle.jpg");
+    background-image: url("../ressources/explosion.jpg");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
