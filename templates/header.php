@@ -19,8 +19,22 @@ echo "<?xml version=\"1.0\" encoding=\"utf-8\" ?>";
 <!-- **** H E A D **** -->
 <head>	
 	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-15" />
-	<title>HIIT</title>
-	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<title>Covoit'Campus</title>
+	<link rel="stylesheet" type="text/css" href="CSS/style.css">
+
+	<script src="js/jquery-3.4.1.min.js"></script>
+
+	<script>
+		
+		$(document).ready( function() {
+			$("#banner a").click( function() {
+				$("#banner a").css("background-color", "transparent");
+				$(this).css("background-color", "white");
+				console.log("coucou");
+			})
+		} )
+	</script>
+
 </head>
 <!-- **** F I N **** H E A D **** -->
 
@@ -28,31 +42,12 @@ echo "<?xml version=\"1.0\" encoding=\"utf-8\" ?>";
 <!-- **** B O D Y **** -->
 <body>
 
-<div id="banniere">
+	<div id="banner">
 
-<div id="logo">
-<img src="ressources/ec-lille.png" />
-</div>
+		<a href="index.php?view=accueil" id="accueil">Accueil</a>
+		<a href="index.php?view=trajets" id="trajets">Trajets</a>
+		<a href="index.php?view=conversations" id="conversations">Conversations</a>
+		<a href="index.php?view=historique" id="historique">Historique</a>
+		<a href="index.php?view=profil" id="profil">Profil</a>
 
-<a href="index.php?view=accueil">Accueil</a>
-
-<?php
-if (valider("connecte","SESSION"))
-{
-	// On affiche un lien pour la vue des cycles
-	echo "<a href=\"index.php?view=cycles\">Cycles</a>";
-}
-?>
-
-<!-- vue de la liste des cycles -->
-
-<?php
-// Si l'utilisateur n'est pas connecte, on affiche un lien de connexion 
-if (!valider("connecte","SESSION"))
-	echo "<a href=\"index.php?view=login\">Se connecter</a>";
-
-?>
-
-<h1 id="stitre"> Entraînement fractionné de haute intensité </h1>
-
-</div>
+	</div>

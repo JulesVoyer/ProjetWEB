@@ -1,0 +1,87 @@
+body {
+    /* Remises à zéro */
+    margin: 0;
+    padding: 0;
+}
+
+
+/*---------- HEADER ----------*/
+
+#banner {
+    /* Insertion de l'image de fond de la bannière d'entête */
+    background-image: url("../ressources/encre_rectangle.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    box-shadow: 2px 2px 15px grey;
+    
+    /* La bannière doit suivre le déplacement de l'utilisateur dans la page */
+    position: fixed;
+
+    /* Gestion de sa taille et de ses marges internes */
+    padding: 1% 0;
+    width: 100% !important;
+
+    /* Ajustement des éléments de la bannière, répartition homogène */
+    display: flex;
+    justify-content: space-around;
+}
+
+#banner a {
+    /* Lorsque la fenêtre est suffisamment grande, on affiche du texte dans les liens */
+    text-decoration: none;
+    color: white;
+    text-shadow: 2px 2px 2px black;
+
+    /* Gestion de la forme des cadre qui apparaîtrons derrière */
+    padding: 5px 10px;
+    border-radius: 5pt;
+}
+
+#banner a:hover {
+    color: black;
+    background-color: rgba(255, 255, 255, 0.7);
+    text-shadow: none !important;
+    box-shadow: 2px 2px 10px grey;
+}
+
+@media all and (max-width:400px){
+
+    #banner a {
+        max-height: 20px;
+        padding: 5px !important;
+    }
+
+    #accueil {
+        content: url("../ressources/accueil-blanc.png");
+    }
+    #trajets {
+        content: url("../ressources/itineraire-blanc.png");
+    }
+    #conversations {
+        content: url("../ressources/conversation-blanc.png");
+    }
+    #historique {
+        content: url("../ressources/horloge-blanc.png");
+    }
+    #profil {
+        content: url("../ressources/profil-blanc.png");
+    }
+
+    #accueil:hover {
+        content: url("../ressources/accueil-noir.png");
+    }
+    #trajets:hover {
+        content: url("../ressources/itineraire-noir.png");
+    }
+    #conversations:hover {
+        content: url("../ressources/conversation-noir.png");
+    }
+    #historique:hover {
+        content: url("../ressources/horloge-noir.png");
+    }
+    #profil:hover {
+        content: url("../ressources/profil-noir.png");
+    }
+
+}
