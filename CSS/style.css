@@ -66,6 +66,7 @@ body {
     font-size: 15pt;
 
     width: 70%;
+    padding: 7px;
 }
 
 .lgiInput:focus {
