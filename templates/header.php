@@ -42,6 +42,9 @@ echo "<?xml version=\"1.0\" encoding=\"utf-8\" ?>";
 						    "text-shadow": "none"
 						}
 					);
+					if (window.matchMedia('(max-width:550px)')) {
+						$(this).css("content", "url('ressources/" + view + "-noir.png')");
+					}
 				}
 			} );
 

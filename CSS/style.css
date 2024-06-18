@@ -190,13 +190,13 @@ body {
         content: url("../ressources/accueil-blanc.png");
     }
     #trajets {
-        content: url("../ressources/itineraire-blanc.png");
+        content: url("../ressources/trajets-blanc.png");
     }
     #conversations {
-        content: url("../ressources/conversation-blanc.png");
+        content: url("../ressources/conversations-blanc.png");
     }
     #historique {
-        content: url("../ressources/horloge-blanc.png");
+        content: url("../ressources/historique-blanc.png");
     }
     #profil {
         content: url("../ressources/profil-blanc.png");
@@ -206,13 +206,13 @@ body {
         content: url("../ressources/accueil-noir.png");
     }
     #trajets:hover {
-        content: url("../ressources/itineraire-noir.png");
+        content: url("../ressources/trajets-noir.png");
     }
     #conversations:hover {
-        content: url("../ressources/conversation-noir.png");
+        content: url("../ressources/conversations-noir.png");
     }
     #historique:hover {
-        content: url("../ressources/horloge-noir.png");
+        content: url("../ressources/historique-noir.png");
     }
     #profil:hover {
         content: url("../ressources/profil-noir.png");
