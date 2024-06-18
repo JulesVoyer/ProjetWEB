@@ -21,13 +21,32 @@ echo "<?xml version=\"1.0\" encoding=\"utf-8\" ?>";
     <head>	
         <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-15" />
         <title>Covoit'Campus</title>
-        <link rel="stylesheet" type="text/css" href="css/style.css">
+        <link rel="stylesheet" type="text/css" href="CSS/style.css">
     </head>
     <!-- **** F I N **** H E A D **** -->
 
 
     <!-- **** B O D Y **** -->
-    <body>
+    <body id="lgiBody">
+
+        <div id="lgiCont">
+            <h1 id=lgiTittle>Covoit'Campus</h1>
+            <hr />
+
+            <form id="lgiForm" action="controleur.php" methode="post">
+                <input class="lgiInput" type="text" name="pseudo" placeholder="Pseudo..." />
+                <input class="lgiInput" type="password" name="passe" placeholder="Mot de passe..." />
+                <input id="lgiSubmit" type="submit" name="login" value="Se connecter" />
+            </form>
+
+            <div>Vous n'avez pas encore de compte ?</div>
+            <div id="lgiSignUp">
+                <img src="ressources/examen.png" alt="Icon inscription" />
+                <a href="templates/signUp.php">INSCRIVEZ VOUS !</a>
+            </div>
+
+            <img id="lgiLogo" src="ressources/ec-lille.png" alt="Logo Centrale" />
+        </div>
         
     </body>
 </html>

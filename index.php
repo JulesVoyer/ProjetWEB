@@ -10,13 +10,14 @@ Les formulaires de toutes les vues générées enverront leurs données vers la 
 */
 
 include_once "libs/maLibUtils.php";
+include_once "libs/maLibForms.php";
 
-/*if (!valider("connecte","SESSION")) {
+if (!valider("connecte","SESSION")) {
 
     // Si l'utilisateur n'est pas connecté, on affiche la vue login
     include("templates/login.php");
 
-} else {*/
+} else {
 
     // Sinon
 	// Dans tous les cas, on affiche l'entete, qui contient les balises de structure de la page
@@ -41,6 +42,6 @@ include_once "libs/maLibUtils.php";
 	// Dans tous les cas, on affiche le pied de page
 	// Qui contient les coordonnées de la personne si elle est connectée
 	include("templates/footer.php");
-//}
+}
 	
 ?>
