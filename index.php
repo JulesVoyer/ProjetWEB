@@ -25,13 +25,13 @@ $view = valider("view");
     // Si l'utilisateur n'est pas connecté, on affiche la vue login
     include("templates/$view.php");
 
-} else {*/
+} else { */
 
     // Sinon
 
 	// Si view est vide, on charge la vue accueil par défaut
 	if (!$view) $view = "accueil"; 
-	
+
 	// Dans tous les cas, on affiche l'entete, qui contient les balises de structure de la page
 	include("templates/header.php");
 

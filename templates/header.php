@@ -28,27 +28,43 @@ echo "<?xml version=\"1.0\" encoding=\"utf-8\" ?>";
 		
 		$(document).ready( function() {
 
+			currentIcon();
+
+			$(window).resize(function() {
+				currentIcon();
+			})
+
+		} ) // fin ready
+
+		function currentIcon () {
 			// la variable view récupérée dans la page index.php
 			// et donc accessible ici
 			// est écrite comme l'id du lien qui lui est associé
 			// on récupère donc cette variable pour mettre en surbrillance
 			// l'icon associé à la vue sélectionnée
 			var view = <?php echo json_encode($view); ?>;
+			
 			$("#banner a").each(function() { 
 
 				if ($(this).attr("id") === view) { 
-					$(this).css({ "color": "black",
-						    "background-color": "rgba(255, 255, 255, 0.7)",
-						    "text-shadow": "none"
-						}
-					);
-					if (window.matchMedia('(max-width:550px)')) {
-						$(this).css("content", "url('ressources/" + view + "-noir.png')");
+
+					if (window.matchMedia('(max-width:550px)').matches) {
+						$(this).css({
+								"background-color": "rgba(255, 255, 255, 0.7)",
+								"text-shadow": "none"
+							})
+					} else {
+						$(this).css({ 
+								"color": "black",
+								"background-color": "rgba(255, 255, 255, 0.7)",
+								"text-shadow": "none"
+							}
+						);
 					}
 				}
 			} );
+		}
 
-		} )
 	</script>
 
 </head>
