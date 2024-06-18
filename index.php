@@ -12,27 +12,33 @@ Les formulaires de toutes les vues générées enverront leurs données vers la 
 include_once "libs/maLibUtils.php";
 include_once "libs/maLibForms.php";
 
-if (!valider("connecte","SESSION")) {
+
+// on récupère le paramètre view éventuel 
+$view = valider("view"); 
+
+
+/*if (!valider("connecte","SESSION")) {
+
+	// Si view est vide ou différent de signUp, on charge la vue login par défaut
+	if ($view != "signUp") $view = "login"; 
 
     // Si l'utilisateur n'est pas connecté, on affiche la vue login
-    include("templates/login.php");
+    include("templates/$view.php");
 
-} else {
+} else {*/
 
     // Sinon
+
+	// Si view est vide, on charge la vue accueil par défaut
+	if (!$view) $view = "accueil"; 
+	
 	// Dans tous les cas, on affiche l'entete, qui contient les balises de structure de la page
 	include("templates/header.php");
 
-	// on récupère le paramètre view éventuel 
-	$view = valider("view"); 
-
-	// S'il est vide, on charge la vue accueil par défaut
-	if (!$view) $view = "accueil"; 
 
 	// En fonction de la vue à afficher, on appelle tel ou tel template
 	switch($view)
 	{		
-
 		default : // si le template correspondant à l'argument existe, on l'affiche
 			if (file_exists("templates/$view.php"))
 				include("templates/$view.php");
@@ -42,6 +48,6 @@ if (!valider("connecte","SESSION")) {
 	// Dans tous les cas, on affiche le pied de page
 	// Qui contient les coordonnées de la personne si elle est connectée
 	include("templates/footer.php");
-}
+//}
 	
 ?>

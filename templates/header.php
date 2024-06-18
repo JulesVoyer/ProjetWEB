@@ -27,11 +27,24 @@ echo "<?xml version=\"1.0\" encoding=\"utf-8\" ?>";
 	<script>
 		
 		$(document).ready( function() {
-			$("#banner a").click( function() {
-				$("#banner a").css("background-color", "transparent");
-				$(this).css("background-color", "white");
-				console.log("coucou");
-			})
+
+			// la variable view récupérée dans la page index.php
+			// et donc accessible ici
+			// est écrite comme l'id du lien qui lui est associé
+			// on récupère donc cette variable pour mettre en surbrillance
+			// l'icon associé à la vue sélectionnée
+			var view = <?php echo json_encode($view); ?>;
+			$("#banner a").each(function() { 
+
+				if ($(this).attr("id") === view) { 
+					$(this).css({ "color": "black",
+						    "background-color": "rgba(255, 255, 255, 0.7)",
+						    "text-shadow": "none"
+						}
+					);
+				}
+			} );
+
 		} )
 	</script>
 
