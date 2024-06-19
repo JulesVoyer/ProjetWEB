@@ -30,13 +30,13 @@ echo "<?xml version=\"1.0\" encoding=\"utf-8\" ?>";
     <body id="lgiBody">
 
         <div id="lgiCont">
-            <h1 id=lgiTittle>Covoit'Campus</h1>
+            <h1 id=lgiTitle>Covoit'Campus</h1>
             <hr />
 
             <form id="lgiForm" action="controleur.php" methode="post">
                 <input class="lgiInput" type="text" name="pseudo" placeholder="Pseudo..." />
                 <input class="lgiInput" type="password" name="passe" placeholder="Mot de passe..." />
-                <input id="lgiSubmit" type="submit" name="action" value="Se connecter" />
+                <input id="lgiSubmit" type="submit" name="action" value="connexion" />
             </form>
 
             <div>Vous n'avez pas encore de compte ?</div>

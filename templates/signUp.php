@@ -30,19 +30,29 @@ echo "<?xml version=\"1.0\" encoding=\"utf-8\" ?>";
     <body id="sguBody">
 
         <div id="sguCont">
-            <h1 id=sguTittle>Covoit'Campus</h1>
+            <h1 id=sguTitle>Covoit'Campus</h1>
             <hr />
+            Renseignez vos informations : 
+            <?php
+                mkForm("controleur.php","POST");
+                    mkInput("text", "nom");
+                    mkInput("text", "prenom");
+                    mkInput("text", "pseudo");
+                    mkInput("password", "passe1");
+                    mkInput("password", "passe2");
 
+                endForm();
+            ?>
             <form id="sguForm" action="controleur.php" methode="post">
                 <input class="sguInput" type="text" name="pseudo" placeholder="Pseudo..." />
                 <input class="sguInput" type="password" name="passe" placeholder="Mot de passe..." />
                 <input id="sguSubmit" type="submit" name="login" value="Se connecter" />
             </form>
 
-            <div>Vous n'avez pas encore de compte ?</div>
+            <div>Vous avez déjà un compte ?</div>
             <div id="sguSignUp">
                 <img src="ressources/examen.png" alt="Icon inscription" />
-                <a href="templates/signUp.php">INSCRIVEZ VOUS !</a>
+                <a href="templates/signUp.php">Se connecter !</a>
             </div>
 
             <img id="sguLogo" src="ressources/ec-lille.png" alt="Logo Centrale" />
