@@ -30,7 +30,7 @@ CREATE TABLE `vehicles` (
   `nb_seats` int NOT NULL,
   `code` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   `model` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `owner_id` int DEFAULT NULL,
+  `owner_id` int NOT NULL DEFAULT 1,
   PRIMARY KEY (`id`),
   KEY `vehicules_users_FK` (`owner_id`),
   CONSTRAINT `vehicules_users_FK` FOREIGN KEY (`owner_id`) REFERENCES `users` (`id`) ON DELETE CASCADE
@@ -128,6 +128,7 @@ CREATE TABLE `invites` (
 
 -- app.users data
 INSERT INTO app.users (username,password,display_name,driving_license,adress) VALUES
+   ('systeme','systeme','Systeme',1,'{}')
 	 ('jules','julesweb','Jules VOYER',1,'{"city": "Lille", "code": 59800, "number": 1, "street": "rue du Chevalier Français"}'),
 	 ('test1','test','Test1',0,'{}');
 
