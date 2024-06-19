@@ -26,10 +26,9 @@ CREATE TABLE `users` (
   `password` varchar(100) DEFAULT NULL,
   `display_name` varchar(100) DEFAULT NULL,
   `driving_license` tinyint(1) NOT NULL,
-  `adress` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `adress` json NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
 -- app.user_owns_vehicule definition
 
 CREATE TABLE `user_owns_vehicule` (
@@ -42,7 +41,6 @@ CREATE TABLE `user_owns_vehicule` (
   CONSTRAINT `user_owns_vehicule_users_FK` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE,
   CONSTRAINT `user_owns_vehicule_vehicules_FK` FOREIGN KEY (`vehicle_id`) REFERENCES `vehicles` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
 -- app.user_rents_vehicule definition
 
 CREATE TABLE `user_rents_vehicule` (
@@ -77,9 +75,10 @@ CREATE TABLE `trip` (
   `departure_time` datetime NOT NULL,
   `driver_id` int DEFAULT NULL,
   `vehicle_id` int DEFAULT NULL,
-  `nb_passengers` int NOT NULL DEFAULT '4',	
+  `nb_passengers` int NOT NULL DEFAULT '4',
   `status` tinyint(1) NOT NULL,
-  `meetup_point` varchar(100) DEFAULT NULL,
+  `meetup_point` json DEFAULT NULL,
+  `direction` tinyint NOT NULL,
   PRIMARY KEY (`id`),
   KEY `trajet_vehicles_FK` (`vehicle_id`),
   KEY `trajet_users_FK` (`driver_id`),
@@ -114,4 +113,49 @@ CREATE TABLE `messages` (
   CONSTRAINT `messages_trip_FK` FOREIGN KEY (`trip_id`) REFERENCES `trip` (`id`),
   CONSTRAINT `messages_users_FK` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- app.invites definition
+
+CREATE TABLE `invites` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `target_id` int NOT NULL,
+  `trip_id` int NOT NULL,
+  `status` tinyint NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `invites_trip_FK` (`trip_id`),
+  KEY `invites_users_FK_1` (`target_id`),
+  CONSTRAINT `invites_trip_FK` FOREIGN KEY (`trip_id`) REFERENCES `trip` (`id`),
+  CONSTRAINT `invites_users_FK_1` FOREIGN KEY (`target_id`) REFERENCES `users` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+
+
+-- app.vehicles data
+INSERT INTO app.vehicles (name,nb_seats,code,model,is_centrale) VALUES
+	 ('Titine',5,'127-AAT-35','307sw',0);
+
+
+-- app.users data
+INSERT INTO app.users (username,password,display_name,driving_license,adress) VALUES
+	 ('jules','julesweb','Jules VOYER',1,'{"city": "Lille", "code": 59800, "number": 1, "street": "rue du Chevalier Français"}'),
+	 ('test1','test','Test1',0,'{}');
+
+
+-- app.user_owns_vehicule data
+INSERT INTO app.user_owns_vehicule (user_id,vehicle_id) VALUES
+   (1,1);
+
+-- app.trip data
+INSERT INTO app.trip (departure_time,driver_id,vehicle_id,nb_passengers,status,meetup_point,direction) VALUES
+	 ('2024-06-19 10:00:00',1,1,4,0,'{}',0);
+
+
+-- app.trip_has_participant data
+INSERT INTO app.trip_has_participant (trip_id,participant_id) VALUES
+   (1,1),
+   (1,2);
+
+-- app.messages data
+INSERT INTO app.messages (content,user_id,trip_id,send_time) VALUES
+	 ('Bonjour ! je crée ce trajet pour demain matin',1,1,'2024-06-18 18:26:43');
 
