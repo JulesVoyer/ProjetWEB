@@ -6,17 +6,8 @@ SET time_zone = "+02:00";
 
 
 
--- app.vehicles definition
 
-CREATE TABLE `vehicles` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `nb_seats` int NOT NULL,
-  `code` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `model` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `is_centrale` tinyint(1) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
 
 -- app.users definition
 
@@ -29,18 +20,23 @@ CREATE TABLE `users` (
   `adress` json NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
--- app.user_owns_vehicule definition
 
-CREATE TABLE `user_owns_vehicule` (
+-- app.vehicles definition
+
+
+CREATE TABLE `vehicles` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `user_id` int NOT NULL,
-  `vehicle_id` int NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `user_owns_vehicule_vehicules_FK` (`vehicle_id`),
-  KEY `user_owns_vehicule_users_FK` (`user_id`),
-  CONSTRAINT `user_owns_vehicule_users_FK` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE,
-  CONSTRAINT `user_owns_vehicule_vehicules_FK` FOREIGN KEY (`vehicle_id`) REFERENCES `vehicles` (`id`) ON DELETE CASCADE
+  `name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `nb_seats` int NOT NULL,
+  `code` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `model` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `owner_id` int DEFAULT NULL,
+  PRIMARY KEY (`id`)
+  KEY `vehicules_users_FK` (`owner_id`),
+  CONSTRAINT `vehicules_users_FK` FOREIGN KEY (`owner_id`) REFERENCES `users` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+
 -- app.user_rents_vehicule definition
 
 CREATE TABLE `user_rents_vehicule` (
@@ -63,6 +59,7 @@ CREATE TABLE `intervention` (
   `id` int NOT NULL AUTO_INCREMENT,
   `user_id` int NOT NULL,
   `date` date NOT NULL,
+  `direction` tinyint(1) NOT NULL,	
   PRIMARY KEY (`id`),
   KEY `intervention_users_FK` (`user_id`),
   CONSTRAINT `intervention_users_FK` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE
@@ -129,21 +126,17 @@ CREATE TABLE `invites` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 
-
--- app.vehicles data
-INSERT INTO app.vehicles (name,nb_seats,code,model,is_centrale) VALUES
-	 ('Titine',5,'127-AAT-35','307sw',0);
-
-
 -- app.users data
 INSERT INTO app.users (username,password,display_name,driving_license,adress) VALUES
 	 ('jules','julesweb','Jules VOYER',1,'{"city": "Lille", "code": 59800, "number": 1, "street": "rue du Chevalier Français"}'),
 	 ('test1','test','Test1',0,'{}');
 
 
--- app.user_owns_vehicule data
-INSERT INTO app.user_owns_vehicule (user_id,vehicle_id) VALUES
-   (1,1);
+-- app.vehicles data
+INSERT INTO app.vehicles (name,nb_seats,code,model,owner_id) VALUES
+	 ('Titine',5,'127-AAT-35','307sw',1);
+
+
 
 -- app.trip data
 INSERT INTO app.trip (departure_time,driver_id,vehicle_id,nb_passengers,status,meetup_point,direction) VALUES
