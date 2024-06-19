@@ -1,0 +1,242 @@
+body {
+    /* Remises à zéro */
+    margin: 0;
+    padding: 0;
+}
+
+
+/*---------- LOGIN ----------*/
+
+#lgiBody {
+    /* Insertion de l'image de fond pour la version pc */
+    background-image: url("../ressources/voiture_fond.png");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
+}
+
+#lgiCont {
+    background-color: white;
+
+    /* La division qui contient le formulaire est en position absole à droite pour la version pc */
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+
+    /* Gestion de sa taille pour la version pc */
+    width: 40%;
+    min-width: 400px;
+
+    text-align: center;
+    font-family: Didot, Didot LT STD, Hoefler Text, Garamond, Times New Roman, serif; 
+}
+
+#lgiTittle {
+    margin: 7% 0;
+    text-shadow: 0.06em 0.06em 0.2em rgb(155, 155, 155);
+    /* Je ne sais pas encore comment rendre la taille du titre responsive */
+
+    font-size: 38pt;
+}
+
+#lgiTittle + hr {
+    border: 1.5px solid black;
+    border-radius: 5px;
+    margin-left: 7%;
+    margin-right: 7%;
+}
+
+#lgiForm {
+    height: 45%;
+    margin: 5% 0;
+
+    /* Répartition homogène des éléments dans le formulaire */
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    align-items: center;
+}
+
+.lgiInput {
+    border: 0;
+    border-bottom: 1px solid gray;
+
+    font-size: 15pt;
+
+    width: 70%;
+    padding: 7px;
+}
+
+.lgiInput:focus {
+    outline: none;
+}
+
+#lgiSubmit {
+    /* On ajoute une image de fond au bouton */
+    background-image: url("../ressources/encre_rectangle.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+
+    /* Des angles arrondis et pas de bodure */
+    border-radius: 15px;
+    border: 0;
+
+    /* Traitement du texte */
+    font-size: 15pt;
+    font-weight: bold;
+    color: white;
+    text-shadow: 0.06em 0.06em 0.2em rgb(0, 0, 0);
+
+    padding: 10px 40px;
+}
+
+#lgiForm + div {
+    margin-top: 5%;
+    color: gray;
+    font-size: 13pt;
+}
+
+#lgiSignUp {
+    text-align: right;
+    margin-top: 3%;
+}
+
+#lgiSignUp img {
+    max-height: 14pt;
+}
+
+#lgiSignUp a {
+    text-decoration: none !important;
+    color: black;
+    font-size: 14pt;
+
+    margin-right: 18%;
+}
+
+#lgiLogo {
+    max-height: 50px;
+
+    /* Son contenant est la fenêtre */
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+}
+
+@media all and (max-width:550px) {
+    /* Cas d'une fenêtre de largeur inférieure à 550px [mobile] */
+
+    #lgiCont {
+        width: 100%;
+    }
+}
+
+
+
+/*---------- HEADER ----------*/
+
+#banner {
+    /* Insertion de l'image de fond de la bannière d'entête */
+    background-image: url("../ressources/explosion.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    box-shadow: 2px 2px 15px grey;
+    
+    /* La bannière doit suivre le déplacement de l'utilisateur dans la page */
+    position: fixed;
+
+    /* Gestion de sa taille et de ses marges internes */
+    padding: 1% 0;
+    width: 100% !important;
+
+    /* Ajustement des éléments de la bannière, répartition homogène */
+    display: flex;
+    justify-content: space-around;
+
+    font-size: 18pt;
+}
+
+#banner a {
+    /* Lorsque la fenêtre est suffisamment grande, on affiche du texte dans les liens */
+    text-decoration: none;
+    color: white;
+    text-shadow: 2px 2px 2px black;
+
+    /* Gestion de la forme des cadre qui apparaîtrons derrière */
+    padding: 5px 10px;
+    border-radius: 5pt;
+}
+
+#banner a:hover {
+    color: black;
+    background-color: rgba(255, 255, 255, 0.7);
+    text-shadow: none !important;
+    box-shadow: 2px 2px 10px grey;
+}
+
+@media all and (max-width:550px) {
+    /* Cas d'une fenêtre de largeur inférieure à 550px [mobile] */
+
+    #banner a {
+        max-height: 40px;
+        min-width: 40px;
+        padding: 5px !important;
+    }
+
+    #accueil {
+        content: url("../ressources/accueil-blanc.png");
+    }
+    #trajets {
+        content: url("../ressources/trajets-blanc.png");
+    }
+    #conversations {
+        content: url("../ressources/conversations-blanc.png");
+    }
+    #historique {
+        content: url("../ressources/historique-blanc.png");
+    }
+    #profil {
+        content: url("../ressources/profil-blanc.png");
+    }
+
+    #accueil:hover {
+        content: url("../ressources/accueil-noir.png");
+    }
+    #trajets:hover {
+        content: url("../ressources/trajets-noir.png");
+    }
+    #conversations:hover {
+        content: url("../ressources/conversations-noir.png");
+    }
+    #historique:hover {
+        content: url("../ressources/historique-noir.png");
+    }
+    #profil:hover {
+        content: url("../ressources/profil-noir.png");
+    }
+
+}
+
+
+
+/*---------- FOOTER ----------*/
+
+#pied {
+    background-color: white;
+
+    height: 42px;
+    width: 100% !important;
+
+    position: fixed;
+    bottom: 0;
+}
+
+#pied img {
+    position: absolute;
+    right: 6px;
+    bottom: 6px;
+    max-height: 30px;
+}
