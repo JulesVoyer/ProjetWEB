@@ -128,7 +128,7 @@ CREATE TABLE `invites` (
 
 -- app.users data
 INSERT INTO app.users (username,password,display_name,driving_license,adress) VALUES
-   ('systeme','systeme','Systeme',1,'{}')
+   ('systeme','systeme','Systeme',1,'{}'),
 	 ('jules','julesweb','Jules VOYER',1,'{"city": "Lille", "code": 59800, "number": 1, "street": "rue du Chevalier Français"}'),
 	 ('test1','test','Test1',0,'{}');
 
