@@ -261,6 +261,138 @@ body {
         width: 100%;
     }
 }
+/*---------- TRAJETS ----------*/
+
+#SearchField {
+    border: solid black 1px;
+
+}
+
+.trajet {
+    background-color: lightgrey;
+    border-radius: 15px;
+    padding: 5px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    width: 75%;
+    min-width: 320px;
+    max-width: 700px;
+    text-decoration: none;
+    color: black;
+    display: flex;
+    flex-direction: column;
+}
+
+.dateTrajet {
+    font-size: 18px;
+    font-weight: bold;
+    color: black;
+    margin-left: 20px;
+    margin-top: 10px ;
+    margin-bottom: 5px ;
+}
+
+.depart, .arrivee{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.heureDepart, .heureArrivee {
+    flex: 1;
+    text-align: left;
+    white-space: nowrap; 
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 5px ;
+    margin-bottom: 5px ;
+}
+
+.pointDepart, .pointArrivee {
+    text-align: right;
+    margin-right: 10px;
+    margin-top: 5px ;
+    margin-bottom: 10px ;
+    
+}
+
+
+/*#########--Icone trajet--#########*/
+
+.iconeTrajet {
+    position: relative;
+}
+.rond::before{
+    position: absolute;
+    content: '';
+    width: 10px;
+    height: 10px;
+    background-color: white;
+    border: solid 4px black;
+    border-radius: 40px;
+    z-index: 10;
+
+    top: -60px;
+    left: 60px;
+}
+
+.rond::after {
+    position: absolute;
+    content: '';
+    width: 10px;
+    height: 10px;
+    background-color: white;
+    border: solid 4px black;
+    border-radius: 40px;
+    z-index: 10;
+
+    top: -60px;
+    left: 30%;
+    margin-left: 66.5px;
+}
+
+.trait::before{
+    position: absolute;
+    content: '';
+    width: 30%;
+    height: 5px;
+    background-color: black;
+    z-index: 9;
+    min-width: 110px;
+    max-width: 390px;
+
+    top: -53px;
+    left: 66.5px;
+}
+
+@media all and (max-width:550px) {
+    /* Cas d'une fenêtre de largeur inférieure à 550px [mobile] */
+
+    .rond::before{
+        top: -60px;
+        left: 60px;
+    }
+    
+    .rond::after {
+        top: -26px;
+        left: 60px;
+        margin-left: 0;
+    }
+
+    .trait::before{
+        width: 5px;
+        height: 34px;
+        min-width: 0;
+    
+        top: -50px;
+        left: 66.5px;
+    }
+}
+
 /*---------- CONVERSATIONS ----------*/
 
 #titlePage {
@@ -281,12 +413,13 @@ body {
     margin-top: 15px;
     margin-bottom: 15px;
     width: 75%;
+    min-width: 320px;
+    max-width: 700px;
     display: flex;
     flex-direction: column;
     text-decoration: none;
     color: black;
 }
-
 
 .titleConv {
     font-size: 18px;
@@ -322,6 +455,7 @@ body {
     margin-bottom: 5px ;
     
 }
+
 /*---------- HEADER ----------*/
 
 
