@@ -21,6 +21,13 @@ CREATE TABLE `users` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
+-- app.users data
+INSERT INTO app.users (username,password,display_name,driving_license,adress) VALUES
+   ('systeme','systeme','Systeme',1,'{}'),
+	 ('jules','julesweb','Jules VOYER',1,'{"city": "Lille", "code": 59800, "number": 1, "street": "rue du Chevalier Français"}'),
+	 ('test1','test','Test1',0,'{}');
+
+
 -- app.vehicles definition
 
 
@@ -48,7 +55,7 @@ CREATE TABLE `user_rents_vehicule` (
   KEY `user_rents_vehicule_users_FK` (`user_id`),
   KEY `user_rents_vehicule_vehicules_FK` (`vehicle_id`),
   CONSTRAINT `user_rents_vehicule_users_FK` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE,
-  CONSTRAINT `user_rents_vehicule_vehicules_FK` FOREIGN KEY (`vehicle_id`) REFERENCES `vehicles` (`id`)
+  CONSTRAINT `user_rents_vehicule_vehicules_FK` FOREIGN KEY (`vehicle_id`) REFERENCES `vehicles` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 
@@ -79,7 +86,7 @@ CREATE TABLE `trip` (
   PRIMARY KEY (`id`),
   KEY `trajet_vehicles_FK` (`vehicle_id`),
   KEY `trajet_users_FK` (`driver_id`),
-  CONSTRAINT `trajet_users_FK` FOREIGN KEY (`driver_id`) REFERENCES `users` (`id`),
+  CONSTRAINT `trajet_users_FK` FOREIGN KEY (`driver_id`) REFERENCES `users` (`id`) ON DELETE CASCADE,
   CONSTRAINT `trajet_vehicles_FK` FOREIGN KEY (`vehicle_id`) REFERENCES `vehicles` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
@@ -92,8 +99,8 @@ CREATE TABLE `trip_has_participant` (
   PRIMARY KEY (`id`),
   KEY `trip_has_participant_trip_FK` (`trip_id`),
   KEY `trip_has_participant_users_FK` (`participant_id`),
-  CONSTRAINT `trip_has_participant_trip_FK` FOREIGN KEY (`trip_id`) REFERENCES `trip` (`id`),
-  CONSTRAINT `trip_has_participant_users_FK` FOREIGN KEY (`participant_id`) REFERENCES `users` (`id`)
+  CONSTRAINT `trip_has_participant_trip_FK` FOREIGN KEY (`trip_id`) REFERENCES `trip` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `trip_has_participant_users_FK` FOREIGN KEY (`participant_id`) REFERENCES `users` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- app.messages definition
@@ -107,8 +114,8 @@ CREATE TABLE `messages` (
   PRIMARY KEY (`id`),
   KEY `messages_trip_FK` (`trip_id`),
   KEY `messages_users_FK` (`user_id`),
-  CONSTRAINT `messages_trip_FK` FOREIGN KEY (`trip_id`) REFERENCES `trip` (`id`),
-  CONSTRAINT `messages_users_FK` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
+  CONSTRAINT `messages_trip_FK` FOREIGN KEY (`trip_id`) REFERENCES `trip` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `messages_users_FK` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- app.invites definition
@@ -121,16 +128,10 @@ CREATE TABLE `invites` (
   PRIMARY KEY (`id`),
   KEY `invites_trip_FK` (`trip_id`),
   KEY `invites_users_FK_1` (`target_id`),
-  CONSTRAINT `invites_trip_FK` FOREIGN KEY (`trip_id`) REFERENCES `trip` (`id`),
-  CONSTRAINT `invites_users_FK_1` FOREIGN KEY (`target_id`) REFERENCES `users` (`id`)
+  CONSTRAINT `invites_trip_FK` FOREIGN KEY (`trip_id`) REFERENCES `trip` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `invites_users_FK_1` FOREIGN KEY (`target_id`) REFERENCES `users` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
-
--- app.users data
-INSERT INTO app.users (username,password,display_name,driving_license,adress) VALUES
-   ('systeme','systeme','Systeme',1,'{}'),
-	 ('jules','julesweb','Jules VOYER',1,'{"city": "Lille", "code": 59800, "number": 1, "street": "rue du Chevalier Français"}'),
-	 ('test1','test','Test1',0,'{}');
 
 
 -- app.vehicles data
