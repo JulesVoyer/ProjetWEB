@@ -28,19 +28,21 @@ echo "<?xml version=\"1.0\" encoding=\"utf-8\" ?>";
 
     <!-- **** B O D Y **** -->
     <body id="aclBody">
-    <br><br><br><br>
-    <div>Bienvenue pseudo</div>
-    barre
-    <div>Fatigué de marcher ? </div>
-    <div>Monte à bord !</div>
-    <div>Bienvenue sur Covoit’Campus, la plateforme de covoiturage qui transforme tes trajets inter-campus en véritables moments de convivialité.</div>
-    <div>Fini les longues marches et les bus surchargés !</div>
-    <div>Trouve des compagnons de route agréables et fais de chaque déplacement une expérience plaisante et divertissante.</div>
-    <div>Trajets</div>
-    <div>Tu peux rejoindre un trajet dans l’onglet “ trajets ”.</div>
-    <div>Si aucun trajet ne te convient tu peux en créer un dans ce même onglet.</div>
-    <div>Historique</div>
-    <div></div>
-    <div></div>
+    <br><br><br><br><br>
+    <h1>Bienvenue pseudo</h1>
+    <!-- barre horizontale -->
+    <hr>
+    <h1>Fatigué de marcher ? </h1>
+    <h1>Monte à bord !</h1>
+    <p>Bienvenue sur Covoit’Campus, la plateforme de covoiturage qui transforme tes trajets inter-campus en véritables moments de convivialité.</p>
+    <p>Fini les longues marches et les bus surchargés !</p>
+    <p>Trouve des compagnons de route agréables et fais de chaque déplacement une expérience plaisante et divertissante.</p>
+    <h2>Trajets</h2>
+    <p>Tu peux rejoindre un trajet dans l’onglet “ trajets ”.</p>
+    <p>Si aucun trajet ne te convient tu peux en créer un dans ce même onglet.</p>
+    <h2>Historique</h2>
+    <p>Tu peux consulter tes trajets passés et à venir dans l’onglet “historique”.</p>
+    <h2>Profil</h2>
+    <p>Tu peux modifier tes informations personnelles ou consulter tes véhicules dans l’onglet “profil”.</p>
     </body>
 </html>
