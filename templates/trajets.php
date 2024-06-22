@@ -30,34 +30,39 @@ echo "<?xml version=\"1.0\" encoding=\"utf-8\" ?>";
     <body id="trajetBody">
         <br><br><br><br>
 
-        <a href="" class="trajet">
-            <p class="dateTrajet">Ven. 28 Juin</p>
-            <div class="depart">
-                <p class="heureDepart">12:30</p>
-                <p class="pointDepart">Centrale - Villeneuve d'Ascq</p>
-            </div>
 
-            <div class="arrivee">
+        <div id="searchField">
+
+        </div>
+
+        <a href="" class="trajet">
+            <p class="dateTrajet">Ven. 28 Juin</p>            
+
+            <div class="contTrajet">
+                <p class="heureDepart">12:30</p>
                 <p class="heureArrivee">13:00</p>
+                <p class="pointDepart">Centrale - Villeneuve d'Ascq</p>
                 <p class="pointArrivee">IG2I - Lens</p>
             </div>
-
+                
+            <div class="iconeTrajet">
                 <div class="rond"></div>
                 <div class="trait"></div>
-            
+            </div>
         </a>
 
-        <a href="" class="trajet">
-            <p class="dateTrajet">Ven. 28 Juin</p>
-            <div class="depart">
-                <p class="heureDepart">12:30</p>
-                <p class="pointDepart">Centrale - Villeneuve d'Ascq</p>
-            </div>
+        <a href="" class="trajet sansVehicule">
+            <img src="../ressources/auto-rouge.png" alt="icone voiture rouge"/>
+            <p class="dateTrajet">Ven. 28 Juin</p>            
 
-            <div class="arrivee">
+            <div class="contTrajet">
+                <p class="heureDepart">12:30</p>
                 <p class="heureArrivee">13:00</p>
+                <p class="pointDepart">Centrale - Villeneuve d'Ascq</p>
                 <p class="pointArrivee">IG2I - Lens</p>
             </div>
+                
+
             <div class="iconeTrajet">
                 <div class="rond"></div>
                 <div class="trait"></div>

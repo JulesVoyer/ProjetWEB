@@ -263,12 +263,18 @@ body {
 }
 /*---------- TRAJETS ----------*/
 
-#SearchField {
+#searchField {
     border: solid black 1px;
+    height: 100px;
+    width: 200px;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 15px;
 
 }
 
 .trajet {
+    position: relative;
     background-color: lightgrey;
     border-radius: 15px;
     padding: 5px;
@@ -279,10 +285,16 @@ body {
     width: 75%;
     min-width: 320px;
     max-width: 700px;
+    height: 120px;
     text-decoration: none;
     color: black;
     display: flex;
     flex-direction: column;
+}
+
+.sansVehicule img{
+    position: absolute;
+
 }
 
 .dateTrajet {
@@ -292,15 +304,21 @@ body {
     margin-left: 20px;
     margin-top: 10px ;
     margin-bottom: 5px ;
+    display: block;
 }
 
-.depart, .arrivee{
+.contTrajet {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
 }
 
 .heureDepart, .heureArrivee {
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 5px ;
+    margin-bottom: 5px ;
+}
+
+.pointDepart, .pointArrivee {
     flex: 1;
     text-align: left;
     white-space: nowrap; 
@@ -309,16 +327,40 @@ body {
     margin-left: 10px;
     margin-right: 10px;
     margin-top: 5px ;
-    margin-bottom: 5px ;
+    margin-bottom: 10px ;
+    text-align: center;
+    padding-top: 7px;
 }
 
-.pointDepart, .pointArrivee {
-    text-align: right;
-    margin-right: 10px;
-    margin-top: 5px ;
-    margin-bottom: 10px ;
+.heureDepart {
+    position: absolute;
+    left: 20px;
+    top: 35px;
+}
+
+.heureArrivee {
+    position: absolute;
+    top: 35px;
+    left: calc(45% + 30px);
+}
+
+.pointDepart {
+    position: absolute;
+    left: 20px;
+    top: 75px;
+    max-width: 35%;
     
 }
+
+.pointArrivee {
+    position: absolute;
+    top: 75px;
+    left: calc(45% + 5px);
+    max-width: 35%;
+}
+
+
+
 
 
 /*#########--Icone trajet--#########*/
@@ -336,8 +378,8 @@ body {
     border-radius: 40px;
     z-index: 10;
 
-    top: -60px;
-    left: 60px;
+    top: 20px;
+    left: 42px;
 }
 
 .rond::after {
@@ -350,35 +392,35 @@ body {
     border-radius: 40px;
     z-index: 10;
 
-    top: -60px;
-    left: 30%;
-    margin-left: 66.5px;
+    top: 20px;
+    left: 45%;
+    margin-left: 50px;
 }
 
 .trait::before{
     position: absolute;
     content: '';
-    width: 30%;
+    width: calc(45% + 10px);
     height: 5px;
     background-color: black;
     z-index: 9;
     min-width: 110px;
-    max-width: 390px;
+    max-width: 450px;
 
-    top: -53px;
-    left: 66.5px;
+    top: 27px;
+    left: 50px;
 }
 
 @media all and (max-width:550px) {
     /* Cas d'une fenêtre de largeur inférieure à 550px [mobile] */
 
     .rond::before{
-        top: -60px;
+        top: -3px;
         left: 60px;
     }
     
     .rond::after {
-        top: -26px;
+        top: 31px;
         left: 60px;
         margin-left: 0;
     }
@@ -388,9 +430,42 @@ body {
         height: 34px;
         min-width: 0;
     
-        top: -50px;
+        top: 2px;
         left: 66.5px;
     }
+        
+    .trajet {
+        height: 100px;
+    }
+
+    .heureDepart {
+        position: absolute;
+        top: 35px;
+        left: 5px;
+    }
+    
+    .heureArrivee {
+        position: absolute;
+        top: 69px;
+        left: 5px;
+    }
+    
+    .pointDepart {
+        position: absolute;
+        top: 28px;
+        left: 85px;
+        max-width: 60%;
+    }
+    
+    .pointArrivee {
+        position: absolute;
+        top: 62px;
+        left: 85px;
+        padding-left: 0px;
+        max-width: 60%;
+    }
+
+
 }
 
 /*---------- CONVERSATIONS ----------*/
@@ -455,6 +530,23 @@ body {
     margin-bottom: 5px ;
     
 }
+
+
+/*---------- HISTORIQUE ----------*/
+
+.subTitlePage {
+    position: relative;
+    text-decoration: underline;
+    left: calc(30% - 100px);
+    font-size: 20px;
+    font-weight: bold;
+    color: black;
+    margin-bottom: 15px;
+}
+
+
+
+
 
 /*---------- HEADER ----------*/
 
