@@ -1,8 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Inria+Sans:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap');
+
 body {
     /* Remises à zéro */
     margin: 0;
     padding: 0;
-    font-family: "Helvetica Neue", serif;
+    font-family: "Inria Sans", sans-serif;
     text-decoration: none;
     color: black !important;
 }
@@ -263,6 +265,61 @@ body {
         width: 100%;
     }
 }
+
+/*---------- ACCEUIL ----------*/
+
+/*#aclBody {
+    padding-left: 35%;
+    padding-right: 35%
+}*/
+
+
+#aclBody > h1 {
+    text-align: center;
+    font-size: 45px;
+}
+
+hr {
+    width: 90%;
+}
+
+#aclBody > h2 {
+    text-shadow: 2px 4px 5px rgba(0, 0, 0, 0.5);
+    font-size: 35px;
+}
+
+#aclBody > h3 {
+    position: relative;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+    left: calc(7% - 10px);
+    margin-top: 50px;
+    z-index: -1;
+}
+
+.alignLeft {
+    position: relative;
+    left: calc(10% - 10px);
+    text-align: left;
+    max-width: 72%;
+    z-index: -1;
+}
+
+.alignRight {
+    position: relative;
+    left: -10%;
+    text-align: right;
+    margin-left: 28%;
+    z-index: -1;
+}
+
+
+p {
+    font-style: italic;
+    margin-top: 30px;
+    margin-bottom: 15px;
+}
+
+
 /*---------- TRAJETS ----------*/
 
 #searchField {

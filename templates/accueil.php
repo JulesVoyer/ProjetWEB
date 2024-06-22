@@ -28,21 +28,24 @@ echo "<?xml version=\"1.0\" encoding=\"utf-8\" ?>";
 
     <!-- **** B O D Y **** -->
     <body id="aclBody">
-    <br><br><br><br><br>
-    <h1>Bienvenue pseudo</h1>
+ 
+    <br><br><br>
+    <h1>Bienvenue Pseudo</h1>
     <!-- barre horizontale -->
     <hr>
-    <h1>Fatigué de marcher ? </h1>
-    <h1>Monte à bord !</h1>
-    <p>Bienvenue sur Covoit’Campus, la plateforme de covoiturage qui transforme tes trajets inter-campus en véritables moments de convivialité.</p>
-    <p>Fini les longues marches et les bus surchargés !</p>
-    <p>Trouve des compagnons de route agréables et fais de chaque déplacement une expérience plaisante et divertissante.</p>
-    <h2>Trajets</h2>
-    <p>Tu peux rejoindre un trajet dans l’onglet “ trajets ”.</p>
-    <p>Si aucun trajet ne te convient tu peux en créer un dans ce même onglet.</p>
-    <h2>Historique</h2>
-    <p>Tu peux consulter tes trajets passés et à venir dans l’onglet “historique”.</p>
-    <h2>Profil</h2>
-    <p>Tu peux modifier tes informations personnelles ou consulter tes véhicules dans l’onglet “profil”.</p>
-    </body>
+    <h2 class="alignLeft">Fatigué de marcher ? </h2>
+    <h2 class="alignRight">Monte à bord !</h2>
+    <p class="alignLeft">Bienvenue sur Covoit’Campus, la plateforme de covoiturage qui transforme tes trajets inter-campus en véritables moments de convivialité.</p>
+    <p class="alignRight">Fini les longues marches et les bus surchargés !</p>
+    <p class="alignLeft">Trouve des compagnons de route agréables et fais de chaque déplacement une expérience plaisante et divertissante.</p>
+    <h3>Trajets</h3>
+    <p class="alignLeft">Tu peux rejoindre un trajet dans l’onglet “ trajets ”.</p>
+    <p class="alignRight">Si aucun trajet ne te convient tu peux en créer un dans ce même onglet.</p>
+    <h3>Historique</h3>
+    <p class="alignLeft">Tu peux consulter tes trajets passés et à venir dans l’onglet “historique”.</p>
+    <h3>Profil</h3>
+    <p class="alignRight">Tu peux modifier tes informations personnelles ou consulter tes véhicules dans l’onglet “profil”.</p>
+    <br><br><br><br><br><br>
+
+</body>
 </html>
