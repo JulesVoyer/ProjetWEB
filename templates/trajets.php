@@ -36,23 +36,7 @@ echo "<?xml version=\"1.0\" encoding=\"utf-8\" ?>";
         </div>
 
         <a href="" class="trajet">
-            <p class="dateTrajet">Ven. 28 Juin</p>            
-
-            <div class="contTrajet">
-                <p class="heureDepart">12:30</p>
-                <p class="heureArrivee">13:00</p>
-                <p class="pointDepart">Centrale - Villeneuve d'Ascq</p>
-                <p class="pointArrivee">IG2I - Lens</p>
-            </div>
-                
-            <div class="iconeTrajet">
-                <div class="rond"></div>
-                <div class="trait"></div>
-            </div>
-        </a>
-
-        <a href="" class="trajet sansVehicule">
-            <img src="../ressources/auto-rouge.png" alt="icone voiture rouge"/>
+        <img src="ressources/auto-rouge.png" alt="icone voiture rouge" style="display: none;"/>
             <p class="dateTrajet">Ven. 28 Juin</p>            
 
             <div class="contTrajet">
@@ -69,6 +53,33 @@ echo "<?xml version=\"1.0\" encoding=\"utf-8\" ?>";
             </div>
                 
         </a>
+
+
+            <a href="http://localhost/WEB2.0/%5b04%5d%20Projet/ProjetWEB/index.php?view=profil" class="trajet sansVehicule inscrit">
+                <img id="autoRouge" src="ressources/auto-rouge.png" alt="icone voiture rouge" style="display: none;"/>
+                
+                <p class="dateTrajet">Ven. 28 Juin</p>            
+
+                <div class="contTrajet">
+                    <p class="heureDepart">12:30</p>
+                    <p class="heureArrivee">13:00</p>
+                    <p class="pointDepart">Centrale - Villeneuve d'Ascq</p>
+                    <p class="pointArrivee">IG2I - Lens</p>
+                </div>
+                    
+                <div class="iconeTrajet">
+                    <div class="rond"></div>
+                    <div class="trait"></div>
+                </div>
+                    
+            </a>
+
+            <!--<a href="http://localhost/WEB2.0/%5b04%5d%20Projet/ProjetWEB/index.php?view=conversations">
+                <img id="convLink" src="ressources/conversations-bleu.png" alt="icone voiture rouge" style="display: none;"/>
+            </a> -->  
+        
+        
+        
     
     </body>
 </html>
