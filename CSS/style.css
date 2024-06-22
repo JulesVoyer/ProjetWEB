@@ -293,7 +293,6 @@ hr {
     text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
     left: calc(7% - 10px);
     margin-top: 50px;
-    z-index: -1;
 }
 
 .alignLeft {
@@ -301,7 +300,6 @@ hr {
     left: calc(10% - 10px);
     text-align: left;
     max-width: 72%;
-    z-index: -1;
 }
 
 .alignRight {
@@ -309,7 +307,6 @@ hr {
     left: -10%;
     text-align: right;
     margin-left: 28%;
-    z-index: -1;
 }
 
 
@@ -675,6 +672,8 @@ p {
     justify-content: space-around;
 
     font-size: 18pt;
+
+    z-index:10;
 }
 
 #banner a {
@@ -750,6 +749,7 @@ p {
 
     position: fixed;
     bottom: 0;
+    z-index: 10;
 }
 
 #pied img {

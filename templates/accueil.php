@@ -45,7 +45,7 @@ echo "<?xml version=\"1.0\" encoding=\"utf-8\" ?>";
     <p class="alignLeft">Tu peux consulter tes trajets passés et à venir dans l’onglet “historique”.</p>
     <h3>Profil</h3>
     <p class="alignRight">Tu peux modifier tes informations personnelles ou consulter tes véhicules dans l’onglet “profil”.</p>
-    <br><br><br><br><br><br>
+    <br><br><br>ouais bon, c'est en vue mobile qu'il faut le regarder<br><br><br>
 
 </body>
 </html>
