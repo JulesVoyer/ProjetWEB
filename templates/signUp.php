@@ -22,6 +22,13 @@ echo "<?xml version=\"1.0\" encoding=\"utf-8\" ?>";
         <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-15" />
         <title>Covoit'Campus</title>
         <link rel="stylesheet" type="text/css" href="CSS/style.css">
+
+        <style>
+
+            
+
+
+        </style>
     </head>
     <!-- **** F I N **** H E A D **** -->
 
@@ -30,32 +37,19 @@ echo "<?xml version=\"1.0\" encoding=\"utf-8\" ?>";
     <body id="sguBody">
 
         <div id="sguCont">
-            <h1 id=sguTitle>Covoit'Campus</h1>
+            <h1 id=sguTitle>Créer un compte</h1>
             <hr />
             Renseignez vos informations : 
-            <?php
-                mkForm("controleur.php","POST");
-                    mkInput("text", "nom");
-                    mkInput("text", "prenom");
-                    mkInput("text", "pseudo");
-                    mkInput("password", "passe1");
-                    mkInput("password", "passe2");
 
-                endForm();
-            ?>
             <form id="sguForm" action="controleur.php" methode="post">
                 <input class="sguInput" type="text" name="pseudo" placeholder="Pseudo..." />
                 <input class="sguInput" type="password" name="passe" placeholder="Mot de passe..." />
                 <input id="sguSubmit" type="submit" name="login" value="Se connecter" />
+
             </form>
 
-            <div>Vous avez déjà un compte ?</div>
-            <div id="sguSignUp">
-                <img src="ressources/examen.png" alt="Icon inscription" />
-                <a href="templates/signUp.php">Se connecter !</a>
-            </div>
+            <img id="sguLogo" src="ressources/ec-lille-rect.png" alt="Logo Centrale" />
 
-            <img id="sguLogo" src="ressources/ec-lille.png" alt="Logo Centrale" />
         </div>
         
     </body>

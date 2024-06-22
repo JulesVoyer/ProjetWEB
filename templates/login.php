@@ -42,7 +42,7 @@ echo "<?xml version=\"1.0\" encoding=\"utf-8\" ?>";
             <div>Vous n'avez pas encore de compte ?</div>
             <div id="lgiSignUp">
                 <img src="ressources/examen.png" alt="Icon inscription" />
-                <a href="templates/signUp.php">INSCRIVEZ VOUS !</a>
+                <a href="index.php?view=signUp">INSCRIVEZ VOUS !</a>
             </div>
 
             <img id="lgiLogo" src="ressources/ec-lille.png" alt="Logo Centrale" />

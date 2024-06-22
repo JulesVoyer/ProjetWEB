@@ -98,6 +98,12 @@ body {
     padding: 10px 40px;
 }
 
+#lgiSubmit:hover {
+    transform: translatey(3px);
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+    cursor: pointer;
+}
+
 #lgiForm + div {
     margin-top: 5%;
     color: gray;
@@ -138,61 +144,51 @@ body {
     }
 }
 
+
+
 /*---------- SIGN UP ----------*/
 
-#lgiBody {
+#sguBody {
+    margin: 0;
+    padding: 0;
+
     /* Insertion de l'image de fond pour la version pc */
-    background-image: url("../ressources/voiture_fond.png");
+    background-image: url("../ressources/encre.jpg");
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
     background-position: center;
+
 }
 
-#lgiCont {
-    background-color: white;
-
-    /* La division qui contient le formulaire est en position absole à droite pour la version pc */
-    position: absolute;
-    right: 0;
-    top: 0;
-    bottom: 0;
-
-    /* Gestion de sa taille pour la version pc */
-    width: 40%;
-    min-width: 400px;
-
-    text-align: center;
+#sguCont {
     font-family: Didot, Didot LT STD, Hoefler Text, Garamond, Times New Roman, serif; 
+    text-align: center;
+
+    background-color: rgba(255, 255, 255, 0.9);
+
+    border-radius: 15pt;
+
+    /* Son container est la fenêtre et c'est le conteneur du logo */
+    position: absolute;
+    top: 10%;
+    bottom: 10%;
+    left: 10%;
+    right: 10%;
+
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
 }
 
-#lgiTittle {
-    margin: 7% 0;
-    text-shadow: 0.06em 0.06em 0.2em rgb(155, 155, 155);
-    /* Je ne sais pas encore comment rendre la taille du titre responsive */
-
+#sguTitle {
     font-size: 38pt;
 }
 
-#lgiTittle + hr {
-    border: 1.5px solid black;
-    border-radius: 5px;
-    margin-left: 7%;
-    margin-right: 7%;
+#sguForm {
+    /* Conteneur du logo */
+    position: relative;
 }
 
-#lgiForm {
-    height: 45%;
-    margin: 5% 0;
-
-    /* Répartition homogène des éléments dans le formulaire */
-    display: flex;
-    justify-content: space-around;
-    flex-direction: column;
-    align-items: center;
-}
-
-.lgiInput {
+.sguInput {
     border: 0;
     border-bottom: 1px solid gray;
 
@@ -200,71 +196,23 @@ body {
 
     width: 70%;
     padding: 7px;
+
+    background-color: rgba(255, 255, 255, 0);
 }
 
-.lgiInput:focus {
-    outline: none;
-}
+#sguLogo {
+    max-height: 40px;
 
-#lgiSubmit {
-    /* On ajoute une image de fond au bouton */
-    background-image: url("../ressources/encre_rectangle.jpg");
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-
-    /* Des angles arrondis et pas de bodure */
-    border-radius: 15px;
-    border: 0;
-
-    /* Traitement du texte */
-    font-size: 15pt;
-    font-weight: bold;
-    color: white;
-    text-shadow: 0.06em 0.06em 0.2em rgb(0, 0, 0);
-
-    padding: 10px 40px;
-}
-
-#lgiForm + div {
-    margin-top: 5%;
-    color: gray;
-    font-size: 13pt;
-}
-
-#lgiSignUp {
-    text-align: right;
-    margin-top: 3%;
-}
-
-#lgiSignUp img {
-    max-height: 14pt;
-}
-
-#lgiSignUp a {
-    text-decoration: none !important;
-    color: black;
-    font-size: 14pt;
-
-    margin-right: 18%;
-}
-
-#lgiLogo {
-    max-height: 50px;
-
-    /* Son contenant est la fenêtre */
     position: absolute;
     bottom: 10px;
     right: 10px;
+
+    opacity: 0.8;
 }
 
-@media all and (max-width:550px) {
-    /* Cas d'une fenêtre de largeur inférieure à 550px [mobile] */
 
-    #lgiCont {
-        width: 100%;
-    }
-}
+
+
 
 /*---------- ACCEUIL ----------*/
 
@@ -308,7 +256,6 @@ hr {
     text-align: right;
     margin-left: 28%;
 }
-
 
 p {
     font-style: italic;
@@ -653,7 +600,7 @@ p {
 
 #banner {
     /* Insertion de l'image de fond de la bannière d'entête */
-    background-image: url("../ressources/explosion.jpg");
+    background-image: url("../ressources/encre_rectangle.jpg");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
