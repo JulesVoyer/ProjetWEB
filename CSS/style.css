@@ -3,6 +3,8 @@ body {
     margin: 0;
     padding: 0;
     font-family: "Helvetica Neue", serif;
+    text-decoration: none;
+    color: black !important;
 }
 
 
@@ -287,13 +289,48 @@ body {
     max-width: 700px;
     height: 120px;
     text-decoration: none;
-    color: black;
+    color: black !important;
     display: flex;
     flex-direction: column;
 }
 
-.sansVehicule img{
+.trajet > a {
+    text-decoration: none;
+    color: black;
+    width: 75%;
+    min-width: 320px;
+    max-width: 700px;
+    height: 120px;
+}
+
+/*Icone voiture rouge*/
+
+.sansVehicule #autoRouge{
     position: absolute;
+    display: block !important;
+
+    max-width: 40px;
+    max-height: 100%;
+
+
+    top: 25px;
+    left: calc(100% - 60px);
+
+}
+
+/*Icone lien trajet --> conversations*/
+#convLink{
+    position: relative;
+    display: block !important;
+
+    max-width: 40px;
+    max-height: 100%;
+
+    left: calc(37.5% - 60px);
+    
+    top: 70px;
+    z-index: 10;
+
 
 }
 
@@ -438,6 +475,15 @@ body {
         height: 100px;
     }
 
+    .sansVehicule #autoRouge {
+        top: 20px;
+    }
+
+    #convLink {
+        top: 60px;
+
+    }
+
     .heureDepart {
         position: absolute;
         top: 35px;
@@ -454,7 +500,7 @@ body {
         position: absolute;
         top: 28px;
         left: 85px;
-        max-width: 60%;
+        max-width: 50%;
     }
     
     .pointArrivee {
@@ -462,7 +508,7 @@ body {
         top: 62px;
         left: 85px;
         padding-left: 0px;
-        max-width: 60%;
+        max-width: 50%;
     }
 
 
