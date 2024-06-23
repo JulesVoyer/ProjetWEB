@@ -41,7 +41,14 @@ echo "<?xml version=\"1.0\" encoding=\"utf-8\" ?>";
             <hr />
             Renseignez vos informations : 
 
-            <form id="sguForm" action="controleur.php" methode="post">
+            <form id="sguFormStandard" action="controleur.php" methode="post">
+                <input class="sguInput" type="text" name="pseudo" placeholder="Pseudo..." />
+                <input class="sguInput" type="password" name="passe" placeholder="Mot de passe..." />
+                <input id="sguSubmit" type="submit" name="login" value="Se connecter" />
+
+            </form>
+
+            <form id="sguFormAdress" action="controleur.php" methode="post">
                 <input class="sguInput" type="text" name="pseudo" placeholder="Pseudo..." />
                 <input class="sguInput" type="password" name="passe" placeholder="Mot de passe..." />
                 <input id="sguSubmit" type="submit" name="login" value="Se connecter" />
