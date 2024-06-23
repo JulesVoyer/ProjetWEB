@@ -23,7 +23,7 @@ else die("Fichier config introuvable");
 /**
  * Exécuter une requête UPDATE. Renvoie le nb de modifs ou faux si pb
  * On testera donc avec === pour différencier faux de 0 
- * @return le nombre d'enregistrements affectés, ou false si pb...
+ * @return boolean|int le nombre d'enregistrements affectés, ou false si pb...
  * @param string $sql
  * @pre Les variables  $BDD_login, $BDD_password $BDD_chaine doivent exister
  */
@@ -62,7 +62,7 @@ function SQLDelete($sql) {return SQLUpdate($sql);}
  * Exécuter une requête INSERT 
  * @param string $sql
  * @pre Les variables  $BDD_login, $BDD_password $BDD_chaine doivent exister
- * @return Renvoie l'insert ID ... utile quand c'est un numéro auto
+ * @return int Renvoie l'insert ID ... utile quand c'est un numéro auto
  */
 function SQLInsert($sql)
 {
@@ -136,7 +136,7 @@ function SQLGetChamp($sql)
  * Renvoie FALSE si pas de resultats, ou la ressource sinon
  * @pre Les variables  $BDD_login, $BDD_password $BDD_chaine doivent exister
  * @param string $SQL
- * @return boolean|resource
+ * @return boolean|PDOStatement
  */
 function SQLSelect($sql)
 {	
@@ -169,7 +169,7 @@ function SQLSelect($sql)
 *
 * Parcours les enregistrements d'un résultat mysql et les renvoie sous forme de tableau associatif
 * On peut ensuite l'afficher avec la fonction print_r, ou le parcourir avec foreach
-* @param resultat_Mysql $result
+* @param PDOStatement resultat_Mysql $result
 */
 function parcoursRs($result)
 {
