@@ -17,7 +17,7 @@ include_once "libs/maLibForms.php";
 $view = valider("view"); 
 
 
-if (!valider("connecte","SESSION")) {
+/*if (!valider("connecte","SESSION")) {
 
 	// Si view est vide ou différent de signUp, on charge la vue login par défaut
 	if ($view != "signUp") $view = "login"; 
@@ -25,7 +25,7 @@ if (!valider("connecte","SESSION")) {
     // Si l'utilisateur n'est pas connecté, on affiche la vue login
     include("templates/$view.php");
 
-} else {
+} else {*/
 
     // Sinon
 
@@ -48,6 +48,6 @@ if (!valider("connecte","SESSION")) {
 	// Dans tous les cas, on affiche le pied de page
 	// Qui contient les coordonnées de la personne si elle est connectée
 	include("templates/footer.php");
-}
+//}
 	
 ?>

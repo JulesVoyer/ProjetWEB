@@ -31,12 +31,16 @@ echo "<?xml version=\"1.0\" encoding=\"utf-8\" ?>";
         <br><br><br><br>
 
 
-        <div id="searchField">
-
+        <div id="searchFieldTrajet">
+            <input type="text" name="depart" placeholder="Départ" id="champDepart">
+            <input type="text" name="destination" placeholder="Destination" id="champDestination">
+            <input type="datetime-local" name="dateHeure" placeholder="Quand" id="champDateHeure">
+            <input type="text" name="nbPassagers" placeholder="..." id="champNbPassagers">
+            <input type="image" action="controleur.php" name="imgRecherche" src="ressources/loupe.png" id="imgRecherche">
         </div>
-
+        
         <a href="" class="trajet">
-        <img src="ressources/auto-rouge.png" alt="icone voiture rouge" style="display: none;"/>
+        <img id="autoRouge" src="ressources/auto-rouge.png" alt="icone voiture rouge" style="display: none;"/>
             <p class="dateTrajet">Ven. 28 Juin</p>            
 
             <div class="contTrajet">
@@ -55,7 +59,7 @@ echo "<?xml version=\"1.0\" encoding=\"utf-8\" ?>";
         </a>
 
 
-            <a href="http://localhost/WEB2.0/%5b04%5d%20Projet/ProjetWEB/index.php?view=profil" class="trajet sansVehicule inscrit">
+            <a href="" class="trajet sansVehicule inscrit">
                 <img id="autoRouge" src="ressources/auto-rouge.png" alt="icone voiture rouge" style="display: none;"/>
                 
                 <p class="dateTrajet">Ven. 28 Juin</p>            

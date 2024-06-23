@@ -31,7 +31,6 @@ echo "<?xml version=\"1.0\" encoding=\"utf-8\" ?>";
  
     <br><br><br>
     <h1>Bienvenue Pseudo</h1>
-    <!-- barre horizontale -->
     <hr>
     <div id="presApp">
         <h2 class="alignLeft">Fatigué de marcher ? </h2>
