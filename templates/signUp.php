@@ -22,13 +22,16 @@ echo "<?xml version=\"1.0\" encoding=\"utf-8\" ?>";
         <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-15" />
         <title>Covoit'Campus</title>
         <link rel="stylesheet" type="text/css" href="CSS/style.css">
+        <script src="js/jquery-3.4.1.min.js"></script>
 
-        <style>
-
+        <script>
             
+            $(document).ready( function () {
+                $("")
 
+            } ); // fin ready
+        </script>
 
-        </style>
     </head>
     <!-- **** F I N **** H E A D **** -->
 
@@ -36,27 +39,54 @@ echo "<?xml version=\"1.0\" encoding=\"utf-8\" ?>";
     <!-- **** B O D Y **** -->
     <body id="sguBody">
 
-        <div id="sguCont">
-            <h1 id=sguTitle>Créer un compte</h1>
-            <hr />
-            Renseignez vos informations : 
+        <div id="sguBG">
 
-            <form id="sguFormStandard" action="controleur.php" methode="post">
-                <input class="sguInput" type="text" name="pseudo" placeholder="Pseudo..." />
-                <input class="sguInput" type="password" name="passe" placeholder="Mot de passe..." />
-                <input id="sguSubmit" type="submit" name="login" value="Se connecter" />
+            <div id="sguCont">
+                <h1 id=sguTitle>Créer un compte</h1>
+                <hr />
 
+                <form id="sguForm" action="controleur.php" methode="post">
+
+                    <div id="sguFormStandard"> 
+                        <input class="sguInput" type="text" name="prenom" placeholder="Prénom..." />
+                        <input class="sguInput" type="text" name="nom" placeholder="Nom..." />
+                        <input class="sguInput" type="text" name="pseudo" placeholder="Pseudo..." />
+                        <input class="sguInput" type="password" name="passe" placeholder="Mot de passe..." />
+                        <input class="sguInput" type="password" name="passeConfirm" placeholder="Confirmer le mot de passe..." />
+                        <input id="sguSubmit" type="submit" name="login" value="S'inscrire" />
+                    </div>
+
+
+
+                    <div id="sguFormAdress">
+                        <p>Adresse :</p>
+                        <input class="sguInput" type="text" name="streetNumber" placeholder="Numéro de rue..." />
+                        <input class="sguInput" type="text" name="street" placeholder="Nom de rue..." />
+                        <input class="sguInput" type="text" name="postCode" placeholder="Code postal..." />
+                        <input class="sguInput" type="text" name="city" placeholder="Ville..." />
+                        <div id="sguLicence">
+                            <label for="sguCB">Possédez-vous le permis ?</label>
+                            <input id="sguCB" type="checkbox" name="licence" />
+                        </div>
+                        
+                        
+                    </div>                
+
+                </form>
+
+                <img id="sguLogo" src="ressources/ec-lille-rect.png" alt="Logo Centrale" />
+
+            </div>
+        </div>
+
+        <div class="popup">
+            <h3>Déclarer un véhicule</h3>
+            <form>
+                <input class="popupInput" type="text" name="model" placeholder="Modèle..." />
+                <input class="popupInput" type="text" name="color" placeholder="Couleur..." />
+                <input class="popupInput" type="text" name="nbPlaces" placeholder="Nombre de places..." />
+                <input class="popupInput" type="text" name="matriculation" placeholder="Immatriculation..." />
             </form>
-
-            <form id="sguFormAdress" action="controleur.php" methode="post">
-                <input class="sguInput" type="text" name="pseudo" placeholder="Pseudo..." />
-                <input class="sguInput" type="password" name="passe" placeholder="Mot de passe..." />
-                <input id="sguSubmit" type="submit" name="login" value="Se connecter" />
-
-            </form>
-
-            <img id="sguLogo" src="ressources/ec-lille-rect.png" alt="Logo Centrale" />
-
         </div>
         
     </body>

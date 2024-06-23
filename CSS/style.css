@@ -9,6 +9,17 @@ body {
     color: black !important;
 }
 
+.popup {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+    background-color: rgba(255, 255, 255, 0.5);
+    filter: blur(0.5);
+}
+
 
 /*---------- LOGIN ----------*/
 
@@ -171,35 +182,62 @@ body {
 
     /* Son container est la fenêtre et c'est le conteneur du logo */
     position: absolute;
-    top: 10%;
-    bottom: 10%;
-    left: 10%;
-    right: 10%;
+    top: 7%;
+    bottom: 7%;
+    left: 7%;
+    right: 7%;
 
     box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
 
-    #sguCont {
-
-        /* Gestion du dépassement de contenu */
-        overflow: auto;
-    }
-
+    /* Gestion du dépassement de contenu */
+    overflow: auto;
 }
 
 #sguTitle {
     font-size: 30pt;
 }
 
+#sguForm{
+    /* sguCont est son conteneur */
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 30px;
+    top: 120px;
+}
+
 #sguFormStandard {
-    /* Conteneur du logo */
-    position: relative;
+    /* Dans la configuration pc, les deux parties du formulaire sont côte à côte */
+    width: 49%;
+    height: 100%;
+    float: left;
+
+    /* Répartition homogène des éléments dans la div */
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    align-items: center;
+
+
+}
+
+#sguFormAdress {
+    width: 49%;
+    height: 100%;
+
+    /* Répartition homogène des éléments dans la div */
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    align-items: center;
+
 }
 
 .sguInput {
     border: 0;
     border-bottom: 1px solid gray;
 
-    font-size: 15pt;
+    font-size: 14pt;
 
     width: 70%;
     padding: 7px;
@@ -208,16 +246,20 @@ body {
 }
 
 #sguLogo {
-    max-height: 40px;
+    max-height: 30px;
 
     position: absolute;
-    bottom: 10px;
+    top: 10px;
     right: 10px;
 
     opacity: 0.8;
 }
 
+@media all and (max-width:550px) {
+    /* Cas d'une fenêtre de largeur inférieure à 550px [mobile] */
 
+
+}
 
 
 
