@@ -1,13 +1,18 @@
-@import url('https://fonts.googleapis.com/css2?family=Inria+Sans:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap');
+
+
 
 body {
     /* Remises à zéro */
     margin: 0;
     padding: 0;
-    font-family: "Inria Sans", sans-serif;
+    font-family: Didot, Didot LT STD, Hoefler Text, Garamond, Times New Roman, serif; 
     text-decoration: none;
     color: black !important;
 }
+
+
+
+/*---------- POPUPS ----------*/
 
 .popup {
     position: absolute;
@@ -18,8 +23,77 @@ body {
 
     background-color: rgba(255, 255, 255, 0.5);
     filter: blur(0.5);
+
+    display: none;
 }
 
+.popup > div {
+    position: absolute;
+    top: 20%;
+    bottom: 20%;
+    left: 20%;
+    right: 20%;
+
+    background-color: white;
+
+    border-radius: 15pt;
+
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+
+    padding: 10px;
+
+}
+
+.popup form {
+
+    /* Répartition homogène des éléments dans la div */
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    align-items: center;
+
+    width: 100%;
+    height: 70%;
+}
+
+.popup input {
+
+    border: 0;
+    border-bottom: 1px solid gray;
+
+    font-size: 13pt;
+
+    width: 70%;
+    padding: 7px;
+}
+
+.popup input:focus {
+    outline: none;
+}
+
+.popupButtons {
+    width: 100%;
+}
+
+/*---------- BOUTONS ----------*/
+
+.btn {
+    /* Des angles arrondis et pas de bodure */
+    border-radius: 15px;
+    border: 0;
+
+    /* Traitement du texte */
+    font-size: 14pt;
+    font-weight: bold;
+
+    padding: 10px 40px;
+}
+
+.btn:hover {
+    transform: translatey(3px);
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+    cursor: pointer;
+}
 
 /*---------- LOGIN ----------*/
 
@@ -159,9 +233,14 @@ body {
 
 /*---------- SIGN UP ----------*/
 
-#sguBody {
-    margin: 0;
-    padding: 0;
+
+#sguBG {
+    /* Image de fond */
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
 
     /* Insertion de l'image de fond pour la version pc */
     background-image: url("../ressources/encre.jpg");
@@ -169,7 +248,6 @@ body {
     background-attachment: fixed;
     background-size: cover;
     background-position: center;
-
 }
 
 #sguCont {
@@ -202,7 +280,7 @@ body {
     position: absolute;
     left: 0;
     right: 0;
-    bottom: 30px;
+    bottom: 40px;
     top: 120px;
 }
 
@@ -245,8 +323,17 @@ body {
     background-color: rgba(255, 255, 255, 0);
 }
 
+.sguInput:focus {
+    outline: none;
+}
+
+#sguSubmit {
+    background-color: rgb(0, 153, 255);
+    color: white;
+}
+
 #sguLogo {
-    max-height: 30px;
+    max-height: 20px;
 
     position: absolute;
     top: 10px;
@@ -255,9 +342,39 @@ body {
     opacity: 0.8;
 }
 
+#sguValider {
+    background-color: rgb(0, 153, 255);
+    color: white;
+}
+
 @media all and (max-width:550px) {
     /* Cas d'une fenêtre de largeur inférieure à 550px [mobile] */
 
+    #sguFormStandard {
+        /* Dans la configuration pc, les deux parties du formulaire sont côte à côte */
+        width: 100%;
+        height: 100%;
+    
+        /* Répartition homogène des éléments dans la div */
+        display: flex;
+        justify-content: space-around;
+        flex-direction: column;
+        align-items: center;
+    
+    
+    }
+    
+    #sguFormAdress {
+        width: 100%;
+        height: 100%;
+    
+        /* Répartition homogène des éléments dans la div */
+        display: flex;
+        justify-content: space-around;
+        flex-direction: column;
+        align-items: center;
+    
+    }
 
 }
 

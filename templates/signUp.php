@@ -27,7 +27,18 @@ echo "<?xml version=\"1.0\" encoding=\"utf-8\" ?>";
         <script>
             
             $(document).ready( function () {
-                $("")
+
+                $("#sguCB").click( function () {
+                    $("#sguBG").css("filter", "blur(3px)");
+                    $("#sguBG").css("-webkit-filter", "blur(3px)");
+                    $("#sguPopupCont").show();
+                } ); // fin click CB
+
+                $("#sguPasser").click( function () {
+                    $("#sguBG").css("filter", "blur(0)");
+                    $("#sguBG").css("-webkit-filter", "blur(0)");
+                    $("#sguPopupCont").hide();
+                } ); // fin click Passer
 
             } ); // fin ready
         </script>
@@ -37,7 +48,7 @@ echo "<?xml version=\"1.0\" encoding=\"utf-8\" ?>";
 
 
     <!-- **** B O D Y **** -->
-    <body id="sguBody">
+    <body>
 
         <div id="sguBG">
 
@@ -53,10 +64,11 @@ echo "<?xml version=\"1.0\" encoding=\"utf-8\" ?>";
                         <input class="sguInput" type="text" name="pseudo" placeholder="Pseudo..." />
                         <input class="sguInput" type="password" name="passe" placeholder="Mot de passe..." />
                         <input class="sguInput" type="password" name="passeConfirm" placeholder="Confirmer le mot de passe..." />
-                        <input id="sguSubmit" type="submit" name="login" value="S'inscrire" />
+                        <div id="sguLicence">
+                            <label for="sguCB">Possédez-vous le permis ?</label>
+                            <input id="sguCB" type="checkbox" name="licence" />
+                        </div>
                     </div>
-
-
 
                     <div id="sguFormAdress">
                         <p>Adresse :</p>
@@ -64,12 +76,7 @@ echo "<?xml version=\"1.0\" encoding=\"utf-8\" ?>";
                         <input class="sguInput" type="text" name="street" placeholder="Nom de rue..." />
                         <input class="sguInput" type="text" name="postCode" placeholder="Code postal..." />
                         <input class="sguInput" type="text" name="city" placeholder="Ville..." />
-                        <div id="sguLicence">
-                            <label for="sguCB">Possédez-vous le permis ?</label>
-                            <input id="sguCB" type="checkbox" name="licence" />
-                        </div>
-                        
-                        
+                        <input id="sguSubmit" class="btn" type="submit" name="login" value="S'inscrire" />                     
                     </div>                
 
                 </form>
@@ -79,14 +86,20 @@ echo "<?xml version=\"1.0\" encoding=\"utf-8\" ?>";
             </div>
         </div>
 
-        <div class="popup">
-            <h3>Déclarer un véhicule</h3>
-            <form>
-                <input class="popupInput" type="text" name="model" placeholder="Modèle..." />
-                <input class="popupInput" type="text" name="color" placeholder="Couleur..." />
-                <input class="popupInput" type="text" name="nbPlaces" placeholder="Nombre de places..." />
-                <input class="popupInput" type="text" name="matriculation" placeholder="Immatriculation..." />
-            </form>
+        <div class="popup" id="sguPopupCont">
+            <div id="sguPopup">
+                <h3>Déclarer un véhicule</h3>
+                <form>
+                    <input class="popupInput" type="text" name="model" placeholder="Modèle..." />
+                    <input class="popupInput" type="text" name="color" placeholder="Couleur..." />
+                    <input class="popupInput" type="text" name="nbPlaces" placeholder="Nombre de places..." />
+                    <input class="popupInput" type="text" name="matriculation" placeholder="Immatriculation..." />
+                    <div class="popupButtons">
+                        <input id="sguPasser" class="btn" type="button" name="passer" value="Passer" />   
+                        <input id="sguValider" class="btn" type="submit" name="valider" value="Valider" /> 
+                    </div>  
+                </form>
+            </div>
         </div>
         
     </body>
