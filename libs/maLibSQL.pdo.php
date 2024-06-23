@@ -23,9 +23,9 @@ else die("Fichier config introuvable");
 /**
  * Exécuter une requête UPDATE. Renvoie le nb de modifs ou faux si pb
  * On testera donc avec === pour différencier faux de 0 
- * @return boolean|int le nombre d'enregistrements affectés, ou false si pb...
- * @param string $sql
  * @pre Les variables  $BDD_login, $BDD_password $BDD_chaine doivent exister
+ * @param string $sql 
+ * @return boolean|int le nombre d'enregistrements affectés, ou false si pb...
  */
 function SQLUpdate($sql)
 {
