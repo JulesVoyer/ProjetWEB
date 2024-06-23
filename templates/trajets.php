@@ -31,13 +31,13 @@ echo "<?xml version=\"1.0\" encoding=\"utf-8\" ?>";
         <br><br><br><br>
 
 
-        <div id="searchFieldTrajet">
+        <form action="controleur.php" method="post" id="searchFieldTrajet">
             <input type="text" name="depart" placeholder="Départ" id="champDepart">
             <input type="text" name="destination" placeholder="Destination" id="champDestination">
             <input type="datetime-local" name="dateHeure" placeholder="Quand" id="champDateHeure">
             <input type="text" name="nbPassagers" placeholder="..." id="champNbPassagers">
-            <input type="image" action="controleur.php" name="imgRecherche" src="ressources/loupe.png" id="imgRecherche">
-        </div>
+            <input type="image" name="imgRecherche" src="ressources/loupe.png" alt="rechercheTrajet" id="imgRecherche">
+        </form>
         
         <a href="" class="trajet">
         <img id="autoRouge" src="ressources/auto-rouge.png" alt="icone voiture rouge" style="display: none;"/>

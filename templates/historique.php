@@ -31,12 +31,10 @@ echo "<?xml version=\"1.0\" encoding=\"utf-8\" ?>";
         <br><br><br><br>
 
 
-        <div id="searchFieldHistorique">
-            
+        <form action="controleur.php" method="post" id="searchFieldHistorique">
             <input type="date" name="date" placeholder="Quand" id="champDate">
-    
-            <input type="image" action="controleur.php" name="imgRecherche" src="ressources/loupe.png" id="imgRecherche">
-        </div>
+            <input type="image" name="imgRecherche" src="ressources/loupe.png" alt="rechercheHistorique" id="imgRecherche">
+        </form>
 
         <div class="subTitlePage">Mes trajets à venir</div>
         <div class="subTitlePage">Mes trajets passés</div>
