@@ -34,10 +34,22 @@ function verifUserBdd($login,$passe)
 	// on aurait du utiliser SQLSelect
 }
 
+
+/**
+ * Vérifie si un nom d'utilisateur est déjà pris.
+ *
+ * @param string $login le nom d'utilisateur à vérifier.
+ * @return int|false L'id de l'utilisateur si le nom est déjà pris, sinon false.
+ */
+function checkUsername($login){
+	$SQL= "SELECT id FROM users WHERE username='$login';";
+	return SQLGetChamp($SQL);
+}
+
 /**
  * Récupère les informations d'un utilisateur par son ID.
  * @param int $id 
- * @return mixed|false 
+ * @return array|false 
  */
 
 function getUserById($id)
