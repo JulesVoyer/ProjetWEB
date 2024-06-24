@@ -34,7 +34,7 @@ if (! valider("connecte","SESSION")) {
             <input type="image" name="imgRecherche" src="ressources/loupe.png" alt="rechercheTrajet" id="imgRecherche">
         </form>
         
-        <a href="" class="trajet">
+        <a href="http://localhost/%5b04%5d%20Projet/ProjetWEB/index.php?view=trajetsDetails" class="trajet">
         <img id="autoRouge" src="ressources/auto-rouge.png" alt="icone voiture rouge" style="display: none;"/>
             <p class="dateTrajet">Ven. 28 Juin</p>            
 
