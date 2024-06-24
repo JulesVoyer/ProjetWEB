@@ -696,6 +696,13 @@ function getAllTripsLastMessages($user_id){
 
 }
 
+/**
+ * Récupère les messages d'un voyage spécifique.
+ *
+ * @param int $trip_id L'identifiant du voyage.
+ * @throws Exception Description de l'exception
+ * @return array Les messages du voyage spécifié.
+ */
 function getMessagesByTripId( $trip_id ) {
 	$SQL= "SELECT * FROM messages
 	WHERE trip_id = '$trip_id'
@@ -704,20 +711,16 @@ function getMessagesByTripId( $trip_id ) {
 	return $res;
 }
 
+/**
+ * Publie un nouveau message dans la base de données.
+ * @param int $user_id L'id de l'utilisateur qui envoie le message.
+ * @param int $trip_id L'id du voyage auquel le message est associé.
+ * @param string $content Le contenu du message.
+ * @return void
+ */
 function sendMessageToTrip($user_id, $trip_id, $content) {
 	$SQL= "INSERT INTO messages (content,user_id, trip_id, send_time)
 	VALUES ('$user_id', '$trip_id', '$content',NOW());";
 	SQLInsert($SQL);
 	return;
 }
-
-
-
-
-
-
-
-
-
-
-?>
