@@ -224,6 +224,45 @@ function updateVehicleById($id,$name, $nb_seats, $code, $model) {
 	return $n;
 }
 
+function getAvailableCentraleVehiclesByDate($date){
+	$SQL= "SELECT 
+			v.* 
+		FROM 
+			vehicles v
+			LEFT JOIN 
+			user_rents_vehicle urv
+				ON v.id = urv.vehicle_id
+		WHERE 
+			v.owner_id = 1
+		GROUP BY 
+			v.id
+		HAVING 
+			COUNT(urv.id) = 0;";
+	$result = ParcoursRs(SQLSelect($SQL));
+	if (count($result)> 0)
+	{
+		return $result;
+	}
+	else
+	{
+		return false;
+	}
+}	
+
+function getCentraleVehicleAvailabilityByIdAndDate($vehicle_id, $date){
+	$SQL= "SELECT COUNT(*) FROM user_rents_vehicle
+	WHERE vehicle_id = '$vehicle_id' AND rental_date = '$date';";
+	$result = intval(SQLGetChamp($SQL));
+	return ($result == 0);
+}
+
+function bookVehicleByIds($vehicle_id, $rental_date, $user_id){
+	$SQL= "INSERT INTO user_rents_vehicle (vehicle_id, rental_date, user_id)
+	VALUES ('$vehicle_id', '$rental_date', '$user_id');";
+	SQLInsert($SQL);
+
+}
+
 // INTERVENTIONS
 
 function createIntervention($user_id, $date, $direction){
@@ -253,6 +292,14 @@ function getInterventionsByDate($date) {
 function getDraftTrips(){
 	$SQL= "SELECT * FROM trips
 	WHERE status = 0
+	ORDER BY departure_time ASC, (driver_id IS NULL) DESC ;";
+	$res = parcoursRs(SQLSelect($SQL));
+	return $res;
+}
+
+function getDraftTripsByDateAndDestination($date, $direction){
+	$SQL= "SELECT * FROM trips
+	WHERE status = 0 AND DATE(departure_time) = '$date' AND direction = '$direction'
 	ORDER BY departure_time ASC, (driver_id IS NULL) DESC ;";
 	$res = parcoursRs(SQLSelect($SQL));
 	return $res;
@@ -351,6 +398,23 @@ function deleteTripById($id) {
 	return;
 }
 
+
+function getRemainingSeatsForTrip($id) {
+	$SQL= "SELECT t.nb_passengers - COUNT(*) FROM trip t JOIN trip_has_participant thp ON t.id = thp.trip_id;";
+	$res = SQLGetChamp($SQL);
+	return $res;
+}
+
+function verifLeavableTrip($trip_id){
+	$SQL= "SELECT status FROM trips WHERE id = '$trip_id';";
+	$res = SQLGetChamp($SQL);
+	if ($res) {
+	return (intval(SQLGetChamp($SQL))==0);
+	}
+	else {
+		return false;
+	}
+}
 // PARTICIPANTS
 
 function getTripParticipants($id) {
@@ -369,13 +433,90 @@ function subscribeToTrip($user_id, $trip_id)
 	return;
 }
 
-function unsubscribeToTrip($user_id, $trip_id)
+function unsubscribeFromTrip($user_id, $trip_id)
 {
 	$SQL= "DELETE FROM trip_has_participant
 	WHERE trip_id = '$trip_id' AND participant_id = '$user_id';";
 	SQLDelete($SQL);
 	return;
 }
+
+
+
+// INVITES
+
+function sendInviteToUser($user_id, $trip_id) {
+	$SQL= "INSERT INTO invites (target_id, trip_id,status)
+	VALUES ('$user_id', '$trip_id', 0);";
+	SQLInsert($SQL);
+	return;
+}
+
+function getPendingInvitesForUser($user_id) {
+	$SQL= "SELECT * FROM invites
+	WHERE target_id = '$user_id' AND status = 0;";
+	$res = parcoursRs(SQLSelect($SQL));
+	return $res;
+}
+
+function acceptInvite($user_id, $trip_id) {
+	$SQL= "UPDATE invites
+	SET status = 1
+	WHERE target_id = '$user_id' AND trip_id = '$trip_id';";
+	$n=SQLUpdate($SQL);
+
+	return $n;
+}
+
+function rdeclineInvite($user_id, $trip_id) {
+	$SQL= "UPDATE invites
+	SET status = 2
+	WHERE target_id = '$user_id' AND trip_id = '$trip_id';";
+	$n = SQLUpdate($SQL);
+	return $n;
+}
+
+// MESSAGES
+
+function getAllTripsLastMessages(){
+	// PARTITION BY  : requiert MySQL 8 au moins 
+	$SQL= "SELECT 
+		t.departure_time,
+		t.direction,
+		t.id as trip_id,
+		lm.send_time as last_message_time,
+		lm.content,
+		lm.user_id as sender_id
+	FROM 
+		(SElECT *,
+			ROW_NUMBER() OVER (PARTITION BY trip_id ORDER BY send_time DESC) as n 
+		FROM messages m )
+		lm
+		JOIN 
+		trips t ON lm.trip_id = t.id
+	WHERE lm.n = 1;";
+	$res = parcoursRs(SQLSelect($SQL));
+	return $res;
+
+}
+
+function getMessagesByTripId( $trip_id ) {
+	$SQL= "SELECT * FROM messages
+	WHERE trip_id = '$trip_id'
+	ORDER BY send_time ASC;";
+	$res = parcoursRs(SQLSelect($SQL));
+	return $res;
+}
+
+function sendMessageToTrip($user_id, $trip_id, $content) {
+	$SQL= "INSERT INTO messages (content,user_id, trip_id, send_time)
+	VALUES ('$user_id', '$trip_id', '$content',NOW());";
+	SQLInsert($SQL);
+	return;
+}
+
+
+
 
 
 
