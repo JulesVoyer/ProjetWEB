@@ -2,9 +2,9 @@
 // Ce fichier permet de tester les fonctions développées dans le fichier bdd.php (première partie)
 
 // Si la page est appelée directement par son adresse, on redirige en passant pas la page index
-if (basename($_SERVER["PHP_SELF"]) == "interventions.php")
+if (basename($_SERVER["PHP_SELF"]) == "location.php")
 {
-	header("Location:../index.php?view=interventions");
+	header("Location:../index.php?view=location");
 	die("");
 }
 
@@ -21,7 +21,8 @@ if (! valider("connecte","SESSION")) {
 ?>
 
     <!-- **** B O D Y **** -->
-	<div id="interventionsBody">
-		<br/><br/><br/>
-		
-	</div>
+<div id="locationBody">
+    <br><br><br>
+    
+    
+</div>
