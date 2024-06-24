@@ -224,6 +224,12 @@ function updateVehicleById($id,$name, $nb_seats, $code, $model) {
 	return $n;
 }
 
+	/**
+	 * Récupère les vehicules disponibles pour une date donnée.
+	 *
+	 * @param string $date La date pour laquelle on veut les vehicules disponibles.
+	 * @return array|false Un tableau associatif de vehicules disponibles ou false.
+	 */
 function getAvailableCentraleVehiclesByDate($date){
 	$SQL= "SELECT 
 			v.* 
@@ -249,6 +255,13 @@ function getAvailableCentraleVehiclesByDate($date){
 	}
 }	
 
+/**
+ * Retourne l'état de disponibilité d'un vehicule pour une date donnée.
+ *
+ * @param int $vehicle_id L'id du vehicule
+ * @param string $date La date recherchée 
+ * @return bool Renvoie l'état de disponibilité du véhicule
+ */
 function getCentraleVehicleAvailabilityByIdAndDate($vehicle_id, $date){
 	$SQL= "SELECT COUNT(*) FROM user_rents_vehicle
 	WHERE vehicle_id = '$vehicle_id' AND rental_date = '$date';";
@@ -256,6 +269,14 @@ function getCentraleVehicleAvailabilityByIdAndDate($vehicle_id, $date){
 	return ($result == 0);
 }
 
+/**
+ * Insère une nouvelle réservation de vehicule dans la base de données.
+ *
+ * @param int $vehicle_id L'id du véhicule à réserver
+ * @param string $rental_date La date de la réservation
+ * @param int $user_id L'id de l'utilisateur qui réserve
+ * @return void
+ */
 function bookVehicleByIds($vehicle_id, $rental_date, $user_id){
 	$SQL= "INSERT INTO user_rents_vehicle (vehicle_id, rental_date, user_id)
 	VALUES ('$vehicle_id', '$rental_date', '$user_id');";
@@ -265,6 +286,14 @@ function bookVehicleByIds($vehicle_id, $rental_date, $user_id){
 
 // INTERVENTIONS
 
+/**
+ * Déclare une nouvelle Intervention dans la base
+ *
+ * @param int $user_id L'ID de l'utilisateur qui va effectuer l'intervention.
+ * @param string $date La date de l'intervention.
+ * @param string $direction Le lieu de l'intervention.
+ * @return void
+ */
 function createIntervention($user_id, $date, $direction){
 	$SQL= "INSERT INTO interventions (user_id, date, direction)
 	VALUES ('$user_id', '$date', '$direction');
@@ -273,15 +302,31 @@ function createIntervention($user_id, $date, $direction){
 	return;
 }
 
+/**
+ * Supprime une Intervention dans la base 
+ *
+ * @param int $id L'id de l'intervention à supprimer.
+ * @return void
+ */
 function deleteInterventionById($id) {
 	$SQL= "DELETE FROM interventions WHERE id = '$id';";
 	SQLInsert($SQL);
 	return;
 }
 
-function getInterventionsByDate($date) {
-	$SQL= "SELECT * FROM interventions
-	WHERE date = '$date';";
+/**
+ * Récupère les utilisateurs qui ont une intervention à une date donnée.
+ *
+ * @param string $date La date des de l'intervention.
+ * @return array Un tableau de tous les utilisateurs qui ont une intervention à la date donnée.
+ */
+
+
+function getUsersInterventionsByDate($date) {
+	$SQL= "SELECT u.* FROM 
+		interventions i
+		JOIN users u ON interventions.user_id = u.id
+	WHERE i.date = '$date';";
 	$res = parcoursRs(SQLSelect($SQL));
 	return $res;
 }
@@ -289,32 +334,58 @@ function getInterventionsByDate($date) {
 
 // TRIPS
 
+/**
+ * Récupère  tous les voyages en cours d'édition dans la base de données.
+ *
+ * @return array Un tableau associatif de tous les voyages en cours d'édition, trié par date et ordre de priorité.
+ * 
+ *
+ */
 function getDraftTrips(){
 	$SQL= "SELECT * FROM trips
 	WHERE status = 0
-	ORDER BY departure_time ASC, (driver_id IS NULL) DESC ;";
+	ORDER BY departure_time DESC, (driver_id IS NULL) DESC, (vehicle_id IS NULL) DESC ;";
 	$res = parcoursRs(SQLSelect($SQL));
 	return $res;
 }
 
+/**
+ * Récupère tous les voyages en cours d'édition pour une date et une destination données.
+ *
+ * @param string $date La date des voyages à récupérer.
+ * @param string $direction La destination  des voyages à récupérer.
+ * @return array Un tableau  associatif de tous les voyages en cours d'édition pour la date et la destination données, trié par date et ordre de priorité.
+ */
 function getDraftTripsByDateAndDestination($date, $direction){
 	$SQL= "SELECT * FROM trips
 	WHERE status = 0 AND DATE(departure_time) = '$date' AND direction = '$direction'
-	ORDER BY departure_time ASC, (driver_id IS NULL) DESC ;";
+	ORDER BY departure_time DESC, (driver_id IS NULL) DESC, (vehicle_id IS NULL) DESC ;";
 	$res = parcoursRs(SQLSelect($SQL));
 	return $res;
 }
 
+/**
+ * Récupère tous les voyages en cours d'édition auxquels un utilisateur participe.
+ *
+ * @param int $user_id L'id de l'utilisateur.
+ * @return array Un tableau associatif de tous les voyages en cours d'édition auxquels l'utilisateur participe, trié par date 
+ */
 function getDraftTripsByUserId($user_id){
 	$SQL= "SELECT t.* FROM trips t
 		JOIN trip_has_participant thp ON t.id = thp.trip_id
 	WHERE status = 0 AND thp.participant_id = '$user_id'
-	ORDER BY departure_time ASC;";
+	ORDER BY departure_time DESC;";
 	$res = parcoursRs(SQLSelect($SQL));
 	return $res;
 }
 
 
+/**
+ * Récupère  tous les voyages archivés dans la base de données auxquels un utilisateur a participé .
+ *
+ * @param int $user_id L'id de l'utilisateur.
+ * @return array Un tableau associatif de tous les voyages archivés auxquels l'utilisateur a participé, trié par date.
+ */
 function getArchivedTripsByUserId( $user_id ) {
 	$SQL= "SELECT t.* FROM trips t 
 		JOIN trip_has_participant thp ON t.id = thp.trip_id
@@ -324,6 +395,11 @@ function getArchivedTripsByUserId( $user_id ) {
 	return $res;
 }
 
+/**
+ * Récupère tous les trajets validés à venir  auxquels  un utilisateur participe.
+ * @param int $user_id L'id  de l'utilisateur.
+ * @return array Un tableau  associatif de tous les trajets validés à venir auxquels l'utilisateur participe, trié par date.
+ */
 function getUpcomingTripsByUserId( $user_id ) {
 	$SQL= "SELECT t.* FROM trips t 
 		JOIN trip_has_participant thp ON t.id = thp.trip_id
@@ -334,14 +410,36 @@ function getUpcomingTripsByUserId( $user_id ) {
 }
 
 
+/**
+ * Insère un nouveau voyage dans la base de données.
+ *
+ * @param datetime $departure_time l'heure de départ du voyage.
+ * @param int $driver_id l'id du conducteur pour le voyage.
+ * @param int $vehicle_id L'id du  véhicule pour le voyage.
+ * @param int $nb_passengers Le nombre  de passagers max pour le voyage.
+ * @param int $direction La direction dun voyage
+ * @return void
+ */
 function createTrip( $departure_time, $driver_id, $vehicle_id, $nb_passengers, $direction)
 {
+
+	$departure_time_str = $departure_time->format('Y-m-d H:i:s');
 	$SQL= "INSERT INTO trips (departure_time, driver_id, vehicle_id, nb_passengers, status,  direction)
-	VALUES ('$departure_time', '$driver_id', '$vehicle_id', '$nb_passengers',0, '$direction');";
+	VALUES ('$departure_time_str', '$driver_id', '$vehicle_id', '$nb_passengers',0, '$direction');";
 	SQLInsert($SQL);
 	return;
 }
 
+	/**
+	 * Met à jour  un voyage dans la base de données.
+	 *
+	 * @param int $id L'id du voyage à mettre à jour.
+	 * @param string $departure_time La nouvelle heure de départ du voyage.
+	 * @param int $driver_id Le nouvel ID du conducteur pour le voyage.
+	 * @param int $vehicle_id Le nouvel ID du véhicule pour le voyage.
+	 * @param int $nb_passengers Le nouveau nombre de passagers max pour le voyage.
+	 * @return int Le nombre de lignes affectées par l'opération.
+	 */
 function updateTripById($id, $departure_time, $driver_id, $vehicle_id, $nb_passengers)
 {
 	$SQL= "UPDATE trips
@@ -355,6 +453,12 @@ function updateTripById($id, $departure_time, $driver_id, $vehicle_id, $nb_passe
 	return $n;
 }
 
+/**
+ * Mettre à jour le conducteur d'un voyage.
+ * @param int $user_id l'ID de l'utilisateur qui deviendra le conducteur.
+ * @param int $trip_id L'ID du voyage.
+ * @return int Le  nombre de lignes affectées par l'opération.
+ */
 function declareUserAsTripDriverByIds($user_id, $trip_id) {
 	$SQL= "UPDATE trips
 	SET driver_id = '$user_id'
@@ -364,6 +468,13 @@ function declareUserAsTripDriverByIds($user_id, $trip_id) {
 	return $n;
 }
 
+/**
+ * Met à jour le véhicule d'un voyage.
+ *
+ * @param int $vehicle_id L'id du véhicule.
+ * @param int $trip_id L'id du voyage.
+ * @return int Le nombre de lignes affectées par l'opération.
+*/
 function setVehicleForTripByIds($vehicle_id, $trip_id) {
 	$SQL= "UPDATE trips
 	SET vehicle_id = '$vehicle_id',
@@ -374,6 +485,11 @@ function setVehicleForTripByIds($vehicle_id, $trip_id) {
 
 	return $n;
 }
+/**
+ * Envoie la validation d'un voyage à la base de données.
+ * @param int $id L'id du voyage à valider.
+ * @return int Le nombre de lignes affectées par l'opération.
+ */
 function validateTripById($id) {
 	$SQL= "UPDATE trips
 	SET status = 1
@@ -383,6 +499,11 @@ function validateTripById($id) {
 	return $n;
 }
 
+/**
+ * Archive automatiquement tous les voyages dont la date de départ est passée d'un jour au moins;
+ *
+ * @return int Le nombre de lignes affectées par l'opération.
+ */
 function autoArchiveTrips() {
 	$SQL= "UPDATE trips
 	SET status = 2
@@ -392,6 +513,11 @@ function autoArchiveTrips() {
 	return $n;
 }
 
+/**
+ * Supprime  un voyage de la base de données.
+ * @param int $id L'id du  voyage à supprimer.
+ * @return void
+ */
 function deleteTripById($id) {
 	$SQL= "DELETE FROM trips WHERE id = '$id';";
 	SQLInsert($SQL);
@@ -399,12 +525,24 @@ function deleteTripById($id) {
 }
 
 
+	/**
+	 * Récupère le nombre de places restantes pour un voyage
+	 *
+	 * @param int $id L'id du voyage.
+	 * @return int Le nombre de places restantes pour le voyage.
+	 */
 function getRemainingSeatsForTrip($id) {
 	$SQL= "SELECT t.nb_passengers - COUNT(*) FROM trip t JOIN trip_has_participant thp ON t.id = thp.trip_id;";
 	$res = SQLGetChamp($SQL);
 	return $res;
 }
 
+/**
+ * Vérifie si un voyage est quittable.
+ *
+ * @param int $trip_id L'id du voyage.
+ * @return bool Renvoie true si le voyage est quittable, sinon false.
+ */
 function verifLeavableTrip($trip_id){
 	$SQL= "SELECT status FROM trips WHERE id = '$trip_id';";
 	$res = SQLGetChamp($SQL);
@@ -417,6 +555,12 @@ function verifLeavableTrip($trip_id){
 }
 // PARTICIPANTS
 
+/**
+ * Réccupère la liste des participants à un voyage.
+ *
+ * @param int $id L'id du voyage.
+ * @return array Le tableau associatif des participants au voyage.
+ */
 function getTripParticipants($id) {
 	$SQL= "SELECT * FROM trip_has_participant
 	WHERE trip_id = '$id';";
@@ -425,6 +569,13 @@ function getTripParticipants($id) {
 }
 
 
+/**
+ * Enregistre un utilisateur comme participant à un voyage.
+ *
+ * @param int $user_id L'id de l'utilisateur à ajouter.
+ * @param int $trip_id L'id du voyage.
+ * @return void
+ */
 function subscribeToTrip($user_id, $trip_id)
 {
 	$SQL= "INSERT INTO trip_has_participant (trip_id, participant_id)
@@ -433,6 +584,13 @@ function subscribeToTrip($user_id, $trip_id)
 	return;
 }
 
+/**
+ * Désinscrit un utilisateur d'un voyage.
+ *
+ * @param int $user_id L'id de l'utilisateur à désinscrire.
+ * @param int $trip_id L'id du voyage.
+ * @return void
+ */
 function unsubscribeFromTrip($user_id, $trip_id)
 {
 	$SQL= "DELETE FROM trip_has_participant
@@ -445,6 +603,13 @@ function unsubscribeFromTrip($user_id, $trip_id)
 
 // INVITES
 
+/**
+ * Insère une invitation dans la base de données.
+ *
+ * @param int $user_id L'id de l'utilisateur à inviter.
+ * @param int $trip_id L'id du voyage.
+ * @return void
+ */
 function sendInviteToUser($user_id, $trip_id) {
 	$SQL= "INSERT INTO invites (target_id, trip_id,status)
 	VALUES ('$user_id', '$trip_id', 0);";
@@ -452,6 +617,12 @@ function sendInviteToUser($user_id, $trip_id) {
 	return;
 }
 
+/**
+ * récupère toutes les invitations en attente pour un voyage.
+ *
+ * @param int $user_id L'id de l'utilisateur.
+ * @return array Un tableau associatif de toutes les invitations en attente pour l'utilisateur.
+ */
 function getPendingInvitesForUser($user_id) {
 	$SQL= "SELECT * FROM invites
 	WHERE target_id = '$user_id' AND status = 0;";
@@ -459,6 +630,13 @@ function getPendingInvitesForUser($user_id) {
 	return $res;
 }
 
+/**
+ * Met à jour le statut d'une invitation à "accepté" pour un voyage.
+ *
+ * @param int $user_id L'id de l'utilisateur associé à l'invitation.
+ * @param int $trip_id L'id du voyage.
+ * @return int le nombre de lignes affectées par l'opération.
+ */
 function acceptInvite($user_id, $trip_id) {
 	$SQL= "UPDATE invites
 	SET status = 1
@@ -468,7 +646,14 @@ function acceptInvite($user_id, $trip_id) {
 	return $n;
 }
 
-function rdeclineInvite($user_id, $trip_id) {
+/**
+ * Met à jour le statut d'une invitation à "refusé" pour un voyage.
+ *
+ * @param int $user_id L'id de l'utilisateur associé à l'invitation.
+ * @param int $trip_id L'id du voyage.
+ * @return int Le nombre de lignes affectées par l'opération.
+ */
+function declineInvite($user_id, $trip_id) {
 	$SQL= "UPDATE invites
 	SET status = 2
 	WHERE target_id = '$user_id' AND trip_id = '$trip_id';";
@@ -478,7 +663,12 @@ function rdeclineInvite($user_id, $trip_id) {
 
 // MESSAGES
 
-function getAllTripsLastMessages(){
+/**
+ * Récupère les derniers messages des voyages auxquel un utilisateur participe.
+ * @param int $user_id L'id du voyage.
+ * @return array Un tableau asociatif contenant les données d'intitulé du trajet et le contenu du dernier message posté, trié par date de départ.
+ */
+function getAllTripsLastMessages($user_id){
 	// PARTITION BY  : requiert MySQL 8 au moins 
 	$SQL= "SELECT 
 		t.departure_time,
@@ -494,7 +684,13 @@ function getAllTripsLastMessages(){
 		lm
 		JOIN 
 		trips t ON lm.trip_id = t.id
-	WHERE lm.n = 1;";
+		JOIN 
+		trip_has_participant thp ON t.id = thp.trip_id
+	WHERE	
+		thp.participant_id = '$user_id' AND lm.n = 1
+	ORDER BY
+		t.departure_time DESC;";
+
 	$res = parcoursRs(SQLSelect($SQL));
 	return $res;
 
