@@ -1,13 +1,30 @@
 <?php
+// Ce fichier permet de tester les fonctions développées dans le fichier bdd.php (première partie)
 
+// Si la page est appelée directement par son adresse, on redirige en passant pas la page index
+if (basename($_SERVER["PHP_SELF"]) == "trajetsDetails.php")
+{
+	header("Location:../index.php?view=trajetsDetails");
+	die("");
+}
+
+include_once("libs/modele.php");
+include_once("libs/maLibUtils.php"); // tprint
+include_once("libs/maLibForms.php"); 
+// définit mkTable
+
+// Hypo : l'user doit etre connecté 
+if (! valider("connecte","SESSION")) {
+	header("Location:?view=accueil&msg_feedback=" . urlencode("Il faut etre connecte !"));
+	die("");
+}
 
 ?>
 
 
 <!-- **** B O D Y **** -->
 
-// On ajoute le
-<body id="trajetBody">
+<div id="trajetBody">
     <br><br><br><br>
 
     <!-- Formulaire de recherche de trajet (déjà présent dans votre code) -->

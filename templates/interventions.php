@@ -4,7 +4,7 @@
 // Si la page est appelée directement par son adresse, on redirige en passant pas la page index
 if (basename($_SERVER["PHP_SELF"]) == "interventions.php")
 {
-	header("Location:../index.php?view=header");
+	header("Location:../index.php?view=interventions");
 	die("");
 }
 

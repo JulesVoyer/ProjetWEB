@@ -2,9 +2,9 @@
 // Ce fichier permet de tester les fonctions développées dans le fichier bdd.php (première partie)
 
 // Si la page est appelée directement par son adresse, on redirige en passant pas la page index
-if (basename($_SERVER["PHP_SELF"]) == "profil.php")
+if (basename($_SERVER["PHP_SELF"]) == "trajets.php")
 {
-	header("Location:../index.php?view=users");
+	header("Location:../index.php?view=trajets");
 	die("");
 }
 
