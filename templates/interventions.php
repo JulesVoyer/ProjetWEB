@@ -10,13 +10,7 @@ if (basename($_SERVER["PHP_SELF"]) == "interventions.php")
 
 include_once("libs/modele.php");
 include_once("libs/maLibUtils.php");
-include_once("libs/maLibForms.php"); 
-
-// Hypo : l'user doit etre connecté 
-if (! valider("connecte","SESSION")) {
-	header("Location:?view=accueil&msg_feedback=" . urlencode("Il faut etre connecte !"));
-	die("");
-}
+include_once("libs/maLibForms.php");
 
 ?>
 
