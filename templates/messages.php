@@ -7,6 +7,10 @@ if (basename($_SERVER["PHP_SELF"]) != "index.php")
 	die("");
 }
 
+include_once("libs/modele.php");
+include_once("libs/maLibUtils.php");
+include_once("libs/maLibForms.php");
+
 // On envoie l'entête Content-type correcte avec le bon charset
 header('Content-Type: text/html;charset=utf-8');
 

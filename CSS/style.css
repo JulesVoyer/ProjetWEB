@@ -843,6 +843,26 @@ body {
 
 /*---------- MESSAGES ----------*/
 
+#lienDetailTrajet {
+    display: flex;
+    flex-direction: row;
+    border-radius: 15px;
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    color: black;
+    background-color: lightgrey;
+    font-size: 20pt;
+}
+
+#lienDetailTrajet > p {
+    margin: -8px 0 0 0 !important;
+    text-align: center;
+    font-weight: normal;
+    text-decoration: none !important;
+
+}
+
 #conversation {
     position: relative;
     border: black solid 1px;
@@ -857,29 +877,8 @@ body {
     height: 700px;
     display: flex;
     flex-direction: column;
-    text-decoration: none;
+    text-decoration:none !important;
     color: black;
-}
-
-#lienDetailTrajet {
-    border: solid black 1px;
-    border-radius: 15px;
-    width: 30px;
-    height: 30px;
-    text-align: center;
-    text-decoration: none;
-    color: black;
-    background-color: lightgrey;
-    position: absolute;
-    font-size: 20pt;
-
-    top: 75px;
-    left: 600px;
-}
-
-#lienDetailTrajet p {
-    margin: 0 !important;
-    display: block;
 }
 
 #conversation > p {
@@ -941,10 +940,6 @@ body {
     position: relative;
     width: 70%;
 }
-
-
-
-/*---------- HISTORIQUE ----------*/
 
 .subTitlePage {
     position: relative;
