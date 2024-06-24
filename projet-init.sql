@@ -1,13 +1,14 @@
+-- pour les versions Mysql antérieures à v8, 
+-- remplacer "utf8mb4_0900_ai_ci" par "utf8mb4_unicode_ci" dans le fichier.
+-- et décommenter la ligne suivante : 
+
+-- USE app;
 
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+02:00";
 
-
-
-
-
-
+USE app;
 
 -- app.users definition
 
