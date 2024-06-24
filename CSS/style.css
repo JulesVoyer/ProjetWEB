@@ -823,6 +823,108 @@ body {
     
 }
 
+/*---------- MESSAGES ----------*/
+
+#conversation {
+    position: relative;
+    border: black solid 1px;
+    padding: 5px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    width: 60%;
+    min-width: 320px;
+    max-width: 700px;
+    height: 700px;
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    color: black;
+}
+
+#lienDetailTrajet {
+    border: solid black 1px;
+    border-radius: 15px;
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    text-decoration: none;
+    color: black;
+    background-color: lightgrey;
+    position: absolute;
+    font-size: 20pt;
+
+    top: 75px;
+    left: 600px;
+}
+
+#lienDetailTrajet p {
+    margin: 0 !important;
+    display: block;
+}
+
+#conversation > p {
+    margin: 5px 0 5px 0;
+}
+
+.heureRecu {
+    margin: 5px 5px 5px 5px !important;
+}
+
+.messageRecu {    
+    width: fit-content;
+    max-width: 70%;
+    height: fit-content;
+    border-radius: 7.5px;
+    background-color: #E9E9EB;
+    padding: 5px;
+}
+
+.heureEnvoye {
+    position: relative;
+    float: right;
+    margin: 5px 5px 5px auto !important;
+}
+
+.messageEnvoye {
+    position: relative;
+    float: right;
+    margin: 0 0 0 auto !important;
+    border-radius: 7.5px;
+    background-color: #1E74AB;    
+    width: fit-content;
+    max-width: 70%;
+    height: fit-content;
+    padding: 5px;
+}
+
+.rejointQuitte {
+    font-weight: bold;
+    text-align: center;
+    margin: 10px !important;
+
+}
+
+#conversation form {
+    position: absolute;
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+    top: 680px;
+    width: 100%;
+}
+
+#conversation input {
+    margin: 2.5px;
+}
+
+#conversation input[type="text"] {
+    position: relative;
+    width: 70%;
+}
+
+
 
 /*---------- HISTORIQUE ----------*/
 

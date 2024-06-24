@@ -32,7 +32,7 @@ echo "<?xml version=\"1.0\" encoding=\"utf-8\" ?>";
 
         <div id="titlePage">Mes conversations</div>
 
-        <a href="" class="conversations">
+        <a href="http://localhost/%5b04%5d%20Projet/ProjetWEB/index.php?view=messages" class="conversations">
             <p class="titleConv">Nom de la conv</p>
             <div class="messageContainer">
                 <p class="lastMessage">Oriane : Ça marche, rdv demain à Centrale :)</p>
