@@ -22,7 +22,6 @@ body {
     right: 0;
 
     background-color: rgba(255, 255, 255, 0.5);
-    filter: blur(0.5);
 
     display: none;
 }
@@ -41,22 +40,27 @@ body {
     box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
 
     padding: 10px;
+}
 
+.popup h3 {
+    margin-left: 10px;
 }
 
 .popup form {
-
     /* Répartition homogène des éléments dans la div */
     display: flex;
     justify-content: space-around;
     flex-direction: column;
     align-items: center;
 
-    width: 100%;
-    height: 70%;
+    position: absolute;
+    top: 50px;
+    bottom: 10px;
+    left: 0;
+    right: 0;
 }
 
-.popup input {
+.popupInput {
 
     border: 0;
     border-bottom: 1px solid gray;
@@ -67,12 +71,13 @@ body {
     padding: 7px;
 }
 
-.popup input:focus {
+.popupInput:focus {
     outline: none;
 }
 
 .popupButtons {
     width: 100%;
+    text-align: center;
 }
 
 /*---------- BOUTONS ----------*/
@@ -299,6 +304,10 @@ body {
 
 }
 
+#sguLicence label {
+    font-size: 14pt;
+}
+
 #sguFormAdress {
     width: 49%;
     height: 100%;
@@ -308,7 +317,10 @@ body {
     justify-content: space-around;
     flex-direction: column;
     align-items: center;
+}
 
+#sguFormAdress p {
+    font-size: 14pt;
 }
 
 .sguInput {
@@ -330,6 +342,7 @@ body {
 #sguSubmit {
     background-color: rgb(0, 153, 255);
     color: white;
+    display: block;
 }
 
 #sguLogo {
@@ -345,6 +358,11 @@ body {
 #sguValider {
     background-color: rgb(0, 153, 255);
     color: white;
+}
+
+#sguPopup {
+    top: 10% !important;
+    bottom: 10% !important;
 }
 
 @media all and (max-width:550px) {

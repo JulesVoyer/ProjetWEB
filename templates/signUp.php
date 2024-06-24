@@ -29,9 +29,11 @@ echo "<?xml version=\"1.0\" encoding=\"utf-8\" ?>";
             $(document).ready( function () {
 
                 $("#sguCB").click( function () {
-                    $("#sguBG").css("filter", "blur(3px)");
-                    $("#sguBG").css("-webkit-filter", "blur(3px)");
-                    $("#sguPopupCont").show();
+                    if ($(this).is(":checked")) {
+                        $("#sguBG").css("filter", "blur(3px)");
+                        $("#sguBG").css("-webkit-filter", "blur(3px)");
+                        $("#sguPopupCont").show();
+                    }
                 } ); // fin click CB
 
                 $("#sguPasser").click( function () {
@@ -76,7 +78,10 @@ echo "<?xml version=\"1.0\" encoding=\"utf-8\" ?>";
                         <input class="sguInput" type="text" name="street" placeholder="Nom de rue..." />
                         <input class="sguInput" type="text" name="postCode" placeholder="Code postal..." />
                         <input class="sguInput" type="text" name="city" placeholder="Ville..." />
-                        <input id="sguSubmit" class="btn" type="submit" name="login" value="S'inscrire" />                     
+                        <div>
+                            <input id="sguSubmit" class="btn" type="submit" name="login" value="S'inscrire" />   
+                            <a href="index.php?view=login">Se connecter</a>
+                        </div>
                     </div>                
 
                 </form>
@@ -88,7 +93,7 @@ echo "<?xml version=\"1.0\" encoding=\"utf-8\" ?>";
 
         <div class="popup" id="sguPopupCont">
             <div id="sguPopup">
-                <h3>Déclarer un véhicule</h3>
+                <h3>Déclarer un véhicule :</h3>
                 <form>
                     <input class="popupInput" type="text" name="model" placeholder="Modèle..." />
                     <input class="popupInput" type="text" name="color" placeholder="Couleur..." />
