@@ -48,12 +48,50 @@ echo "<?xml version=\"1.0\" encoding=\"utf-8\" ?>";
 				$("#pflPopupDecoCont").show();
 			} ); // fin click Se déconnecter
 
-			$("#pflAnnuler").click( function () {
+			$(".pflAnnuler").click( function () {
 				$("#pflBody").css("filter", "blur(0)");
 				$("#pflBody").css("-webkit-filter", "blur(0)");
 				$("#pflPopupDecoCont").hide();
+				$("#pflPopupEditionPerso").hide();
+				$("#pflPopupEditionVoit").hide();
 			} ); // fin click Annuler
 			// fin popup déconnexion
+
+
+			var selected = 1; // vaut 1 si on modifie les infos perso, 2 si on modifie les véhicules
+			
+			// afficher popup édition des informations personnelles ou voitures
+			$("#pflEditer").click( function () {
+				$("#pflBody").css("filter", "blur(3px)");
+				$("#pflBody").css("-webkit-filter", "blur(3px)");
+				if (selected == 1) {
+					/* Mettre les valeurs d'origine dans les champs d'entrée texte */
+					console.log($("#pflPrenom").html());
+					$("#newPre").val($("#pflPrenom").html());
+					console.log($("#newPre").val());
+					$("#newNom").val($("#pflNom").html());
+					$("#newPseu").val($("#pflPseudo").html());
+					$("#newNum").val($("#pflNum").html());
+					$("#newNomRue").val($("#pflNomRue").html());
+					$("#newCode").val($("#pflCode").html());
+					$("#newCity").val($("#pflVille").html());
+
+					/* afficher le popup */
+					$("#pflPopupEditionPerso").show();
+				}
+				else $("#pflPopupEditionVoit").show();
+			} );
+			// fin afficher popup édition des informations personnelles
+
+			// popup édition informations personnelles
+			$("#cbMDP").click( function () {
+				if ($(this).is(":checked")) $(".editMDP").show();
+				else $(".editMDP").hide();
+				
+			} );
+
+
+			// fin popup édition informations personnelles
 
 			// fermer tous les popups avec esc
 			$(document).keydown( function (contexte) {
@@ -62,13 +100,14 @@ echo "<?xml version=\"1.0\" encoding=\"utf-8\" ?>";
 					$("#pflBody").css("-webkit-filter", "blur(0)");
 					$(".popup").hide();
 					}
-			} ); // fin fermer popup
+			} ); // fin fermer popups
 
 			// fin traitement popups profil
 
-						// changement de rubriques
-						if ($("#pflLicence").html() == "Oui") {
+			// changement de rubriques
+			if ($("#pflLicence").html() == "Oui") {
 				$("#pflVehicules").click( function () {
+					selected = 2;
 					$("#pflVoiture").show();
 					$("#pflPerso").hide();
 					$("#pflAPropos").css("background-color", "rgba(128, 128, 128, 0.5)");
@@ -77,14 +116,13 @@ echo "<?xml version=\"1.0\" encoding=\"utf-8\" ?>";
 			}
 
 			$("#pflAPropos").click( function () {
-					$("#pflVoiture").hide();
-					$("#pflPerso").show();
-					$("#pflVehicules").css("background-color", "rgba(128, 128, 128, 0.5)");
-					$("#pflAPropos").css("background-color", "transparent");
-			} );
-
+				selected = 1;
+				$("#pflVoiture").hide();
+				$("#pflPerso").show();
+				$("#pflVehicules").css("background-color", "rgba(128, 128, 128, 0.5)");
+				$("#pflAPropos").css("background-color", "transparent");
+		} );
 			// fin changement des rubriques
-
 
 			// fin traitement du profil
 

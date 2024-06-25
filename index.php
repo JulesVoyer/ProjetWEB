@@ -42,14 +42,15 @@ $view = valider("view");
 		default : // si le template correspondant à l'argument existe, on l'affiche. Sinon, on redirige vers l'accueil
 			if (file_exists("templates/$view.php"))
 				include("templates/$view.php");
-			else
+			else{
 				header("Location:./index.php?view=accueil");
-				die("");
+				}
 	}
 
 
 	// Dans tous les cas, on affiche le pied de page
 	// Qui contient les coordonnées de la personne si elle est connectée
+
 	include("templates/footer.php");
 //}
 	

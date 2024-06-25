@@ -27,17 +27,29 @@ function verifUserBdd($login,$passe)
 	// renvoie faux si user inconnu
 	// renvoie l'id de l'utilisateur si succès
 
-	$SQL="SELECT id FROM users WHERE pseudo='$login' AND pass='$passe';";
+	$SQL="SELECT id FROM users u WHERE u.username='$login' AND u.password='$passe';";
 
 	return SQLGetChamp($SQL);
 	// si on avait besoin de plus d'un champ
 	// on aurait du utiliser SQLSelect
 }
 
+
+/**
+ * Vérifie si un nom d'utilisateur est déjà pris.
+ *
+ * @param string $login le nom d'utilisateur à vérifier.
+ * @return int|false L'id de l'utilisateur si le nom est déjà pris, sinon false.
+ */
+function checkUsername($login){
+	$SQL= "SELECT id FROM users WHERE username='$login';";
+	return SQLGetChamp($SQL);
+}
+
 /**
  * Récupère les informations d'un utilisateur par son ID.
  * @param int $id 
- * @return mixed|false 
+ * @return array|false 
  */
 
 function getUserById($id)
@@ -70,22 +82,26 @@ function getUserById($id)
  * @return int L'ID du compte nouvellement créé.
  */
 function createAccount($username, $password, $display_name, $driving_license, $street_number, $street, $city, $city_code){
-	$SQL= "INSERT INTO users (username, password, display_name, driving_license, adress)
-	VALUES ('$username', 
-			'$password', 
-			'$display_name', 
-			'$driving_license', 
-			{\"street_number\" : \"'$street_number'\", 
-				\"street\" : \"'$street'\" , 
-				\"code\" : '$city_code' , 
-				\"city\" : \"'$city'\"
-			} );";
-	
-	$id = SQLInsert($SQL);
+    $addressJson = json_encode(array(
+        "street_number" => $street_number,
+        "street" => $street,
+        "code" => $city_code,
+        "city" => $city
+    ));
+    $addressJson = addslashes($addressJson); // Échappe les caractères spéciaux dans la chaîne pour l'utiliser dans la requête SQL
 
-	return $id;
+    $SQL= "INSERT INTO users (username, password, display_name, driving_license, adress)
+    VALUES ('$username', 
+            '$password', 
+            '$display_name', 
+            '$driving_license', 
+            '$addressJson'
+            );";
+    
+    $id = SQLInsert($SQL);
+
+    return $id;
 }
-
 /**
  * Mettre à jour les informations d'un utilisateur.
  *
@@ -106,12 +122,12 @@ function updateUserById($id, $username, $password, $display_name, $driving_licen
 		password = '$password',
 		display_name = '$display_name',
 		driving_license = '$driving_license',
-		adress = {
-			\"street_number\" : \"'$street_number'\", 
-			\"street\" : \"'$street'\" , 
-			\"code\" : '$city_code' ,
-			\"city\" : \"'$city'\"
-		}
+		adress = '{
+			\"street_number\" : \"$street_number\", 
+			\"street\" : \"$street\" , 
+			\"code\" : \"$city_code\" ,
+			\"city\" : \"$city\"
+		}'
 	WHERE id = '$id';
 	";
 
@@ -152,9 +168,12 @@ function verifDriverLicenseById($id){
  * @return void
  */
 function createVehicle($name, $nb_seats, $code, $model, $owner_id) {
+	// $code et $model peuvent etre NULL, si l'utilisateur ne les a pas renseignés, et on veut les laisser NULL en base
+	$code_value = is_null($code) ?"NULL": "'$code'";
+	$model_value = is_null($model) ?"NULL": "'$model'";
+
 	$SQL= "INSERT INTO vehicles (name, nb_seats, code, model, owner_id)
-	VALUES ('$name', '$nb_seats', '$code', '$model', '$owner_id');
-	";
+	VALUES ('$name', '$nb_seats', $code_value, $model_value, '$owner_id');";
 	SQLInsert($SQL);
 	return;
 	}
@@ -696,6 +715,13 @@ function getAllTripsLastMessages($user_id){
 
 }
 
+/**
+ * Récupère les messages d'un voyage spécifique.
+ *
+ * @param int $trip_id L'identifiant du voyage.
+ * @throws Exception Description de l'exception
+ * @return array Les messages du voyage spécifié.
+ */
 function getMessagesByTripId( $trip_id ) {
 	$SQL= "SELECT * FROM messages
 	WHERE trip_id = '$trip_id'
@@ -704,20 +730,16 @@ function getMessagesByTripId( $trip_id ) {
 	return $res;
 }
 
+/**
+ * Publie un nouveau message dans la base de données.
+ * @param int $user_id L'id de l'utilisateur qui envoie le message.
+ * @param int $trip_id L'id du voyage auquel le message est associé.
+ * @param string $content Le contenu du message.
+ * @return void
+ */
 function sendMessageToTrip($user_id, $trip_id, $content) {
 	$SQL= "INSERT INTO messages (content,user_id, trip_id, send_time)
 	VALUES ('$user_id', '$trip_id', '$content',NOW());";
 	SQLInsert($SQL);
 	return;
 }
-
-
-
-
-
-
-
-
-
-
-?>
