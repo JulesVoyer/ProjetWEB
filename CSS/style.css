@@ -1258,7 +1258,7 @@ body {
     display: block;
 }
 
-#pflDecoBtn, #pflDecoConf, #pflValiderProfil {
+#pflDecoBtn, #pflDecoConf, #pflValiderProfil, #pflValiderVoit {
     background-color: rgb(249, 47, 47);
     color: white;
 }

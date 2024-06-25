@@ -39,9 +39,9 @@ include_once("libs/maLibForms.php");
 
         <div id="pflVoiture">
             <ul>
-                <li><span>Voiture 1 : </span>-modèle- -couleur-</li>
-                <li><span>Voiture 2 : </span>-modèle- -couleur-</li>
-                <li><span>Voiture 3 : </span>-modèle- -couleur-</li>
+                <li><span class="pflGras">Voiture 1 : </span>-modèle- -couleur-</li>
+                <li><span class="pflGras">Voiture 2 : </span>-modèle- -couleur-</li>
+                <li><span class="pflGras">Voiture 3 : </span>-modèle- -couleur-</li>
             </ul>
         </div>
 
@@ -87,6 +87,19 @@ include_once("libs/maLibForms.php");
             <div class="popupButtons">
                 <input  class="btn pflAnnuler" type="button" name="annuler" value="Annuler" />   
                 <input id="pflValiderProfil" class="btn" type="button" name="valider" value="Valider" /> 
+            </div>  
+        </form>
+    </div>
+</div>
+
+<div class="popup" id="pflPopupEditionVoit">
+    <div id="pflPopupVoit">
+        <h3>Editer véhichules :</h3>
+        <p>Supprimer une voiture ?</p>
+        <form action="controleur.php" methode="">
+            <div class="popupButtons">
+                <input class="btn pflAnnuler" type="button" name="annuler" value="Annuler" />   
+                <input id="pflValiderVoit" class="btn" type="button" name="deconnexion" value="Déconnexion" /> 
             </div>  
         </form>
     </div>
