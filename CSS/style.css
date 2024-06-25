@@ -1064,16 +1064,6 @@ body {
     bottom: 0;
 
     text-align: center;
-<<<<<<< HEAD
-
-    /* Répartition homogène des éléments dans la div */
-    position: relative;
-    display: flex;
-    justify-content: space-around;
-    flex-direction: column;
-    align-items: center;
-=======
->>>>>>> 3717353c3d044bd190591872633f9d9f7abf3c7b
     
     overflow: auto;
 }
