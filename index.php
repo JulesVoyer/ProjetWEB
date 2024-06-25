@@ -30,7 +30,7 @@ $view = valider("view");
     // Sinon
 
 	// Si view est vide, on charge la vue accueil par défaut
-	if ((!$view) || ($view == "login" || ($view == "signUp"))) $view = "accueil"; 
+	//if ((!$view) || ($view == "login" || ($view == "signUp") )) $view = "accueil";
 
 	// Dans tous les cas, on affiche l'entete, qui contient les balises de structure de la page
 	include("templates/header.php");
@@ -39,9 +39,12 @@ $view = valider("view");
 	// En fonction de la vue à afficher, on appelle tel ou tel template
 	switch($view)
 	{		
-		default : // si le template correspondant à l'argument existe, on l'affiche
+		default : // si le template correspondant à l'argument existe, on l'affiche. Sinon, on redirige vers l'accueil
 			if (file_exists("templates/$view.php"))
 				include("templates/$view.php");
+			else
+				header("Location:./index.php?view=accueil");
+				die("");
 	}
 
 

@@ -1,6 +1,8 @@
 <?php
 // Ce fichier permet de tester les fonctions développées dans le fichier bdd.php (première partie)
-
+echo '<script type="text/javascript">';
+echo 'console.log("marche");';
+echo '</script>';
 // Si la page est appelée directement par son adresse, on redirige en passant pas la page index
 if (basename($_SERVER["PHP_SELF"]) == "trajetsDetails.php")
 {
@@ -11,6 +13,15 @@ if (basename($_SERVER["PHP_SELF"]) == "trajetsDetails.php")
 include_once("libs/modele.php");
 include_once("libs/maLibUtils.php");
 include_once("libs/maLibForms.php"); 
+
+$trajet = array(
+    'date' => '2024-06-05',
+    'heureDepart' => '08:00',
+    'pointDepart' => 'Centrale',
+    'pointArrivee' => 'IG2I',
+    'participants' => ['Philipe', 'Pierre']
+);
+
 
 ?>
 
@@ -27,9 +38,15 @@ include_once("libs/maLibForms.php");
         <div id="detailsTrajet">
             <p>Date: <?php echo $trajet['date']; ?></p>
             <p>Heure de départ: <?php echo $trajet['heureDepart']; ?></p>
-            <p>Heure d'arrivée: <?php echo $trajet['heureArrivee']; ?></p>
             <p>Point de départ: <?php echo $trajet['pointDepart']; ?></p>
             <p>Point d'arrivée: <?php echo $trajet['pointArrivee']; ?></p>
+
+            <p>Participants : </p>
+            <?php 
+            for ($i = 0; $i < count($trajet['participants']); $i++) {
+                echo "<p>" . $trajet['participants'][$i] . "</p>";
+            }
+            ?>
         </div>
 
     </div>
