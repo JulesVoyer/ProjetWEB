@@ -35,7 +35,7 @@ session_start();
 			//fin login
 			
 			//logout de l'utilisateur
-			case "Logout":
+			case "Déconnexion":
 
 				session_destroy();
 				$qs = "?view=login";

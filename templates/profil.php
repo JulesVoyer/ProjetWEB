@@ -64,14 +64,3 @@ include_once("libs/maLibForms.php");
     </div>
 </div>
 
-<div class="popup" id="pflPopupEditionPerso">
-    <div id="pflPopupDeco">
-        <h3>Voulez-vous vous déconnecter ?</h3>
-        <form action="controleur.php" methode="">
-            <div class="popupButtons">
-                <input id="pflAnnuler" class="btn" type="button" name="annuler" value="Annuler" />   
-                <input id="pflDecoConf" class="btn" type="button" name="deconnexion" value="Déconnexion" /> 
-            </div>  
-        </form>
-    </div>
-</div>
