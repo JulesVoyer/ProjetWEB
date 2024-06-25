@@ -66,10 +66,24 @@ echo "<?xml version=\"1.0\" encoding=\"utf-8\" ?>";
 
 			// fin traitement popups profil
 
-			// disparition de la rubrique véhicules si l'utilisateur ne possède pas le permis
-			if ($("#pflLicence").html() == "Non") {
-				$("#pflVoiture").hide();
+						// changement de rubriques
+						if ($("#pflLicence").html() == "Oui") {
+				$("#pflVehicules").click( function () {
+					$("#pflVoiture").show();
+					$("#pflPerso").hide();
+					$("#pflAPropos").css("background-color", "rgba(128, 128, 128, 0.5)");
+					$("#pflVehicules").css("background-color", "transparent");
+				} );
 			}
+
+			$("#pflAPropos").click( function () {
+					$("#pflVoiture").hide();
+					$("#pflPerso").show();
+					$("#pflVehicules").css("background-color", "rgba(128, 128, 128, 0.5)");
+					$("#pflAPropos").css("background-color", "transparent");
+			} );
+
+			// fin changement des rubriques
 
 
 			// fin traitement du profil
