@@ -17,7 +17,7 @@ include_once "libs/maLibForms.php";
 $view = valider("view"); 
 
 
-if (!valider("connecte","SESSION")) {
+/*if (!valider("connecte","SESSION")) {
 
 	// Si view est vide ou différent de signUp, on charge la vue login par défaut
 	if ($view != "signUp") $view = "login"; 
@@ -25,12 +25,12 @@ if (!valider("connecte","SESSION")) {
     // Si l'utilisateur n'est pas connecté, on affiche la vue login
     include("templates/$view.php");
 
-} else {
+} else {*/
 
     // Sinon
 
 	// Si view est vide, on charge la vue accueil par défaut
-	if ((!$view) || ($view == "login" || ($view == "signUp"))) $view = "accueil"; 
+	//if ((!$view) || ($view == "login" || ($view == "signUp") )) $view = "accueil";
 
 	// Dans tous les cas, on affiche l'entete, qui contient les balises de structure de la page
 	include("templates/header.php");
@@ -39,15 +39,18 @@ if (!valider("connecte","SESSION")) {
 	// En fonction de la vue à afficher, on appelle tel ou tel template
 	switch($view)
 	{		
-		default : // si le template correspondant à l'argument existe, on l'affiche
+		default : // si le template correspondant à l'argument existe, on l'affiche. Sinon, on redirige vers l'accueil
 			if (file_exists("templates/$view.php"))
 				include("templates/$view.php");
+			else
+				header("Location:./index.php?view=accueil");
+				die("");
 	}
 
 
 	// Dans tous les cas, on affiche le pied de page
 	// Qui contient les coordonnées de la personne si elle est connectée
 	include("templates/footer.php");
-}
+//}
 	
 ?>

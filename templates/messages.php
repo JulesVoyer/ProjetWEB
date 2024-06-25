@@ -4,20 +4,13 @@
 // Si la page est appelée directement par son adresse, on redirige en passant pas la page index
 if (basename($_SERVER["PHP_SELF"]) == "messages.php")
 {
-	header("Location:../index.php?view=users");
+	header("Location:../index.php?view=messages");
 	die("");
 }
 
 include_once("libs/modele.php");
-include_once("libs/maLibUtils.php"); // tprint
+include_once("libs/maLibUtils.php");
 include_once("libs/maLibForms.php"); 
-// définit mkTable
-
-// Hypo : l'user doit etre connecté 
-if (! valider("connecte","SESSION")) {
-	header("Location:?view=accueil&msg_feedback=" . urlencode("Il faut etre connecte !"));
-	die("");
-}
  
 ?>
 
@@ -40,7 +33,7 @@ if (! valider("connecte","SESSION")) {
             <p class="messageRecu">Salut ! On va bien à l'IG2I ?</p>
             
             <form action="controleur.php">
-                <input type="text" name="contenuMessage" id="contenu">
+                <input type="text" name="contenuMessage" id="contenu" placeholder="Message">
                 <input type="submit" value="Envoyer" name="envoyerMessage">
             </form>
         </div>

@@ -2,23 +2,16 @@
 // Ce fichier permet de tester les fonctions développées dans le fichier bdd.php (première partie)
 
 // Si la page est appelée directement par son adresse, on redirige en passant pas la page index
-if (basename($_SERVER["PHP_SELF"]) == "profil.php")
+if (basename($_SERVER["PHP_SELF"]) == "trajets.php")
 {
-	header("Location:../index.php?view=users");
+	header("Location:../index.php?view=trajets");
 	die("");
 }
 
 include_once("libs/modele.php");
-include_once("libs/maLibUtils.php"); // tprint
+include_once("libs/maLibUtils.php");
 include_once("libs/maLibForms.php"); 
-// définit mkTable
 
-// Hypo : l'user doit etre connecté 
-if (! valider("connecte","SESSION")) {
-	header("Location:?view=accueil&msg_feedback=" . urlencode("Il faut etre connecte !"));
-	die("");
-}
- 
 ?>
 
     <!-- **** B O D Y **** -->
@@ -34,7 +27,7 @@ if (! valider("connecte","SESSION")) {
             <input type="image" name="imgRecherche" src="ressources/loupe.png" alt="rechercheTrajet" id="imgRecherche">
         </form>
         
-        <a href="" class="trajet">
+        <a href="index.php?view=trajetsDetails" class="trajet">
         <img id="autoRouge" src="ressources/auto-rouge.png" alt="icone voiture rouge" style="display: none;"/>
             <p class="dateTrajet">Ven. 28 Juin</p>            
 
@@ -54,7 +47,7 @@ if (! valider("connecte","SESSION")) {
         </a>
 
 
-            <a href="" class="trajet sansVehicule inscrit">
+        <a href="index.php?view=trajetsDetails" class="trajet">
                 <img id="autoRouge" src="ressources/auto-rouge.png" alt="icone voiture rouge" style="display: none;"/>
                 
                 <p class="dateTrajet">Ven. 28 Juin</p>            

@@ -61,6 +61,15 @@ echo "<?xml version=\"1.0\" encoding=\"utf-8\" ?>";
                         $("#sguPopupCont").hide();
                     }
                 )
+                // fermer popup avec esc
+                $(document).keydown( function (contexte) {
+                    if (contexte.which == 27) {
+                        $("#sguBG").css("filter", "blur(0)");
+                        $("#sguBG").css("-webkit-filter", "blur(0)");
+                        $("#sguPopupCont").hide();
+                        }
+                } ); // fin fermer popup
+
             } ); // fin ready
         </script>
 
@@ -122,7 +131,5 @@ echo "<?xml version=\"1.0\" encoding=\"utf-8\" ?>";
 
             </div>
         </div>
-
-        
     </body>
 </html>
