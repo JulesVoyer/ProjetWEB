@@ -1053,9 +1053,7 @@ body {
 /*---------- PROFIL ----------*/
 
 #pflBody {
-    /* Fond du profil */ 
-    background: rgba(207, 164, 34);
-    background: linear-gradient(45deg, rgba(255, 208, 37, 0.7) 0%, rgba(255, 255, 255, 0.7) 50%, rgba(0, 183, 255, 0.7) 100%);
+
     
     position: absolute; 
     left: 0;
@@ -1076,7 +1074,9 @@ body {
 
     position: relative;
 
-    background-color: rgba(211, 211, 211, 0.5);
+    /* Fond du profil */ 
+    background: rgba(207, 164, 34);
+    background: linear-gradient(45deg, rgba(255, 208, 37, 0.5) 0%, rgba(255, 255, 255, 0.5) 50%, rgba(0, 183, 255, 0.5) 100%);
 
     box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
 }
@@ -1102,7 +1102,8 @@ body {
     display: inline-block;
 }
 
-#pflBody span {
+.pflGras {
+    /* Nom des secteurs en gras */
     font-weight: bolder;
     font-size: 15pt !important;
 }
@@ -1157,12 +1158,7 @@ body {
     display: block;
 }
 
-#pflLicence {
-    font-weight:lighter;
-    font-size: 14pt !important;
-}
-
-#pflDecoBtn, #pflDecoConf {
+#pflDecoBtn, #pflDecoConf, #pflValiderProfil {
     background-color: rgb(249, 47, 47);
     color: white;
 }
@@ -1194,6 +1190,29 @@ body {
 
 #pflEditer:hover {
     cursor: pointer;
+}
+
+
+#pflPopupPerso {
+    overflow: auto;
+}
+
+#pflPopupPerso .popupInput {
+    margin: 10px 0;
+}
+
+.editMDP {
+    /* Dans le popup de modification du profil, on peut changer le mdp seulement 
+    si on clique sur la cb */
+    display: none;
+}
+
+#cbEditMDP {
+    padding: 20px 0 !important;
+}
+
+#pflPopupPerso .popupButtons {
+    padding: 20px 0;
 }
 
 
