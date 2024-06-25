@@ -66,9 +66,7 @@ echo "<?xml version=\"1.0\" encoding=\"utf-8\" ?>";
 				$("#pflBody").css("-webkit-filter", "blur(3px)");
 				if (selected == 1) {
 					/* Mettre les valeurs d'origine dans les champs d'entrée texte */
-					console.log($("#pflPrenom").html());
 					$("#newPre").val($("#pflPrenom").html());
-					console.log($("#newPre").val());
 					$("#newNom").val($("#pflNom").html());
 					$("#newPseu").val($("#pflPseudo").html());
 					$("#newNum").val($("#pflNum").html());
@@ -176,5 +174,6 @@ echo "<?xml version=\"1.0\" encoding=\"utf-8\" ?>";
 		<a href="index.php?view=conversations" id="conversations">Conversations</a>
 		<a href="index.php?view=historique" id="historique">Historique</a>
 		<a href="index.php?view=profil" id="profil">Profil</a>
+		<a href="index.php?view=interventions" id="interventions">Interventions</a>
 
 	</div>
