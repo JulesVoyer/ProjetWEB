@@ -17,9 +17,9 @@ session_start();
 			case "Login":
 				//on récupère les valeurs du formulaire
 				$login = valider("login");
-				$mdp = valider("mdp");
+				$password = valider("password");
 				//on vérifie si le login et le mot de passe sont corrects
-				$profil = verifUser($login, $mdp);
+				$profil = verifUser($login, $password);
 				//si le profil existe
 				if ($profil)
 				{
