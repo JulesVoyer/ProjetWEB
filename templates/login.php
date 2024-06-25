@@ -40,7 +40,7 @@ echo "<?xml version=\"1.0\" encoding=\"utf-8\" ?>";
             <form id="lgiForm" action="controleur.php" methode="post">
                 <input class="lgiInput" type="text" name="login" placeholder="Identifiant..." />
                 <input class="lgiInput" type="password" name="password" placeholder="Mot de passe..." />
-                <input id="lgiSubmit" type="submit" name="action" value="Login" />
+                <input id="lgiSubmit" type="submit" name="action" value="Se connecter" />
             </form>
 
             <div>Vous n'avez pas encore de compte ?</div>

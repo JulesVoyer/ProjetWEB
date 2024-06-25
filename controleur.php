@@ -14,7 +14,7 @@ session_start();
 		switch($action)
 		{
 			//login de l'utilisateur
-			case "Login":
+			case "Se connecter":
 				//on récupère les valeurs du formulaire
 				$login = valider("login");
 				$password = valider("password");
