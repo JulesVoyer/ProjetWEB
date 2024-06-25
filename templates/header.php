@@ -28,14 +28,46 @@ echo "<?xml version=\"1.0\" encoding=\"utf-8\" ?>";
 		
 		$(document).ready( function() {
 
+			// traitement des icons du header
 			currentIcon();
 
 			$(window).resize(function() {
 				currentIcon();
 			})
+			// fin traitement des icons du header
 
-		} ) // fin ready
+			// traitement popups profil
 
+			// popup déconnexion
+			$("#pflDecoBtn").click( function () {
+				$("#pflBody").css("filter", "blur(3px)");
+				$("#pflBody").css("-webkit-filter", "blur(3px)");
+				$("#pflPopupDecoCont").show();
+			} ); // fin click Se déconnecter
+
+			$("#pflAnnuler").click( function () {
+				$("#pflBody").css("filter", "blur(0)");
+				$("#pflBody").css("-webkit-filter", "blur(0)");
+				$("#pflPopupDecoCont").hide();
+			} ); // fin click Annuler
+			// fin popup déconnexion
+
+			// fermer tous les popups avec esc
+			$(document).keydown( function (contexte) {
+				if (contexte.which == 27) {
+					$("#pflBody").css("filter", "blur(0)");
+					$("#pflBody").css("-webkit-filter", "blur(0)");
+					$(".popup").hide();
+					}
+			} ); // fin fermer popup
+
+			// fin traitement popups profil
+
+
+		} ); // fin ready
+
+
+		// Traite les icons du header
 		function currentIcon () {
 			// la variable view récupérée dans la page index.php
 			// et donc accessible ici
@@ -63,7 +95,7 @@ echo "<?xml version=\"1.0\" encoding=\"utf-8\" ?>";
 					}
 				}
 			} );
-		}
+		} // fin icons header
 
 	</script>
 

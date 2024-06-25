@@ -46,6 +46,15 @@ echo "<?xml version=\"1.0\" encoding=\"utf-8\" ?>";
                     $("#sguPopupCont").hide();
                 } ); // fin click Passer
 
+                // fermer popup avec esc
+                $(document).keydown( function (contexte) {
+                    if (contexte.which == 27) {
+                        $("#sguBG").css("filter", "blur(0)");
+                        $("#sguBG").css("-webkit-filter", "blur(0)");
+                        $("#sguPopupCont").hide();
+                        }
+                } ); // fin fermer popup
+
             } ); // fin ready
         </script>
 
@@ -98,7 +107,7 @@ echo "<?xml version=\"1.0\" encoding=\"utf-8\" ?>";
         <div class="popup" id="sguPopupCont">
             <div id="sguPopup">
                 <h3>Déclarer un véhicule :</h3>
-                <form>
+                <form action="controleur.php" methode="">
                     <input class="popupInput" type="text" name="model" placeholder="Modèle..." />
                     <input class="popupInput" type="text" name="color" placeholder="Couleur..." />
                     <input class="popupInput" type="text" name="nbPlaces" placeholder="Nombre de places..." />
