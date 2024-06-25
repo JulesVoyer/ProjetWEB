@@ -29,12 +29,12 @@ include_once("libs/maLibForms.php");
                     <br />Villeneuve d'Ascq
                 </div>
             </li>
-            <li><span>Permis : </span>Oui</li>
+            <li><span>Permis : </span><span id="pflLicence">Oui</span></li>
         </ul>
     </div>
 
     <div id="pflVoiture">
-    <h3>Véhicules :</h3>
+        <h3>Véhicules :</h3>
         <ul>
             <li><span>Voiture 1 : </span>-modèle- -couleur-</li>
             <li><span>Voiture 2 : </span>-modèle- -couleur-</li>

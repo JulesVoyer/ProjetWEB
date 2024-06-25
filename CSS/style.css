@@ -838,6 +838,8 @@ body {
     
 }
 
+
+
 /*---------- MESSAGES ----------*/
 
 #lienDetailTrajet {
@@ -1008,14 +1010,18 @@ body {
     border-radius: 15pt;
 
     text-align: center;
+
+    /* Répartition homogène des éléments dans la div */
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    align-items: center;
+    
+    overflow: auto;
 }
 
 #pflBody h3 {
     text-align: center;
-}
-
-#pflBody li {
-    margin: 10px;
 }
 
 #pflPerso div {
@@ -1035,7 +1041,7 @@ body {
     border-radius: 15pt;
 
     padding: 7px 15px;
-    margin: 20px;
+    width: 80%;
 
     font-size: 13pt;
 

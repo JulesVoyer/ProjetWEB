@@ -36,6 +36,9 @@ echo "<?xml version=\"1.0\" encoding=\"utf-8\" ?>";
 			})
 			// fin traitement des icons du header
 
+
+			// traitement du profil
+
 			// traitement popups profil
 
 			// popup déconnexion
@@ -62,6 +65,14 @@ echo "<?xml version=\"1.0\" encoding=\"utf-8\" ?>";
 			} ); // fin fermer popup
 
 			// fin traitement popups profil
+
+			// disparition de la rubrique véhicules si l'utilisateur ne possède pas le permis
+			if ($("#pflLicence").html() == "Non") {
+				$("#pflVoiture").hide();
+			}
+
+
+			// fin traitement du profil
 
 
 		} ); // fin ready
