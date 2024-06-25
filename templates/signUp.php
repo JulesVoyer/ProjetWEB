@@ -106,7 +106,7 @@ echo "<?xml version=\"1.0\" encoding=\"utf-8\" ?>";
                         <input class="sguInput" type="text" name="city_code" placeholder="Code postal..." />
                         <input class="sguInput" type="text" name="city" placeholder="Ville..." />
                         <div>
-                            <input id="sguSubmit" class="btn" type="submit" name="action" value="CreateAccount" />   
+                            <input id="sguSubmit" class="btn" type="submit" name="action" value="Créer le compte" />   
                             <a href="index.php?view=login">Se connecter</a>
                         </div>
                     </div>                

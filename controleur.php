@@ -43,7 +43,7 @@ session_start();
 			//fin logout
 
 			//création d'un compte
-			case "CreateAccount" :
+			case "Créer le compte" :
 				if (valider("username") && valider("password") && valider("password_confirmation") && valider("display_name") && valider("driving_license") && valider("street_number") && valider("street") && valider("city") && valider("city_code"))
 				{
 					// On récupère les valeurs du formulaire
