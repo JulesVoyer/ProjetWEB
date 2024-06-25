@@ -15,7 +15,7 @@ include_once("libs/maLibUtils.php");
 include_once("libs/maLibForms.php"); 
 
 $trajet = array(
-    'date' => '2024-06-05',
+    'date' => 'Ven 28 Juin',
     'heureDepart' => '08:00',
     'pointDepart' => 'Centrale',
     'pointArrivee' => 'IG2I',
@@ -28,25 +28,30 @@ $trajet = array(
 
 <!-- **** B O D Y **** -->
 
-    <div id="trajetBody">
-        <br><br><br><br>
-
-        
-        <!-- Section pour afficher les détails du trajet -->
+<div id="detailTrajetBody">
+    <br><br><br><br>    
+    <!-- Section pour afficher les détails du trajet -->
 
 
-        <div id="detailsTrajet">
-            <p>Date: <?php echo $trajet['date']; ?></p>
-            <p>Heure de départ: <?php echo $trajet['heureDepart']; ?></p>
-            <p>Point de départ: <?php echo $trajet['pointDepart']; ?></p>
-            <p>Point d'arrivée: <?php echo $trajet['pointArrivee']; ?></p>
+    <!-- Classe trajet récupéré de la page trajet  -->
+    <div id="detailsTrajet" class="trajet">
 
-            <p>Participants : </p>
-            <?php 
-            for ($i = 0; $i < count($trajet['participants']); $i++) {
-                echo "<p>" . $trajet['participants'][$i] . "</p>";
-            }
-            ?>
-        </div>
+        <a href="">
+            <img id="flecheRetour" src="ressources/fleche-retour.png" alt="retour"> 
+            <p id="retourTexte"> Retour </p>
+        </a>
 
+        <p id="detTraDa"><?php echo $trajet['date']; ?></p>
+        <p>Heure de départ: <?php echo $trajet['heureDepart']; ?></p>
+        <p>Point de départ: <?php echo $trajet['pointDepart']; ?></p>
+        <p>Point d'arrivée: <?php echo $trajet['pointArrivee']; ?></p>
+
+        <p>Participants : </p>
+        <?php 
+        for ($i = 0; $i < count($trajet['participants']); $i++) {
+            echo "<p>" . $trajet['participants'][$i] . "</p>";
+        }
+        ?>
     </div>
+</div>
+ 
