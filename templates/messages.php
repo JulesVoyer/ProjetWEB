@@ -16,7 +16,8 @@ include_once("libs/maLibForms.php");
 
     <!-- **** B O D Y **** -->
     <div id="messageBody">
-        <br><br><br>
+        <br/><br/><br/>
+        
 
         <div id="titlePage">
             <a id="lienConversations" href="index.php?view=conversations">
@@ -27,6 +28,7 @@ include_once("libs/maLibForms.php");
                 <img id="iconePoints" src="ressources/autre.png" alt="Points">
             </a>
         </div>
+        <br/>
         
         <div id="conversation">
             <p class="heureRecu">11:40 - user1</p>
@@ -41,6 +43,10 @@ include_once("libs/maLibForms.php");
                 <input type="text" name="contenuMessage" id="contenu" placeholder="Message">
                 <input type="image" src="ressources/paperPlane.png" value="Envoyer" name="envoyerMessage">
             </form>
+
+            
         </div>
-    
+
+        
     </div>
+    <br><br><br>

@@ -843,8 +843,11 @@ body {
 /*---------- MESSAGES ----------*/
 
 #messageBody #titlePage {
+    position: fixed;
+    width: 100%;
     padding-bottom: 20px;
     padding-top: 20px;
+    background-color: white;
     border-bottom: solid 1px rgb(0, 0, 0, 0.5);
     box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.5);
     display: flex;
@@ -854,6 +857,8 @@ body {
     font-size: 20pt;
     justify-content: center;
     align-items: center;
+
+    z-index: 10;
 }
 
 #iconePoints{
@@ -893,7 +898,7 @@ body {
     padding: 20px;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 15px;
+    margin-top: 80px;
     margin-bottom: 15px;
     width: 60%;
     min-width: 320px;
@@ -1021,8 +1026,11 @@ body {
     
     }
 
-    #conversation input[type="text"] {
-        width: calc(100% - 60px);
+
+    #conversation form {
+        
+        width: calc(100% - 40px);
+        top: 680px;
     }
 }
 
@@ -1086,7 +1094,9 @@ body {
 /*---------- PROFIL ----------*/
 
 #pflBody {
-
+    /* Fond du profil */ 
+    background: rgba(207, 164, 34);
+    background: linear-gradient(45deg, rgba(255, 208, 37, 0.7) 0%, rgba(255, 255, 255, 0.7) 50%, rgba(0, 183, 255, 0.7) 100%);
     
     position: absolute; 
     left: 0;
@@ -1107,9 +1117,7 @@ body {
 
     position: relative;
 
-    /* Fond du profil */ 
-    background: rgba(207, 164, 34);
-    background: linear-gradient(45deg, rgba(255, 208, 37, 0.5) 0%, rgba(255, 255, 255, 0.5) 50%, rgba(0, 183, 255, 0.5) 100%);
+    background-color: rgba(211, 211, 211, 0.5);
 
     box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
 }
@@ -1135,8 +1143,7 @@ body {
     display: inline-block;
 }
 
-.pflGras {
-    /* Nom des secteurs en gras */
+#pflBody span {
     font-weight: bolder;
     font-size: 15pt !important;
 }
@@ -1191,7 +1198,12 @@ body {
     display: block;
 }
 
-#pflDecoBtn, #pflDecoConf, #pflValiderProfil {
+#pflLicence {
+    font-weight:lighter;
+    font-size: 14pt !important;
+}
+
+#pflDecoBtn, #pflDecoConf {
     background-color: rgb(249, 47, 47);
     color: white;
 }
@@ -1223,29 +1235,6 @@ body {
 
 #pflEditer:hover {
     cursor: pointer;
-}
-
-
-#pflPopupPerso {
-    overflow: auto;
-}
-
-#pflPopupPerso .popupInput {
-    margin: 10px 0;
-}
-
-.editMDP {
-    /* Dans le popup de modification du profil, on peut changer le mdp seulement 
-    si on clique sur la cb */
-    display: none;
-}
-
-#cbEditMDP {
-    padding: 20px 0 !important;
-}
-
-#pflPopupPerso .popupButtons {
-    padding: 20px 0;
 }
 
 
