@@ -398,7 +398,7 @@ body {
 
 
 
-/*---------- ACCEUIL ----------*/
+/*---------- ACCUEIL ----------*/
 
 /*#aclBody {
     padding-left: 35%;
@@ -901,7 +901,7 @@ body {
     height: fit-content;
     border-radius: 7.5px;
     background-color: #E9E9EB;
-    padding: 5px;
+    padding: 7.5px;
 }
 
 .heureEnvoye {
@@ -915,11 +915,12 @@ body {
     float: right;
     margin: 0 0 0 auto !important;
     border-radius: 7.5px;
-    background-color: #1E74AB;    
+    background-color: #1E74AB;   
+    color: white; 
     width: fit-content;
     max-width: 70%;
     height: fit-content;
-    padding: 5px;
+    padding: 7.5px;
 }
 
 .rejointQuitte {
@@ -931,21 +932,68 @@ body {
 
 #conversation form {
     position: absolute;
-    display: flex;
-    flex-direction: row;
-    text-align: center;
-    top: 680px;
+    margin: 0 auto 0 auto;
+    top: 665px;
     width: 100%;
+    left: -2.5px;
+    display: flex;
+    flex-direction: row ;
+
 }
 
-#conversation input {
-    margin: 2.5px;
-}
 
 #conversation input[type="text"] {
     position: relative;
-    width: 70%;
+    width: 50%;
+    border: black solid 1px;
+    border-radius: 5px;
+    padding: 7.5px;
 }
+
+#conversation input[type="submit"] {
+    border: black solid 1px;
+    width: 20%;
+    border-radius: 5px;
+    padding: 7.5px;
+    color: white;
+    background-color: #1E74AB;
+
+}
+
+@media all and (max-width:550px) {
+    /* Cas d'une fenêtre de largeur inférieure à 550px [mobile] */
+
+    #conversation {
+        padding: 0 20px 0 20px;
+        border: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        text-decoration:none !important;
+        color: black;
+    }
+
+    .messageEnvoye {
+        right: 40px;
+        margin-left: auto !important; 
+        border-radius: 7.5px;
+        background-color: #1E74AB;   
+        color: white; 
+        width: fit-content;
+        max-width: 70%;
+        height: fit-content;
+        padding: 7.5px;
+    }
+
+    .heureEnvoye {
+        right: 40px;
+        margin-left: auto !important;
+        
+    }
+}
+
+/*---------- HISTORIQUE ----------*/
 
 .subTitlePage {
     position: relative;
@@ -1001,6 +1049,7 @@ body {
 
 
 
+
 /*---------- PROFIL ----------*/
 
 #pflBody {
@@ -1019,6 +1068,7 @@ body {
     text-align: center;
 
     /* Répartition homogène des éléments dans la div */
+    position: relative;
     display: flex;
     justify-content: space-around;
     flex-direction: column;

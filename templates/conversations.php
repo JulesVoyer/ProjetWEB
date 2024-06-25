@@ -19,7 +19,7 @@ include_once("libs/maLibForms.php");
 
         <div id="titlePage">Mes conversations</div>
 
-        <a href="http://localhost/%5b04%5d%20Projet/ProjetWEB/index.php?view=messages" class="conversations">
+        <a href="index.php?view=messages" class="conversations">
             <p class="titleConv">Nom de la conv</p>
             <div class="messageContainer">
                 <p class="lastMessage">Oriane : Ça marche, rdv demain à Centrale :)</p>
@@ -27,7 +27,7 @@ include_once("libs/maLibForms.php");
             </div>
         </a>
 
-        <a href="" class="conversations">
+        <a href="index.php?view=messages" class="conversations">
             <p class="titleConv">Nom de la conv</p>
             <div class="messageContainer">
                 <p class="lastMessage">Jules : Ça marche, rdv demain à IG2I :)</p>
@@ -35,7 +35,7 @@ include_once("libs/maLibForms.php");
             </div>
         </a>
 
-        <a href="" class="conversations">
+        <a href="index.php?view=messages" class="conversations">
             <p class="titleConv">Nom de la conv</p>
             <div class="messageContainer">
                 <p class="lastMessage">Clément : Ça marche, rdv demain à IG2I :)</p>
@@ -43,7 +43,7 @@ include_once("libs/maLibForms.php");
             </div>
         </a>
 
-        <a href="" class="conversations">
+        <a href="index.php?view=messages" class="conversations">
             <p class="titleConv">Nom de la conv</p>
             <div class="messageContainer">
                 <p class="lastMessage">Oriane : Ça marche, rdv demain à Centrale :)</p>
