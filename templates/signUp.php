@@ -34,18 +34,33 @@ echo "<?xml version=\"1.0\" encoding=\"utf-8\" ?>";
 
                 $("#sguCB").click( function () {
                     if ($(this).is(":checked")) {
-                        $("#sguBG").css("filter", "blur(3px)");
-                        $("#sguBG").css("-webkit-filter", "blur(3px)");
+                        $("#sguFormStandard").css("filter", "blur(3px)");
+                        $("#sguFormStandard").css("-webkit-filter", "blur(3px)");
+                        $("#sguFormAdress").css("filter", "blur(3px)");
+                        $("#sguFormAdress").css("-webkit-filter", "blur(3px)");
+
                         $("#sguPopupCont").show();
                     }
                 } ); // fin click CB
 
                 $("#sguPasser").click( function () {
-                    $("#sguBG").css("filter", "blur(0)");
-                    $("#sguBG").css("-webkit-filter", "blur(0)");
+                    $("#sgPopup input[type = text]").empty()
+                    $("#sguFormStandard").css("filter", "blur(0)");
+                    $("#sguFormStandard").css("-webkit-filter", "blur(0)");
+                    $("#sguFormAdress").css("filter", "blur(0)");
+                    $("#sguFormAdress").css("-webkit-filter", "blur(0)");
                     $("#sguPopupCont").hide();
                 } ); // fin click Passer
 
+                $("#sguValider").click(
+                    function(){
+                        $("#sguFormStandard").css("filter", "blur(0)");
+                        $("#sguFormStandard").css("-webkit-filter", "blur(0)");
+                        $("#sguFormAdress").css("filter", "blur(0)");
+                        $("#sguFormAdress").css("-webkit-filter", "blur(0)");
+                        $("#sguPopupCont").hide();
+                    }
+                )
             } ); // fin ready
         </script>
 
@@ -65,29 +80,42 @@ echo "<?xml version=\"1.0\" encoding=\"utf-8\" ?>";
                 <form id="sguForm" action="controleur.php" methode="post">
 
                     <div id="sguFormStandard"> 
-                        <input class="sguInput" type="text" name="prenom" placeholder="Prénom..." />
-                        <input class="sguInput" type="text" name="nom" placeholder="Nom..." />
-                        <input class="sguInput" type="text" name="pseudo" placeholder="Pseudo..." />
-                        <input class="sguInput" type="password" name="passe" placeholder="Mot de passe..." />
-                        <input class="sguInput" type="password" name="passeConfirm" placeholder="Confirmer le mot de passe..." />
+                        <input class="sguInput" type="text" name="display_name" placeholder="Nom d'affichage..." />
+                        <input class="sguInput" type="text" name="username" placeholder="Identifiant..." />
+                        <input class="sguInput" type="password" name="password" placeholder="Mot de passe..." />
+                        <input class="sguInput" type="password" name="password_confirmation" placeholder="Confirmer le mot de passe..." />
                         <div id="sguLicence">
                             <label for="sguCB">Possédez-vous le permis ?</label>
-                            <input id="sguCB" type="checkbox" name="licence" />
+                            <input id="sguCB" type="checkbox" name="driving_license" />
                         </div>
                     </div>
 
                     <div id="sguFormAdress">
                         <p>Adresse :</p>
-                        <input class="sguInput" type="text" name="streetNumber" placeholder="Numéro de rue..." />
+                        <input class="sguInput" type="text" name="street_number" placeholder="Numéro de rue..." />
                         <input class="sguInput" type="text" name="street" placeholder="Nom de rue..." />
-                        <input class="sguInput" type="text" name="postCode" placeholder="Code postal..." />
+                        <input class="sguInput" type="text" name="city_code" placeholder="Code postal..." />
                         <input class="sguInput" type="text" name="city" placeholder="Ville..." />
                         <div>
-                            <input id="sguSubmit" class="btn" type="submit" name="login" value="S'inscrire" />   
+                            <input id="sguSubmit" class="btn" type="submit" name="action" value="CreateAccount" />   
                             <a href="index.php?view=login">Se connecter</a>
                         </div>
                     </div>                
 
+                    
+                    <div class="popup" id="sguPopupCont">
+                        <div id="sguPopup">
+                            <h3>Déclarer un véhicule :</h3>
+                                <input class="popupInput" type="text" name="vehicle_name" placeholder="Nom du véhicule..." />
+                                <input class="popupInput" type="text" name="vehicle_nb_seats" placeholder="Nombre de places... " />
+                                <input class="popupInput" type="text" name="model" placeholder="Modèle... (optionnel)" />
+                                <input class="popupInput" type="text" name="code" placeholder="Immatriculation... (optionnel)" />
+                                <div class="popupButtons">
+                                    <input id="sguPasser" class="btn" type="button" name="passer" value="Passer" />   
+                                    <input id="sguValider" class="btn" type="button" name="valider" value="Valider" /> 
+                                </div>  
+                        </div>
+                    </div>
                 </form>
 
                 <img id="sguLogo" src="ressources/ec-lille-rect.png" alt="Logo Centrale" />
@@ -95,21 +123,6 @@ echo "<?xml version=\"1.0\" encoding=\"utf-8\" ?>";
             </div>
         </div>
 
-        <div class="popup" id="sguPopupCont">
-            <div id="sguPopup">
-                <h3>Déclarer un véhicule :</h3>
-                <form>
-                    <input class="popupInput" type="text" name="model" placeholder="Modèle..." />
-                    <input class="popupInput" type="text" name="color" placeholder="Couleur..." />
-                    <input class="popupInput" type="text" name="nbPlaces" placeholder="Nombre de places..." />
-                    <input class="popupInput" type="text" name="matriculation" placeholder="Immatriculation..." />
-                    <div class="popupButtons">
-                        <input id="sguPasser" class="btn" type="button" name="passer" value="Passer" />   
-                        <input id="sguValider" class="btn" type="submit" name="valider" value="Valider" /> 
-                    </div>  
-                </form>
-            </div>
-        </div>
         
     </body>
 </html>

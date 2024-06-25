@@ -49,13 +49,15 @@ session_start();
 					// On récupère les valeurs du formulaire
 					$username = valider("username");
 					$password = valider("password");
-					$password_confirm = valider("password_confirmation");
+					$password_confirmation = valider("password_confirmation");
 					$display_name = valider("display_name");
-					$driving_license = valider("driving_license");
+					$driving_license = intval(valider("driving_license"));
 					$street_number = valider("street_number");
 					$street = valider("street");
 					$city = valider("city");
 					$city_code = valider("city_code");
+
+
 
 					//on vérifie que le nom d'utilisateur n'est pas déjà pris
 					if (checkUsername($username)){
@@ -66,7 +68,19 @@ session_start();
 
 						//on vérifie que l'utilisateur est bien sûr de son mot de passe 
 						if($password == $password_confirmation){
-							createAccount($username, $password, $display_name, $driving_license, $street_number,$street, $city, $city_code);
+							$id = createAccount($username, $password, $display_name, $driving_license, $street_number,$street, $city, $city_code);
+							//si l'utilisateur a le permis, on regarde si il a déclaré un véhicule
+							if ($driving_license == 1){
+								if (valider("vehicle_name") && valider("vehicle_nb_seats")){
+									$vehicle_name = valider("vehicle_name");
+									$vehicle_nb_seats = valider("vehicle_nb_seats");
+									if(valider("code")){ $code = valider("code") ;}else{ $code = null;}
+									if(valider("model")){$model = valider("model");}else{$model = null;}
+									createVehicle( $vehicle_name, $vehicle_nb_seats,$code,$model,$id);
+								}
+							}
+
+							
 							$qs = "?view=login";
 						}
 						else

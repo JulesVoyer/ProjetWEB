@@ -82,22 +82,26 @@ function getUserById($id)
  * @return int L'ID du compte nouvellement créé.
  */
 function createAccount($username, $password, $display_name, $driving_license, $street_number, $street, $city, $city_code){
-	$SQL= "INSERT INTO users (username, password, display_name, driving_license, adress)
-	VALUES ('$username', 
-			'$password', 
-			'$display_name', 
-			'$driving_license', 
-			{\"street_number\" : \"'$street_number'\", 
-				\"street\" : \"'$street'\" , 
-				\"code\" : '$city_code' , 
-				\"city\" : \"'$city'\"
-			} );";
-	
-	$id = SQLInsert($SQL);
+    $addressJson = json_encode(array(
+        "street_number" => $street_number,
+        "street" => $street,
+        "code" => $city_code,
+        "city" => $city
+    ));
+    $addressJson = addslashes($addressJson); // Échappe les caractères spéciaux dans la chaîne pour l'utiliser dans la requête SQL
 
-	return $id;
+    $SQL= "INSERT INTO users (username, password, display_name, driving_license, adress)
+    VALUES ('$username', 
+            '$password', 
+            '$display_name', 
+            '$driving_license', 
+            '$addressJson'
+            );";
+    
+    $id = SQLInsert($SQL);
+
+    return $id;
 }
-
 /**
  * Mettre à jour les informations d'un utilisateur.
  *
@@ -118,12 +122,12 @@ function updateUserById($id, $username, $password, $display_name, $driving_licen
 		password = '$password',
 		display_name = '$display_name',
 		driving_license = '$driving_license',
-		adress = {
-			\"street_number\" : \"'$street_number'\", 
-			\"street\" : \"'$street'\" , 
-			\"code\" : '$city_code' ,
-			\"city\" : \"'$city'\"
-		}
+		adress = '{
+			\"street_number\" : \"$street_number\", 
+			\"street\" : \"$street\" , 
+			\"code\" : \"$city_code\" ,
+			\"city\" : \"$city\"
+		}'
 	WHERE id = '$id';
 	";
 
@@ -164,9 +168,12 @@ function verifDriverLicenseById($id){
  * @return void
  */
 function createVehicle($name, $nb_seats, $code, $model, $owner_id) {
+	// $code et $model peuvent etre NULL, si l'utilisateur ne les a pas renseignés, et on veut les laisser NULL en base
+	$code_value = is_null($code) ?"NULL": "'$code'";
+	$model_value = is_null($model) ?"NULL": "'$model'";
+
 	$SQL= "INSERT INTO vehicles (name, nb_seats, code, model, owner_id)
-	VALUES ('$name', '$nb_seats', '$code', '$model', '$owner_id');
-	";
+	VALUES ('$name', '$nb_seats', $code_value, $model_value, '$owner_id');";
 	SQLInsert($SQL);
 	return;
 	}
