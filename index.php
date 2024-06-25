@@ -44,13 +44,13 @@ $view = valider("view");
 				include("templates/$view.php");
 			else{
 				header("Location:./index.php?view=accueil");
-				die("");}
+				}
 	}
 
 
 	// Dans tous les cas, on affiche le pied de page
 	// Qui contient les coordonnées de la personne si elle est connectée
-	
+
 	include("templates/footer.php");
 //}
 	
