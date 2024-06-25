@@ -11,18 +11,23 @@ if (basename($_SERVER["PHP_SELF"]) == "messages.php")
 include_once("libs/modele.php");
 include_once("libs/maLibUtils.php");
 include_once("libs/maLibForms.php"); 
- 
-?>
 
+?>
 
     <!-- **** B O D Y **** -->
     <div id="messageBody">
-        <br><br><br><br>
+        <br><br><br>
 
-        <div id="titlePage">Nom du trajet</div>
-        <a id="lienDetailTrajet" href="">
-            <p>...<br></p>
-        </a>
+        <div id="titlePage">
+            <a id="lienConversations" href="index.php?view=conversations">
+                <img id="flecheRetour" src="ressources/flecheRetour.png" alt="Fleche">
+            </a>
+            Nom du trajet
+            <a id="lienDetailTrajet" href="index.php?view=trajetsDetails">
+                <img id="iconePoints" src="ressources/autre.png" alt="Points">
+            </a>
+        </div>
+        
         <div id="conversation">
             <p class="heureRecu">11:40 - user1</p>
             <p class="messageRecu">Salut !</p>
@@ -34,7 +39,7 @@ include_once("libs/maLibForms.php");
             
             <form action="controleur.php">
                 <input type="text" name="contenuMessage" id="contenu" placeholder="Message">
-                <input type="submit" value="Envoyer" name="envoyerMessage">
+                <input type="image" src="ressources/paperPlane.png" value="Envoyer" name="envoyerMessage">
             </form>
         </div>
     
