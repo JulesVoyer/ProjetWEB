@@ -27,7 +27,7 @@ include_once("libs/maLibForms.php");
             <input type="image" name="imgRecherche" src="ressources/loupe.png" alt="rechercheTrajet" id="imgRecherche">
         </form>
         
-        <a href="http://localhost/%5b04%5d%20Projet/ProjetWEB/index.php?view=trajetsDetails" class="trajet">
+        <a href="index.php?view=trajetsDetails" class="trajet">
         <img id="autoRouge" src="ressources/auto-rouge.png" alt="icone voiture rouge" style="display: none;"/>
             <p class="dateTrajet">Ven. 28 Juin</p>            
 
@@ -47,7 +47,7 @@ include_once("libs/maLibForms.php");
         </a>
 
 
-            <a href="" class="trajet sansVehicule inscrit">
+        <a href="index.php?view=trajetsDetails" class="trajet">
                 <img id="autoRouge" src="ressources/auto-rouge.png" alt="icone voiture rouge" style="display: none;"/>
                 
                 <p class="dateTrajet">Ven. 28 Juin</p>            

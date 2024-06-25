@@ -33,7 +33,7 @@ include_once("libs/maLibForms.php");
             <p class="messageRecu">Salut ! On va bien à l'IG2I ?</p>
             
             <form action="controleur.php">
-                <input type="text" name="contenuMessage" id="contenu">
+                <input type="text" name="contenuMessage" id="contenu" placeholder="Message">
                 <input type="submit" value="Envoyer" name="envoyerMessage">
             </form>
         </div>
