@@ -381,7 +381,7 @@ function getDraftTripsByDateDestinationAndRemainingSeats($date, $direction, $wis
 	$seats_value = is_null($wished_seats) ?"1":"'$wished_seats'";
 
 	$SQL= "SELECT t.*, COUNT(thp.participant_id) AS nb_participants  FROM trips t
-	JOIN trip_has_participant thp ON t.id = thp.trip_id
+	LEFT JOIN trip_has_participant thp ON t.id = thp.trip_id
 	WHERE status = 0 ". $date_filter." ". $direction_filter ." 
 	GROUP BY t.id
 	HAVING t.nb_passengers - COUNT(thp.participant_id) >= '$wished_seats'
