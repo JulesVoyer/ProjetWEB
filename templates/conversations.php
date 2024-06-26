@@ -45,7 +45,7 @@ include_once("libs/maLibForms.php");
         <a href="index.php?view=messages" class="conversations">
             <p class="titleConv">Nom de la conv</p>
             <div class="messageContainer">
-                <p class="lastMessage">Oriane : Ça marche, rdv demain à Centrale :)</p>
+                <p class="lastMessage">Maöz : Ça marche, rdv demain à Centrale :)</p>
                 <p class="lastMessageTime">09:41</p>
             </div>
         </a>
@@ -53,7 +53,7 @@ include_once("libs/maLibForms.php");
         <a href="index.php?view=messages" class="conversations">
             <p class="titleConv">Nom de la conv</p>
             <div class="messageContainer">
-                <p class="lastMessage">Oriane : Ça marche, rdv demain à Centrale :)</p>
+                <p class="lastMessage">Guillem : Ça marche, rdv demain à Centrale :)</p>
                 <p class="lastMessageTime">09:41</p>
             </div>
         </a>
@@ -61,7 +61,7 @@ include_once("libs/maLibForms.php");
         <a href="index.php?view=messages" class="conversations">
             <p class="titleConv">Nom de la conv</p>
             <div class="messageContainer">
-                <p class="lastMessage">Oriane : Ça marche, rdv demain à Centrale :)</p>
+                <p class="lastMessage">User : Ça marche, rdv demain à Centrale :)</p>
                 <p class="lastMessageTime">09:41</p>
             </div>
         </a>
@@ -69,7 +69,7 @@ include_once("libs/maLibForms.php");
         <a href="index.php?view=messages" class="conversations">
             <p class="titleConv">Nom de la conv</p>
             <div class="messageContainer">
-                <p class="lastMessage">Oriane : Ça marche, rdv demain à Centrale :)</p>
+                <p class="lastMessage">User : Ça marche, rdv demain à Centrale :)</p>
                 <p class="lastMessageTime">09:41</p>
             </div>
         </a>
@@ -77,7 +77,7 @@ include_once("libs/maLibForms.php");
         <a href="index.php?view=messages" class="conversations">
             <p class="titleConv">Nom de la conv</p>
             <div class="messageContainer">
-                <p class="lastMessage">Oriane : Ça marche, rdv demain à Centrale :)</p>
+                <p class="lastMessage">User : Ça marche, rdv demain à Centrale :)</p>
                 <p class="lastMessageTime">09:41</p>
             </div>
         </a>
@@ -85,7 +85,7 @@ include_once("libs/maLibForms.php");
         <a href="index.php?view=messages" class="conversations">
             <p class="titleConv">Nom de la conv</p>
             <div class="messageContainer">
-                <p class="lastMessage">Oriane : Ça marche, rdv demain à Centrale :)</p>
+                <p class="lastMessage">User : Ça marche, rdv demain à Centrale :)</p>
                 <p class="lastMessageTime">09:41</p>
             </div>
         </a>
