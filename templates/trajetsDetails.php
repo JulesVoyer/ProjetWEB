@@ -42,11 +42,6 @@ $trajet = array(
     <!-- Classe trajet récupéré de la page trajet  -->
     <div id="detailsTrajet" class="trajet">
 
-        <a href="">
-            <img id="flecheRetour" src="ressources/fleche-retour.png" alt="retour"> 
-            <p id="retourTexte"> Retour </p>
-        </a>
-
         <h1 id="detailsTrajetDate"><?php echo $trajet['date']; ?></h1>
 
         <div class="iconeTrajet">
@@ -66,7 +61,7 @@ $trajet = array(
         <ul>
         <?php 
         for ($i = 0; $i < count($trajet['participants']); $i++) {
-            echo "<li class='detailTrajetListElm'><a href='index.php?view=trajetsUtilisateurs'>". $trajet['participants'][$i] . "</a></li>";
+            echo "<li class='detailTrajetListElm'><a href='index.php?view=detailUtilisateur'>". $trajet['participants'][$i] . "</a></li>";
         }
         ?>
         </ul>

@@ -16,7 +16,7 @@ include_once("libs/maLibForms.php");
 
     <!-- **** B O D Y **** -->
     <div id="messageBody">
-        <br/><br/><br/>
+        <br/><br/>
         
 
         <div id="titlePage">
