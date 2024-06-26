@@ -55,26 +55,27 @@ include_once("libs/maLibForms.php");
             </div>
 
 
-            <input type="submit" value="Créer un trajet" name="action" id="CreateTripSubmit">
+            <input type="submit" value="Créer un trajet" class = "btn" name="action" id="CreateTripSubmit">
 
 
 
             <div id = "createTripVehiclePopup" class = "popup">
-                <p> Mes véhicules </p>
+                <div>
+                    <h3> Mes véhicules </h3>
 
-                <div id = "createTripMyVehicleList">
+                    <div id = "createTripMyVehiclesList">
+                    </div>
+
+                    <h3> Véhicules Disponibles à la location </h3>
+
+                    <div id = "createTripAvailableVehicleList">
+                    </div>
                 </div>
-
-                <p> Véhicules Disponibles à la location </p>
-
-                <div id = "createTripAvailableVehicleList">
-                </div>
-
             </div>
 
         </form>  
 
-        <
+    
         
         
     </div>
@@ -102,6 +103,7 @@ include_once("libs/maLibForms.php");
 
         function getTrips(data){
             $("#trajetsList").empty();
+            $(".incentive").hide();
             $.ajax(
                 {
                     type: "GET",	
@@ -197,6 +199,55 @@ include_once("libs/maLibForms.php");
                 getTrips(data);				
                 }
             )
+
+            jVehicleRadio = $(`<input type="radio" name="vehicle" value="VEHICLE_ID" class = "objectRadio">
+                            <div class="vehicle">
+                                <img src="ressources/auto-noir.png" alt="vehicle" class="icon">
+                                <p class="vehicleName">VEHICLE_NAME</p>
+                                <p class="vehicleSeats">VEHICLE_SEATS</p>
+                            </div>
+                        </input>`);
+
+            function getMyVehicles(){
+                $("createTripMyVehiclesList").empty();
+                $("createTripAvailableVehicleList").empty();
+                $.ajax(
+                    {
+                        type: "GET",
+                        url: "./libs/data.php",
+                        data: {'action' : 'getMyVehicles'},
+                        dataType: "json",
+                        success: function (rep) {
+                            console.log(rep)
+                            $("#createTripMyVehiclesList").append(jVehicleRadio.clone());
+                            $("#createTripAvailableVehicleList").append(jVehicleRadio.clone());
+                            for (var i = 0; i < rep.length; i++) {
+                                Jclone = jVehicleRadio.clone()
+
+
+                            }
+                        },
+                        error: function (xhr, status, error) {
+                            console.log("Status de l'erreur : " + status);
+                            console.log("error : " + error);
+                            console.log("Réponse complète : " + xhr.responseText);
+
+                        }
+
+                    }
+                )
+            }
+
+            $("#createTripConducteur").click(
+
+                function(){
+                    if($(this).is(':checked')){                        
+                        getMyVehicles();
+                        $("#createTripVehiclePopup").show();
+                    }
+                }
+            )
+
 
 
             // fin traitement des trajets

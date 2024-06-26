@@ -36,8 +36,8 @@ session_start();
 			
 			//logout de l'utilisateur
 			case "Déconnexion":
-
 				session_destroy();
+				setcookie(session_name(), '', time() - 42000);
 				$qs = "?view=login";
 			break;
 			//fin logout

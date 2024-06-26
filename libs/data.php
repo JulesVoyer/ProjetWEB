@@ -1,6 +1,7 @@
 <?php
 
 include_once("modele.php");
+include_once("maLibUtils.php");
 
 header('Content-Type: application/json');
 
@@ -17,6 +18,12 @@ if (isset($_GET['action'])){
 
             $response = getDraftTripsByDateDestinationAndRemainingSeats($date, $direction, $nbPassagers);       
         break;
+
+        case 'getMyVehicles' : 
+            if(valider("connecte","SESSION")){
+                $id = $_SESSION['idUser'];
+                $response = getUsersVehicles($id);
+            }
 
 
 
