@@ -14,8 +14,25 @@ include_once("libs/maLibForms.php");
 
 ?>
 
-    <!-- **** B O D Y **** -->
-	<div id="interventionsBody">
-		<br/><br/><br/>
-		
+<div id="interventionsBody">
+
+	<div id="itvContent">
+		<h2 id="itvTitreCreer">Créer une nouvelle intervention :</h2>
+		<form id="itvNew" action="controleur.php" methode="" >
+			<h3>Lieu :</h3>
+			<select>
+				<option name="lieu_intervention_IG2I" value="0">IG2I</option>
+				<option name="lieu_intervention_centrale" value="1">Centralle</option>
+			</select>
+			<h3>Date :</h3>
+			<input type="date" name="lieuIntervention" />
+			<input id="itvCreerBtn" class="btn" type="submit" name="action" value="Créer" />
+		</form>
+		<h2>Liste des interventions :</h2>
+		<div id="itvListe">
+			<div><span class="itvIntervention">Intervention 1 : </span><span class="itvLieu">Centrale</span> <span class="date">26/06/24</span></div>
+		</div>
+		</div>
 	</div>
+	
+</div>

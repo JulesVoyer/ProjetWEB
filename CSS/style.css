@@ -970,23 +970,112 @@ body {
 
 /*---------- MESSAGES ----------*/
 
-#messageBody #titlePage {
-    position: fixed;
-    width: 100%;
-    padding-bottom: 20px;
-    padding-top: 20px;
-    background-color: white;
-    border-bottom: solid 1px rgb(0, 0, 0, 0.5);
+#messageBody {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+#titlePage {
+    position: absolute;
+    top: 70px;
+    
+    width: 80%;
+    max-width: 700px;
+    min-width: 300px;
+
+    /* centrer l'élément */
+    left: 50%;
+    transform: translate(-50%, 0); /* décalage de 50% de sa propre taille */
+
+    padding: 5px;
+    
     box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.5);
+
     display: flex;
     flex-direction: row;
     color: black;
     text-align: center;
-    font-size: 20pt;
+    font-size: 15pt;
     justify-content: center;
     align-items: center;
 
-    z-index: 10;
+    border-top-left-radius: 15pt;
+    border-top-right-radius: 15pt;
+
+    box-sizing: border-box;
+}
+
+#msgConversation {
+    position: absolute;
+    top: 120px;
+    bottom: 120px;
+
+    /* centrer l'élément */
+    left: 50%;
+    transform: translate(-50%, 0); /* décalage de 50% de sa propre taille */
+    
+    width: 80%;
+    max-width: 700px;
+    min-width: 300px;
+
+    padding: 20px;
+
+    overflow: auto;
+
+    box-sizing: border-box;
+}
+
+#msgForm {
+    position: absolute;
+    bottom: 65px;
+    
+    width: 80%;
+    max-width: 700px;
+    min-width: 300px;
+
+    /* centrer l'élément */
+    left: 50%;
+    transform: translate(-50%, 0); /* décalage de 50% de sa propre taille */
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 5px 0;
+
+    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.5);
+
+    border-bottom-left-radius: 15pt;
+    border-bottom-right-radius: 15pt;
+
+    box-sizing: border-box;
+}
+
+#msgContenu {
+    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.5);
+    border-radius: 20pt;
+    max-height: 30px;
+    width: 50%;
+    padding: 5px;
+    margin: 5px;
+}
+
+#msgEnvoyer {
+    max-width: 20px;
+    max-height: 20px;
+    border-radius: 10pt;
+    padding: 10px;
+    background-color: #1E74AB;
+    margin: 3px;
+}
+
+#msgEnvoyer:hover {
+    transform: translatey(3px);
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+    cursor: pointer;
 }
 
 #iconePoints{
@@ -1007,7 +1096,6 @@ body {
     margin-left: 30px;
     border-radius: 15px;
     text-align: center;
-
 }
 
 #retourPagePrecedente {
@@ -1028,26 +1116,7 @@ body {
 
 }
 
-#conversation {
-    position: relative;
-    border-radius: 10px;
-    box-shadow: 5px 5px 5px 5px rgb(0, 0, 0, 0.5);
-    padding: 20px;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 80px;
-    margin-bottom: 15px;
-    width: 60%;
-    min-width: 320px;
-    max-width: 700px;
-    height: 700px;
-    display: flex;
-    flex-direction: column;
-    text-decoration:none !important;
-    color: black;
-}
-
-#conversation > p {
+#msgConversation > p {
     margin: 5px 0 5px 0;
 }
 
@@ -1091,44 +1160,72 @@ body {
 
 }
 
-#conversation form {
-    position: absolute;
-    top: 700px;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    left: 0px;
-}
-
-
-#conversation input[type="text"] {
-    position: relative;
-    width: calc(100% - 60px);
-    border: black solid 1px;
-    border-radius: 5px;
-    max-height: 30px;
-    padding: 5px;
-    margin: 5px;
-}
-
-
-
-
-#conversation input[type="image"] {
-    max-width: 20px;
-    max-height: 20px;
-    border-radius: 5px;
-    padding: 5px;
-    background-color: #1E74AB;
-    margin: 5px;
-
-}
-
-
-
 @media all and (max-width:550px) {
     /* Cas d'une fenêtre de largeur inférieure à 550px [mobile] */
+     
+    #titlePage {
+        position: absolute;
+        top: 60px;
+        left: 0;
+        right: 0;
+
+        transform: translate(0%, 0);
+        width: auto;
+    
+        padding: 5px;
+        
+        box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.5);
+    
+        display: flex;
+        flex-direction: row;
+        color: black;
+        text-align: center;
+        font-size: 15pt;
+        justify-content: center;
+        align-items: center;
+
+
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+    }
+
+    #msgConversation {
+        position: absolute;
+        top: 110px;
+        bottom: 100px;
+        left: 0;
+        right: 0;
+
+        transform: translate(0%, 0);
+        width: auto;
+    
+        padding: 20px;
+    
+        overflow: auto;
+    
+        box-sizing: border-box;
+    }
+    
+    #msgForm {
+        position: absolute;
+        bottom: 42px;
+        left: 0;
+        right: 0;
+
+        transform: translate(0%, 0);
+        width: auto;
+    
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    
+        padding: 5px 0;
+    
+        box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.5);
+
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+    }
 
     #conversation {
         padding: 0 20px 0 20px;
@@ -1163,13 +1260,13 @@ body {
     
     }
 
-
     #conversation form {
         
         width: calc(100% - 40px);
         top: 680px;
     }
 }
+
 
 /*---------- HISTORIQUE ----------*/
 
@@ -1233,6 +1330,59 @@ body {
 
     height: 40px;
     width: 40px !important;
+}
+
+
+
+/*---------- INTERVENTIONS ----------*/
+
+#interventionsBody {
+    position: absolute;
+    top: 80px;
+    bottom: 65px;
+    left: 0;
+    right: 0;
+}
+
+#itvContent {
+    background-color: lightgrey;
+    border-radius: 15pt;
+
+    height: 100%;
+    width: 80%;
+    max-width: 1000px;
+    min-width: 300px;
+    margin: auto;
+    padding: 20px;
+
+    overflow: auto;
+
+    box-sizing: border-box;
+}
+
+#itvTitreCreer {
+    margin-top: 0;
+}
+
+#itvNew h3 {    
+    margin: 10px 0;
+}
+
+#itvCreerBtn {
+    font-size: 13pt;
+    font-weight: bold;
+
+    padding: 5px 30px;
+    display: block;
+
+    margin-top: 10px;
+}
+
+#itvListe {
+    background-color: rgba(128, 128, 128, 0.5);
+    margin: 20px;
+    border-radius: 15pt;
+    overflow: auto;
 }
 
 
