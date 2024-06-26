@@ -114,7 +114,7 @@ echo "<?xml version=\"1.0\" encoding=\"utf-8\" ?>";
                     
                     <div class="popup" id="sguPopupCont">
                         <div id="sguPopup">
-                            <h3>Déclarer un véhicule :</h3>
+                            <h2>Déclarer un véhicule :</h2>
                                 <input class="popupInput" type="text" name="vehicle_name" placeholder="Nom du véhicule..." />
                                 <input class="popupInput" type="text" name="vehicle_nb_seats" placeholder="Nombre de places... " />
                                 <input class="popupInput" type="text" name="model" placeholder="Modèle... (optionnel)" />

@@ -1330,8 +1330,8 @@ body {
 }
 
 #pflPopupDeco {
-    top: 40%;
-    bottom: 40%;
+    top: 30%;
+    bottom: 30%;
 }
 
 #pflDecoConf, #pflAnnuler {
@@ -1355,11 +1355,11 @@ body {
 }
 
 
-#pflPopupPerso {
+#pflPopupPerso, #pflPopupVoit {
     overflow: auto;
 }
 
-#pflPopupPerso .popupInput {
+#pflPopupPerso .popupInput, #pflPopupVoit .popupInput {
     margin: 10px 0;
 }
 
@@ -1369,14 +1369,22 @@ body {
     display: none;
 }
 
-#cbEditMDP {
+#cbEditMDP, #cbSupprVoit, #cbAjVoit {
+    font-size: 14pt;
     padding: 20px 0 !important;
 }
 
-#pflPopupPerso .popupButtons {
+#pflPopupPerso .popupButtons, #pflPopupVoit .popupButtons {
     padding: 20px 0;
 }
 
+#pflPopupMesV, .iptAjV {
+    display: none;
+}
+
+#pflPopupMesV div {
+    margin: 10px;
+}
 
 
 
