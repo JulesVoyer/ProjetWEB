@@ -58,7 +58,7 @@ include_once("libs/maLibForms.php");
         <form action="controleur.php" methode="">
             <div class="popupButtons">
                 <input class="btn pflAnnuler" type="button" name="annuler" value="Annuler" />   
-                <input id="pflDecoConf" class="btn" type="button" name="deconnexion" value="Déconnexion" /> 
+                <input id="pflDecoConf" class="btn" type="submit" name="deconnexion" value="Déconnexion" /> 
             </div>  
         </form>
     </div>
@@ -96,10 +96,10 @@ include_once("libs/maLibForms.php");
     <div id="pflPopupVoit">
         <h3>Editer véhichules :</h3>
         <p>Supprimer une voiture ?</p>
-        <form action="controleur.php" methode="get">
+        <form action="controleur.php" methode="">
             <div class="popupButtons">
                 <input class="btn pflAnnuler" type="button" name="annuler" value="Annuler" />   
-                <input id="pflValiderVoit" class="btn" type="submit" name="deconnexion" value="Déconnexion" /> 
+                <input id="pflValiderVoit" class="btn" type="button" name="deconnexion" value="Déconnexion" /> 
             </div>  
         </form>
     </div>
