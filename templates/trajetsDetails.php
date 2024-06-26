@@ -15,11 +15,11 @@ include_once("libs/maLibUtils.php");
 include_once("libs/maLibForms.php"); 
 
 $trajet = array(
-    'date' => 'Ven 28 Juin',
+    'date' => 'Ven. 28 Juin',
     'heureDepart' => '08:00',
-    'pointDepart' => 'Centrale',
-    'pointArrivee' => 'IG2I',
-    'participants' => ['Philipe', 'Pierre']
+    'pointDepart' => 'Centrale - Villeneuve d’Ascq',
+    'pointArrivee' => 'IG2I - Lens',
+    'participants' => ['Philipe', 'Pierre', 'Jean-Michel']
 );
 
 
@@ -29,29 +29,53 @@ $trajet = array(
 <!-- **** B O D Y **** -->
 
 <div id="detailTrajetBody">
-    <br><br><br><br>    
+    <br/><br/><br/>    
     <!-- Section pour afficher les détails du trajet -->
 
+        <div id="titlePage">
+            <a id="retourPagePrecedente" href="javascript:history.back()">
+                <img id="flecheRetour" src="ressources/flecheRetour.png" alt="Fleche">
+            </a>
+            <p>Retour</p>
+        </div>
 
     <!-- Classe trajet récupéré de la page trajet  -->
     <div id="detailsTrajet" class="trajet">
 
-        <a href="index.php?view=trajets">
-            <img id="flecheRetour" src="ressources/fleche-retour.png" alt="retour"> 
-            <p id="retourTexte"> Retour </p>
-        </a>
 
-        <p id="detTraDa"><?php echo $trajet['date']; ?></p>
-        <p>Heure de départ: <?php echo $trajet['heureDepart']; ?></p>
-        <p>Point de départ: <?php echo $trajet['pointDepart']; ?></p>
-        <p>Point d'arrivée: <?php echo $trajet['pointArrivee']; ?></p>
+        <h1 id="detailsTrajetDate"><?php echo $trajet['date']; ?></h1>
 
-        <p>Participants : </p>
+        <div class="iconeTrajet">
+                <div id="detailRond" class="rond"></div>
+                <div id="detailTrait" class="trait"></div>
+        </div>
+
+        <p id="detailsTrajetHeure"> <?php echo $trajet['heureDepart']; ?></p>
+        <p id="detailsTrajetDepart"><?php echo $trajet['pointDepart']; ?></p>
+        <p id="detailsTrajetArrive"><?php echo $trajet['pointArrivee']; ?></p>
+
+        <br><br><br>
+        <h1> Nombre de place(s) restantes : 2 </h1>
+        <br>
+
+        <h1>Participants : </h1>
+        <ul>
         <?php 
         for ($i = 0; $i < count($trajet['participants']); $i++) {
-            echo "<p>" . $trajet['participants'][$i] . "</p>";
+            echo "<li class='detailTrajetListElm'><a href='index.php?view=detailUtilisateur'>". $trajet['participants'][$i] . "</a></li>";
         }
         ?>
+        </ul>
+
+        <h1>Voiture : </h1>
+
+        <div id="detailTrajetVoitureAssigne">
+            <p><b>Modèle :</b> *modèle* </p>
+            <p><b>Couleur :</b> *couleur* </p>
+            <p><b>Immatriculation :</b> *imm* </p>
+            <p><b>Propriétaire :</b> *prenom ou agence* </p>
+        </div>
+
+        <input id="trjRejoindre" class="btn btnTrajet" type="button" value="Rejoindre" />
     </div>
 </div>
- 

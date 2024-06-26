@@ -1,11 +1,8 @@
-@import url('https://fonts.googleapis.com/css2?family=Inria+Sans:wght@400;700&display=swap');
-
-
 body {
     /* Remises à zéro */
     margin: 0;
     padding: 0;
-    font-family: 'Inria Sans', sans-serif;
+    font-family: Didot, Didot LT STD, Hoefler Text, Garamond, Times New Roman, serif; 
     text-decoration: none;
     color: black !important;
 }
@@ -134,144 +131,10 @@ body {
     cursor: pointer;
 }
 
-/*---------- LOGIN ----------*/
-
-#lgiBody {
-    /* Insertion de l'image de fond pour la version pc */
-    background-image: url("../ressources/voiture_fond.png");
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-size: cover;
-    background-position: center;
-}
-
-#lgiCont {
-    background-color: white;
-
-    /* La division qui contient le formulaire est en position absole à droite pour la version pc */
-    position: absolute;
-    right: 0;
-    top: 0;
-    bottom: 0;
-
-    /* Gestion de sa taille pour la version pc */
-    width: 40%;
-    min-width: 400px;
-
-    text-align: center;
-    font-family: Didot, Didot LT STD, Hoefler Text, Garamond, Times New Roman, serif; 
-}
-
-#lgiTittle {
-    margin: 7% 0;
-    text-shadow: 0.06em 0.06em 0.2em rgb(155, 155, 155);
-    /* Je ne sais pas encore comment rendre la taille du titre responsive */
-
-    font-size: 38pt;
-}
-
-#lgiTittle + hr {
-    border: 1.5px solid black;
-    border-radius: 5px;
-    margin-left: 7%;
-    margin-right: 7%;
-}
-
-#lgiForm {
-    height: 45%;
-    margin: 5% 0;
-
-    /* Répartition homogène des éléments dans le formulaire */
-    display: flex;
-    justify-content: space-around;
-    flex-direction: column;
-    align-items: center;
-}
-
-.lgiInput {
-    border: 0;
-    border-bottom: 1px solid gray;
-
-    font-size: 15pt;
-
-    width: 70%;
-    padding: 7px;
-}
-
-.lgiInput:focus {
-    outline: none;
-}
-
-#lgiSubmit {
-    /* On ajoute une image de fond au bouton */
-    background-image: url("../ressources/encre_rectangle.jpg");
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-
-    /* Des angles arrondis et pas de bodure */
-    border-radius: 15px;
-    border: 0;
-
-    /* Traitement du texte */
-    font-size: 15pt;
-    font-weight: bold;
-    color: white;
-    text-shadow: 0.06em 0.06em 0.2em rgb(0, 0, 0);
-
-    padding: 10px 40px;
-}
-
-#lgiSubmit:hover {
-    transform: translatey(3px);
-    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
-    cursor: pointer;
-}
-
-#lgiForm + div {
-    margin-top: 5%;
-    color: gray;
-    font-size: 13pt;
-}
-
-#lgiSignUp {
-    text-align: right;
-    margin-top: 3%;
-}
-
-#lgiSignUp img {
-    max-height: 14pt;
-}
-
-#lgiSignUp a {
-    text-decoration: none !important;
-    color: black;
-    font-size: 14pt;
-
-    margin-right: 18%;
-}
-
-#lgiLogo {
-    max-height: 50px;
-
-    /* Son contenant est la fenêtre */
-    position: absolute;
-    bottom: 10px;
-    right: 10px;
-}
-
-@media all and (max-width:550px) {
-    /* Cas d'une fenêtre de largeur inférieure à 550px [mobile] */
-
-    #lgiCont {
-        width: 100%;
-    }
-}
 
 
 
 /*---------- SIGN UP ----------*/
-
 
 #sguBG {
     /* Image de fond */
@@ -489,14 +352,26 @@ body {
 
 }
 
-
 #presApp p {
     font-style: italic;
     margin-top: 30px;
     margin-bottom: 15px;
 }
 
+
+
+
 /*---------- TRAJETS ----------*/
+
+#trajetBody {
+    position: absolute;
+    top: 60px;
+    bottom: 45px;
+    left: 0;
+    right: 0;
+
+    overflow: auto;
+}
 
 #searchFieldTrajet {
     position: relative;
@@ -516,12 +391,16 @@ body {
 }
 
 #searchfieldTrajet select,
-#searchFieldTrajet input[type="text"] {
-    border: 0 ;
-    font-size: 13pt;
+#searchFieldTrajet input[type="text"],
+#searchFieldTrajet input[type="date"] {
+    border: 1px solid gray !important;
+    border-radius: 5px;
     min-width : 15px;
     width:80%;
+    font-size: 13pt;
+
     max-width:500px;
+    height: fit-content;
     padding: 7px;
 }
 
@@ -559,8 +438,8 @@ body {
     margin-left: 10px;
     margin-top : 10px;
 
-    border-bottom: 1px solid gray !important;
-    border-radius: 10px 0 0 0;
+    border: 1px solid gray !important;
+    border-radius: 5px;
 }
 
 
@@ -592,10 +471,6 @@ body {
     height: 70px;
     width: 70px !important;
 }
-
-
-
-
 
 .trajet {
     position: relative;
@@ -828,6 +703,9 @@ body {
 
 }
 
+
+
+
 /*---------- TRAJETS DETAILS ----------*/
 
 #detailsTrajet {
@@ -838,7 +716,7 @@ body {
 
 #detailsTrajet > a {
     position: absolute;
-    bottom: 450px;
+    top: -82px;
     left: 0px;
     text-decoration: none;
     max-width: 230px
@@ -861,9 +739,102 @@ body {
     text-decoration: underline;
 }
 
-#detTraDa {
+#detailsTrajet > h1 {
     font-size: xx-large;
     font-weight: bold;
+}
+
+#detailsTrajet > .iconeTrajet {
+    position: relative;
+    left: 0px;
+    top: 8px;
+    height: 95px;
+}
+
+#detailRond::before{
+    top: -3px;
+    left: 60px;
+    z-index: 9;
+}
+
+#detailRond::after{
+    top: 80px;
+    left: 60px;
+    margin-left: 0;
+    z-index: 9;
+
+}
+
+#detailTrait::before{
+    width: 5px;
+    height: 83px;
+    min-width: 0;
+
+    top: 2px;
+    left: 66.5px;
+
+    z-index: 8;
+
+}
+
+#detailsTrajetHeure {
+    position: absolute;
+    top: 73px;
+    left: 33px;
+    font-size:larger;
+}
+
+#detailsTrajetDepart {
+    position: absolute;
+    top: 73px;
+    left: 120px;
+    font-size:larger;
+}
+
+#detailsTrajetArrive {
+    position: absolute;
+    top: 157px;
+    left: 120px;
+    font-size:larger;
+}
+
+#detailsTrajet > ul {
+    position: relative;
+    top: -7px;
+    color: black;
+
+}
+
+.detailTrajetListElm {
+    font-size: larger;
+    color: black;
+    height: 35px;
+    text-decoration: none;
+
+}
+
+#detailTrajetVoitureAssigne {
+    position: relative;
+    left: 45px;
+    top: -20px;
+    height: 300px;
+}
+
+#detailTrajetVoitureAssigne > p {
+    height: 10px;
+    font-size: larger;
+}
+
+.btnTrajet {
+    color: white;
+    width:min-content;
+    position:relative;
+    margin: 0 auto;
+    bottom: 70px;
+}
+
+#trjRejoindre {
+    background-color:#1E74AB;
 }
 
 /*
@@ -887,7 +858,20 @@ body {
 }
 */
 
+
+
+
 /*---------- CONVERSATIONS ----------*/
+
+#convBody {
+    position: absolute;
+    top: 60px;
+    bottom: 45px;
+    left: 0;
+    right: 0;
+
+    overflow: auto;
+}
 
 #titlePage {
     text-decoration: underline;
@@ -895,9 +879,8 @@ body {
     font-size: 24px;
     font-weight: bold;
     color: black;
-    margin-bottom: 15px;
+    margin: 15px 0;
 }
-
 
 .conversations{
     background-color: lightgrey;
@@ -992,6 +975,15 @@ body {
     margin-left: 30px;
     border-radius: 15px;
     text-align: center;
+
+}
+
+#retourPagePrecedente {
+    background-color: lightgrey;
+    width: 40px;
+    height: 40px;
+    margin-right: 50px;
+    border-radius: 20px;
 
 }
 
@@ -1149,10 +1141,19 @@ body {
 
 /*---------- HISTORIQUE ----------*/
 
+#historiqueBody {
+    position: absolute;
+    top: 60px;
+    bottom: 45px;
+    left: 0;
+    right: 0;
+
+    overflow: auto;
+}
+
 .subTitlePage {
-    position: relative;
+    text-align: center;
     text-decoration: underline;
-    left: calc(30% - 100px);
     font-size: 20px;
     font-weight: bold;
     color: black;
@@ -1207,8 +1208,7 @@ body {
 /*---------- PROFIL ----------*/
 
 #pflBody {
-
-    
+   
     position: absolute; 
     left: 0;
     right: 0;
@@ -1488,4 +1488,297 @@ body {
     right: 6px;
     bottom: 6px;
     max-height: 30px;
+}
+
+
+
+
+/*---------- LOGIN ----------*/
+
+#lgiBody {
+    /* Insertion de l'image de fond pour la version pc */
+    background-image: url("../ressources/voiture_fond.png");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
+}
+
+#lgiCont {
+    background-color: white;
+
+    /* La division qui contient le formulaire est en position absole à droite pour la version pc */
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+
+    /* Gestion de sa taille pour la version pc */
+    width: 40%;
+    min-width: 400px;
+
+    text-align: center;
+    font-family: Didot, Didot LT STD, Hoefler Text, Garamond, Times New Roman, serif; 
+}
+
+#lgiTittle {
+    margin: 7% 0;
+    text-shadow: 0.06em 0.06em 0.2em rgb(155, 155, 155);
+    /* Je ne sais pas encore comment rendre la taille du titre responsive */
+
+    font-size: 38pt;
+}
+
+#lgiTittle + hr {
+    border: 1.5px solid black;
+    border-radius: 5px;
+    margin-left: 7%;
+    margin-right: 7%;
+}
+
+#lgiForm {
+    height: 45%;
+    margin: 5% 0;
+
+    /* Répartition homogène des éléments dans le formulaire */
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    align-items: center;
+}
+
+.lgiInput {
+    border: 0;
+    border-bottom: 1px solid gray;
+
+    font-size: 15pt;
+
+    width: 70%;
+    padding: 7px;
+}
+
+.lgiInput:focus {
+    outline: none;
+}
+
+#lgiSubmit {
+    /* On ajoute une image de fond au bouton */
+    background-image: url("../ressources/encre_rectangle.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+
+    /* Des angles arrondis et pas de bodure */
+    border-radius: 15px;
+    border: 0;
+
+    /* Traitement du texte */
+    font-size: 15pt;
+    font-weight: bold;
+    color: white;
+    text-shadow: 0.06em 0.06em 0.2em rgb(0, 0, 0);
+
+    padding: 10px 40px;
+}
+
+#lgiSubmit:hover {
+    transform: translatey(3px);
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+    cursor: pointer;
+}
+
+#lgiForm + div {
+    margin-top: 5%;
+    color: gray;
+    font-size: 13pt;
+}
+
+#lgiSignUp {
+    text-align: right;
+    margin-top: 3%;
+}
+
+#lgiSignUp img {
+    max-height: 14pt;
+}
+
+#lgiSignUp a {
+    text-decoration: none !important;
+    color: black;
+    font-size: 14pt;
+
+    margin-right: 18%;
+}
+
+#lgiLogo {
+    max-height: 50px;
+
+    /* Son contenant est la fenêtre */
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+}
+
+@media all and (max-width:550px) {
+    /* Cas d'une fenêtre de largeur inférieure à 550px [mobile] */
+
+    #lgiCont {
+        width: 100%;
+    }
+}
+
+
+/*---------- TRAJETS DETAILS ----------*/
+
+#detailTrajetBody #titlePage {
+        position: fixed;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        background-color: white;
+        border-bottom: solid 1px rgb(0, 0, 0, 0.5);
+        box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.5);
+        z-index: 10;
+}
+
+#detailTrajetBody #retourPagePrecedente {
+    position: relative;
+    left: -50px !important;
+}
+
+#detailTrajetBody #flecheRetour {
+    position: relative;
+    width: 50px;
+    height: 50px;
+}
+
+#detailTrajetBody #titlePage p {
+    position: relative;
+    left: -50px;
+}
+
+#detailsTrajet {
+    top: 80px;
+    height: auto;
+    padding-left: 30px;
+    color: black;
+}
+
+#detailTrajetDate {
+    font-size: xx-large;
+    font-weight: bold;
+    margin: 10px 0 10px 0;
+}
+
+#detailsTrajet li a {
+    text-decoration: none;
+    color: black;
+}
+
+#detailsTrajet li a:hover {
+    text-decoration: underline;
+    color: black;
+}
+
+/*
+.trajet {
+    position: relative;
+    background-color: lightgrey;
+    border-radius: 15px;
+    padding: 5px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    width: 75%;
+    min-width: 320px;
+    max-width: 700px;
+    height: 120px;
+    text-decoration: none;
+    color: black !important;
+    display: flex;
+    flex-direction: column;
+}
+*/
+
+
+
+/*---------- DETAIL UTILISATEUR ----------*/
+
+#detailUtilisateurBody #titlePage {
+    position: fixed;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    background-color: white;
+    border-bottom: solid 1px rgb(0, 0, 0, 0.5);
+    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.5);
+    z-index: 10;
+}
+
+#detailUtilisateurBody #titlePage #retourPagePrecedente {
+    position: relative;
+    left: -50px !important;
+}
+
+#detailUtilisateurBody #titlePage p {
+    position: relative;
+    left: -50px !important;
+}
+
+#detailUtilisateur {
+    position: relative;
+    border-radius: 15px;
+    box-shadow: 5px 5px 5px 5px rgb(0, 0, 0, 0.5);
+    padding: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 100px;
+    margin-bottom: 15px;
+    width: 75%;
+    min-width: 320px;
+    max-width: 500px;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    text-decoration:none !important;
+    color: black;
+    background-color: lightgrey;
+}
+
+#detailUtilisateur > p {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-left: 10px;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+#nomUtilisateur {
+    font-size: 35px !important;
+    font-weight: bold;
+    width: 100%;
+    text-align: center;
+}
+
+#detailUtilisateur .rubrique {
+    font-size: 25px;
+    font-weight: bold;
+}
+
+#detailUtilisateur .info {
+    font-size: 25px;
+    font-weight: normal;
+}
+
+#detailUtilisateur li {
+    margin: 10px 0 10px 0;
+}
+
+#detailUtilisateur ul {
+    margin: 10px 0 10px 0;
 }

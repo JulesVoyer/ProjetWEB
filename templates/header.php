@@ -125,6 +125,7 @@ echo "<?xml version=\"1.0\" encoding=\"utf-8\" ?>";
 			// fin traitement du profil
 
 
+
 		} ); // fin ready
 
 
@@ -173,7 +174,7 @@ echo "<?xml version=\"1.0\" encoding=\"utf-8\" ?>";
 		<a href="index.php?view=trajets" id="trajets">Trajets</a>
 		<a href="index.php?view=conversations" id="conversations">Conversations</a>
 		<a href="index.php?view=historique" id="historique">Historique</a>
-		<a href="index.php?view=profil" id="profil">Profil</a>
 		<a href="index.php?view=interventions" id="interventions">Interventions</a>
+		<a href="index.php?view=profil" id="profil">Profil</a>
 
 	</div>

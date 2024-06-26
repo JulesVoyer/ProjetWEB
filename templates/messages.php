@@ -16,11 +16,11 @@ include_once("libs/maLibForms.php");
 
     <!-- **** B O D Y **** -->
     <div id="messageBody">
-        <br/><br/><br/>
+        <br/><br/>
         
 
         <div id="titlePage">
-            <a id="lienConversations" href="index.php?view=conversations">
+            <a id="retourPagePrecedente" href="javascript:history.back()">
                 <img id="flecheRetour" src="ressources/flecheRetour.png" alt="Fleche">
             </a>
             Nom du trajet
