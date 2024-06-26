@@ -1,7 +1,7 @@
 <?php
-
-include_once("modele.php");
 include_once("maLibUtils.php");
+include_once("modele.php");
+
 
 header('Content-Type: application/json');
 
@@ -24,6 +24,18 @@ if (isset($_GET['action'])){
                 $id = $_SESSION['idUser'];
                 $response = getUsersVehicles($id);
             }
+        break;
+
+        case 'getAvailableVehicles' :
+            if(isset($_GET['date'])){ 
+            
+            $date = $_GET['date'];
+            $response = getAvailableCentraleVehiclesByDate($date);
+            }
+
+        break;
+            
+
 
 
 

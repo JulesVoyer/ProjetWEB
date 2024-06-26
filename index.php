@@ -1,6 +1,4 @@
 <?php
-session_start();
-
 /*
 Cette page génère les différentes vues de l'application en utilisant des templates situés dans le répertoire "templates". Un template ou 'gabarit' est un fichier php qui génère une partie de la structure XHTML d'une page. 
 
@@ -8,7 +6,6 @@ La vue à afficher dans la page index est définie par le paramètre "view" qui 
 
 Les formulaires de toutes les vues générées enverront leurs données vers la page data.php pour traitement. La page data.php redirigera alors vers la page index pour réafficher la vue pertinente, généralement la vue dans laquelle se trouvait le formulaire. 
 */
-
 include_once "libs/maLibUtils.php";
 include_once "libs/maLibForms.php";
 

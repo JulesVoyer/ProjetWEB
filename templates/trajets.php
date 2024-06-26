@@ -68,7 +68,7 @@ include_once("libs/maLibForms.php");
 
                     <h3> Véhicules Disponibles à la location </h3>
 
-                    <div id = "createTripAvailableVehicleList">
+                    <div id = "createTripAvailableVehiclesList">
                     </div>
                 </div>
             </div>
@@ -85,9 +85,10 @@ include_once("libs/maLibForms.php");
         //traitement des trajets
 
         jTrajet = $(`<a href="index.php?view=trajetsDetails" class="trajet">
-                        <img id="autoRouge" src="ressources/auto-rouge.png" alt="icone voiture rouge" style="display: none;"/>
-                        <p class="dateTrajet">DATE_DUMMY</p>            
-
+                        <div class="infoTrajet">
+                            <p class="dateTrajet">DATE_DUMMY</p>            
+                            <img id="autoRouge" src="ressources/auto-rouge.png" alt="icone voiture rouge" class="icon" style="display: none;"/>
+                        </div>
                         <div class="contTrajet">
                             <p class="heureDepart">HEURE_DUMMY</p>
                             <p class="pointDepart">DEPART_DUMMY</p>
@@ -209,8 +210,7 @@ include_once("libs/maLibForms.php");
                         </input>`);
 
             function getMyVehicles(){
-                $("createTripMyVehiclesList").empty();
-                $("createTripAvailableVehicleList").empty();
+                $("#createTripMyVehiclesList").empty();
                 $.ajax(
                     {
                         type: "GET",
@@ -219,10 +219,16 @@ include_once("libs/maLibForms.php");
                         dataType: "json",
                         success: function (rep) {
                             console.log(rep)
-                            $("#createTripMyVehiclesList").append(jVehicleRadio.clone());
-                            $("#createTripAvailableVehicleList").append(jVehicleRadio.clone());
                             for (var i = 0; i < rep.length; i++) {
+
                                 Jclone = jVehicleRadio.clone()
+                                Jclone.find(".vehicleName").html(rep[i].name);
+                                Jclone.find(".vehicleSeats").html(rep[i].nb_seats);
+                                Jclone.find(".vehicleSeats").append(" places");
+                                Jclone.find(".vehicle").data(rep[i]);
+                                Jclone.find("input").val(rep[i].id);
+                                Jclone.find("input").attr("name", "vehicle")
+                                $("#createTripMyVehiclesList").append(Jclone);
 
 
                             }
@@ -238,11 +244,54 @@ include_once("libs/maLibForms.php");
                 )
             }
 
-            $("#createTripConducteur").click(
+            function getAvailableVehicles(){
+                $("#createTripAvailableVehiclesList").empty();
+                var datetime = $("#createTripDateTime").val()
+                var regexDateTime = /^\d{4}-\d{2}-\d{2} \d{2}:\d{2}$/ ;
+                if(!regesxDateTime.test(datetime)){
+                    $("#createTripAvailableVehiclesList").append("<p>Veuillez choisir une date valide pour réserver un véhicule</p>");
+                }
+                else{
+                let[date, heure] =  datetime.split(" ");
+                
+                $.ajax(
+                    {
+                        method: "GET",
+                        url: "./libs/data.php",
+                        data: {'action' : 'getAvailableVehicles', 'date' : date},
+                        dataType: "json",
+                        success: function (rep) {
+                            console.log(rep)
+                            for (var i = 0; i < rep.length; i++) {
 
+                                Jclone = jVehicleRadio.clone();
+                                Jclone.find(".vehicleName").html(rep[i].name);
+                                Jclone.find(".vehicleSeats").html(rep[i].nb_seats);
+                                Jclone.find(".vehicleSeats").append(" places");
+                                Jclone.find(".vehicle").data(rep[i]);
+                                Jclone.find("input").val(rep[i].id);
+                                Jclone.find("input").attr("name", "vehicle")
+                                $("#createTripAvailableVehiclesList").append(Jclone);
+
+                            }
+                        },
+                        error: function (xhr, status, error) {
+                            console.log("Status de l'erreur : " + status);
+                            console.log("error : " + error);
+                            console.log("Réponse complète : " + xhr.responseText);
+
+                        }
+
+                    }
+                )
+                }
+            }
+
+            $("#createTripConducteur").click(
                 function(){
                     if($(this).is(':checked')){                        
                         getMyVehicles();
+                        getAvailableVehicles();
                         $("#createTripVehiclePopup").show();
                     }
                 }

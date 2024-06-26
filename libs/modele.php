@@ -186,7 +186,7 @@ function createVehicle($name, $nb_seats, $code, $model, $owner_id) {
  */
 function getUsersVehicles($id)
 {
-	$SQL="SELECT * FROM vehicles WHERE id_user='$id';";
+	$SQL="SELECT * FROM vehicles WHERE owner_id='$id';";
 
 	$result = ParcoursRs(SQLSelect($SQL));
 	if (count($result)> 0)

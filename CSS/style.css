@@ -37,6 +37,13 @@ body {
     margin-top: 5px;
     margin-bottom: 5px;
 }
+
+.icon{
+    max-width: 25px;
+    height : auto;
+}
+
+
 /*--------- FIN AJAX ---------*/
 
 /*---------- POPUPS ----------*/
@@ -509,14 +516,41 @@ body {
 }
 
 #searchfieldTrajet select,
-#searchFieldTrajet input[type="text"],
-#searchFieldTrajet input[type="datetime-local"] {
+#searchFieldTrajet input[type="text"] {
     border: 0 ;
     font-size: 13pt;
-
+    min-width : 15px;
     width:80%;
     max-width:500px;
     padding: 7px;
+}
+
+#createTrajet > input, 
+#createTrajet > select,
+#createTrajet > div {
+
+    margin : 3px;
+}
+
+.infoTrajet .dateTrajet,
+.infoTrajet .icon{
+    display : inline-block;
+}
+
+#createTrajet input[type="datetime-local"] {
+    border: 1px solid black;
+    font-size: 13pt;
+    min-width : 30px;
+    width:80%;
+}
+
+@media all and (max-width:700px) {
+    /* Cas d'une fenêtre de largeur inférieure à 550px [mobile] */
+
+    #createTrajet  {
+        display : flex;
+        flex-direction: column;
+    }
 }
 
 #champDirection {
@@ -1347,6 +1381,7 @@ body {
     background-position: center;
     background-repeat: no-repeat;
     box-shadow: 2px 2px 15px grey;
+    z-index: 12;
     
     /* La bannière doit suivre le déplacement de l'utilisateur dans la page */
     position: fixed;
