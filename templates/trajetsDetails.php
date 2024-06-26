@@ -36,7 +36,7 @@ $trajet = array(
     <!-- Classe trajet récupéré de la page trajet  -->
     <div id="detailsTrajet" class="trajet">
 
-        <a href="">
+        <a href="index.php?view=trajets">
             <img id="flecheRetour" src="ressources/fleche-retour.png" alt="retour"> 
             <p id="retourTexte"> Retour </p>
         </a>
