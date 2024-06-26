@@ -127,7 +127,7 @@ echo "<?xml version=\"1.0\" encoding=\"utf-8\" ?>";
 			//traitement des trajets
 
 			jTrajet = $("<href href=\"index.php?view=trajetsDetails\" class=\"trajet\"")
-			.add($("<img id="autoRouge" src="ressources/auto-rouge.png" alt="icone voiture rouge" style="display: none;"/>"))
+			.add($("<img id='autoRouge' src='ressources/auto-rouge.png' alt='icone voiture rouge' style='display: none;'/>"))
 			.add($("<p class=\"dateTrajet\">DATE_DUMMY</p>"))
 			.add($("<div class=\"contTrajet\">")
 					.add($("<p class=\"nomTrajet\">NOM_DUMMY</p>")));
