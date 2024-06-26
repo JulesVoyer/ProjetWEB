@@ -488,6 +488,19 @@ function updateTripById($id, $departure_time, $driver_id, $vehicle_id, $nb_passe
 }
 
 /**
+ * Récupère un voyage en fonction de son identifiant.
+ *
+ * @param int $id L'identifiant du voyage.
+ * @throws Exception Description de l'exception
+ * @return array Les informations du voyage. 
+ */
+function getTripById($id){
+	$SQL= "SELECT * FROM trips WHERE id = '$id';";
+	$res = parcoursRs(SQLSelect($SQL));
+	return $res;
+}
+
+/**
  * Mettre à jour le conducteur d'un voyage.
  * @param int $user_id l'ID de l'utilisateur qui deviendra le conducteur.
  * @param int $trip_id L'ID du voyage.
