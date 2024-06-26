@@ -143,13 +143,70 @@ echo "<?xml version=\"1.0\" encoding=\"utf-8\" ?>";
 						</a>`);
 						
 
+			function getTrips(data){
+				$("#trajetsList").empty();
+				$.ajax(
+					{
+						type: "GET",	
+						url: "./libs/data.php",
+						data: {'action' : 'getDraftTrips', ...data},
+						dataType: "json",
+						success: function (rep) {
+							console.log(rep)
+							for (var i = 0; i < rep.length; i++) {
+								console.log(rep[i]);
+								var trajetClone = jTrajet.clone();
+								var datetime = rep[i].departure_time;
+								var driver = rep[i].driver_id;
+								var vehicle = rep[i].vehicle_id;
+								var nb_max_passagers = rep[i].nb_passengers;
+								var nb_participants = rep[i].nb_participants;
+								var direction = rep[i].direction;
+
+								let [date, heure] = datetime.split(" ");
+								heure = heure.split(":").slice(0, 2).join(":"); // Formate l'heure en hh:mm
+
+								if (direction==0){
+									var depart = "Centrale - Villeneuve d'Ascq";
+									var arrivee = "IG21 - Lens";
+								}
+								else{
+									var depart = "IG21 - Lens";
+									var arrivee = "Centrale - Villeneuve d'Ascq";
+								}
+
+
+								trajetClone.attr("href", "index.php?view=trajetsDetails&id="+rep[i].id);
+								trajetClone.data(rep[i]);
+
+								trajetClone.find(".dateTrajet").html(date);
+								trajetClone.find(".heureDepart").html(heure);
+								trajetClone.find(".pointDepart").html(depart);
+								trajetClone.find(".pointArrivee").html(arrivee);
+								$("#trajetsList").append(trajetClone);
+
+							}							
+						},
+						error: function (xhr, status, error) {
+							console.log("Status de l'erreur : " + status);
+							console.log("error : " + error);
+							console.log("Réponse complète : " + xhr.responseText);
+
+						}
+					}
+				)
+			}
+			//fin fonction getTrips
+
+			// faire requête au chargement de la page
+
+			getTrips({});
 
 			$("#imgRecherche").click( function () {
-				$("#trajetsList").append(jTrajet.clone());
 				var direction = $("#champDirection").val();
 				var date = $("#champDate").val();
 				var nbPassagers = $("#champNbPassagers").val();
-				data = {'action' : 'getDraftTrips'};
+				var data = {};
 				if (direction == "0") {
 					data["direction"] = "0";
 				} else if (direction == "1") {
@@ -167,34 +224,7 @@ echo "<?xml version=\"1.0\" encoding=\"utf-8\" ?>";
 					data["date"] = date;
 				}
 
-				$.ajax(
-					{
-						type: "GET",
-						url: "libs/data.php",
-						data: data,
-						dataType: "json",
-						success: function (rep) {
-							for (var i = 0; i < rep.length; i++) {
-								console.log(rep[i]);
-								var trajetClone = jTrajet.clone();
-								datetime = rep[i].departure_time;
-								driver = rep[i].driver_id;
-								vehicle = rep[i].vehicle_id;
-
-
-								trajetClone.find(".dateTrajet").html(rep[i].date);
-								trajetClone.find(".heureDepart").html(rep[i].heure);
-								trajetClone.find(".pointDepart").html(rep[i].depart);
-								trajetClone.find(".pointArrivee").html(rep[i].arrivee);
-								$("#trajetsList").append(trajet);
-
-							}							
-						},
-						error: function (error) {
-							console.log("error : " + error);
-						}
-					}
-				)
+				getTrips(data);
 				
 			}
 		)

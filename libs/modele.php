@@ -379,8 +379,8 @@ function getDraftTripsByDateDestinationAndRemainingSeats($date, $direction, $wis
 	$direction_filter = is_null($direction) ?"": "AND direction = '$direction'";
 	$date_filter = is_null($date) ?"":"AND DATE(departure_time) = '$date'";
 	$seats_value = is_null($wished_seats) ?"1":"'$wished_seats'";
-	
-	$SQL= "SELECT * FROM trips t
+
+	$SQL= "SELECT t.*, COUNT(thp.participant_id) AS nb_participants  FROM trips t
 	JOIN trip_has_participant thp ON t.id = thp.trip_id
 	WHERE status = 0 ". $date_filter." ". $direction_filter ." 
 	GROUP BY t.id
