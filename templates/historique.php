@@ -16,7 +16,7 @@ include_once("libs/maLibForms.php");
 
     <!-- **** B O D Y **** -->
     <div id="trajetBody">
-        <br><br><br><br>
+        <br />
 
 
         <form action="controleur.php" method="post" id="searchFieldHistorique">

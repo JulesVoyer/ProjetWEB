@@ -15,7 +15,6 @@ include_once("libs/maLibForms.php");
 ?>
 
 <div id="convBody">
-        <br><br><br><br>
         
         <div id="titlePage">Mes conversations</div>
 
@@ -43,6 +42,46 @@ include_once("libs/maLibForms.php");
             </div>
         </a>
 
+        <a href="index.php?view=messages" class="conversations">
+            <p class="titleConv">Nom de la conv</p>
+            <div class="messageContainer">
+                <p class="lastMessage">Oriane : Ça marche, rdv demain à Centrale :)</p>
+                <p class="lastMessageTime">09:41</p>
+            </div>
+        </a>
+
+        <a href="index.php?view=messages" class="conversations">
+            <p class="titleConv">Nom de la conv</p>
+            <div class="messageContainer">
+                <p class="lastMessage">Oriane : Ça marche, rdv demain à Centrale :)</p>
+                <p class="lastMessageTime">09:41</p>
+            </div>
+        </a>
+
+        <a href="index.php?view=messages" class="conversations">
+            <p class="titleConv">Nom de la conv</p>
+            <div class="messageContainer">
+                <p class="lastMessage">Oriane : Ça marche, rdv demain à Centrale :)</p>
+                <p class="lastMessageTime">09:41</p>
+            </div>
+        </a>
+
+        <a href="index.php?view=messages" class="conversations">
+            <p class="titleConv">Nom de la conv</p>
+            <div class="messageContainer">
+                <p class="lastMessage">Oriane : Ça marche, rdv demain à Centrale :)</p>
+                <p class="lastMessageTime">09:41</p>
+            </div>
+        </a>
+
+        <a href="index.php?view=messages" class="conversations">
+            <p class="titleConv">Nom de la conv</p>
+            <div class="messageContainer">
+                <p class="lastMessage">Oriane : Ça marche, rdv demain à Centrale :)</p>
+                <p class="lastMessageTime">09:41</p>
+            </div>
+        </a>
+        
         <a href="index.php?view=messages" class="conversations">
             <p class="titleConv">Nom de la conv</p>
             <div class="messageContainer">
