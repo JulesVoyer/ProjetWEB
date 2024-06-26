@@ -19,7 +19,7 @@ include_once("libs/maLibForms.php");
         <br><br><br><br>
 
 
-        <form action="controleur.php" method="post" id="searchFieldTrajet">
+        <div id="searchFieldTrajet">
             <select type = "select" name = "direction" id = "champDirection">
                 <option value = "-1" selected = "true" >Tous</option>
                 <option value = "0">Centrale -> IG2I</option>
@@ -29,7 +29,7 @@ include_once("libs/maLibForms.php");
             <input type="date" name="dateHeure" placeholder="Quand" id="champDate">
             <input type="text" name="nbPassagers" placeholder="Places restantes" id="champNbPassagers">
             <input type="image" name="imgRecherche" src="ressources/loupe.png" alt="rechercheTrajet" id="imgRecherche">
-        </form>
+        </div>
         
 
         <a href="index.php?view=trajetsDetails" class="trajet">
