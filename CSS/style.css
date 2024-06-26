@@ -784,7 +784,7 @@ body {
 
 #detailsTrajet > a {
     position: absolute;
-    bottom: 450px;
+    top: -82px;
     left: 0px;
     text-decoration: none;
     max-width: 230px
@@ -807,9 +807,92 @@ body {
     text-decoration: underline;
 }
 
-#detTraDa {
+#detailsTrajet > h1 {
     font-size: xx-large;
     font-weight: bold;
+}
+
+#detailsTrajet > .iconeTrajet {
+    position: relative;
+    left: 0px;
+    top: 8px;
+    height: 95px;
+}
+
+#detailRond::before{
+    top: -3px;
+    left: 60px;
+}
+
+#detailRond::after{
+    top: 80px;
+    left: 60px;
+    margin-left: 0;
+}
+
+#detailTrait::before{
+    width: 5px;
+    height: 83px;
+    min-width: 0;
+
+    top: 2px;
+    left: 66.5px;
+}
+
+#detailsTrajetHeure {
+    position: absolute;
+    top: 73px;
+    left: 33px;
+    font-size:larger;
+}
+
+#detailsTrajetDepart {
+    position: absolute;
+    top: 73px;
+    left: 120px;
+    font-size:larger;
+}
+
+#detailsTrajetArrive {
+    position: absolute;
+    top: 157px;
+    left: 120px;
+    font-size:larger;
+}
+
+#detailsTrajet > ul {
+    position: relative;
+    top: -7px;
+}
+
+.detailTrajetListElm {
+    font-size: larger;
+    color: black;
+    height: 35px;
+}
+
+#detailTrajetVoitureAssigne {
+    position: relative;
+    left: 45px;
+    top: -20px;
+    height: 300px;
+}
+
+#detailTrajetVoitureAssigne > p {
+    height: 10px;
+    font-size: larger;
+}
+
+.btnTrajet {
+    color: white;
+    width:min-content;
+    position:relative;
+    margin: 0 auto;
+    bottom: 70px;
+}
+
+#trjRejoindre {
+    background-color:#1E74AB;
 }
 
 /*
