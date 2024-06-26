@@ -1,8 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Inria+Sans:wght@400;700&display=swap');
+
 body {
     /* Remises à zéro */
     margin: 0;
     padding: 0;
-    font-family: Didot, Didot LT STD, Hoefler Text, Garamond, Times New Roman, serif; 
+    font-family: 'Inria Sans', sans-serif;
     text-decoration: none;
     color: black !important;
 }
@@ -810,13 +812,18 @@ body {
     overflow: auto;
 }
 
+#convBody #titlePage {
+    margin-top: 15px;
+    
+}
+
 #titlePage {
     text-decoration: underline;
     text-align: center;
     font-size: 24px;
     font-weight: bold;
     color: black;
-    margin: 15px 0;
+    
 }
 
 .conversations{
