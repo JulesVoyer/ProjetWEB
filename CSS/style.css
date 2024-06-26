@@ -478,6 +478,1518 @@ body {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-gap: 5px;
+    grid-auto-rows: minmax(30px, auto);
+}
+
+#searchfieldTrajet select,
+#searchFieldTrajet input[type="text"],
+#searchFieldTrajet input[type="datetime-local"] {
+    border: 0 ;
+    font-size: 13pt;
+
+    width:80%;
+    max-width:500px;
+    padding: 7px;
+}
+
+#champDirection {
+    grid-column: 1 / 3;
+    grid-row: 1;
+    margin-left: 10px;
+    margin-top : 10px;
+
+    border-bottom: 1px solid gray !important;
+    border-radius: 10px 0 0 0;
+}
+
+
+#champDate {
+    grid-column: 1 / 3;
+    grid-row: 2;
+    margin-left: 10px;
+
+    border-bottom: 1px solid gray !important;
+
+}
+
+#champNbPassagers {
+    grid-column: 1 / 3;
+    grid-row: 3;
+    margin-left: 10px;
+
+    border-radius: 0 0 0 10px;
+}
+
+#imgRecherche {
+    position: absolute;
+    grid-column: 3;
+    grid-row: 1/5;
+    margin-top: 32.5px;
+    border-left: 2px solid #333 !important;
+    right: 5px;
+
+    height: 70px;
+    width: 70px !important;
+}
+
+
+
+
+
+.trajet {
+    position: relative;
+    background-color: lightgrey;
+    border-radius: 15px;
+    padding: 5px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    width: 75%;
+    min-width: 320px;
+    max-width: 700px;
+    height: 120px;
+    text-decoration: none;
+    color: black !important;
+    display: flex;
+    flex-direction: column;
+}
+
+.trajet > a:not(#detailsTrajet > a) {
+    text-decoration: none;
+    color: black;
+    width: 75%;
+    min-width: 320px;
+    max-width: 700px;
+    height: 120px;
+}
+
+/*Icone voiture rouge*/
+
+.sansVehicule #autoRouge{
+    position: absolute;
+    display: block !important;
+
+    max-width: 40px;
+    max-height: 100%;
+
+
+    top: 25px;
+    left: calc(100% - 60px);
+
+}
+
+.dateTrajet {
+    font-size: 18px;
+    font-weight: bold;
+    color: black;
+    margin-left: 20px;
+    margin-top: 10px ;
+    margin-bottom: 5px ;
+    display: block;
+}
+
+.contTrajet {
+    display: flex;
+}
+
+.heureDepart, .heureArrivee {
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 5px ;
+    margin-bottom: 5px ;
+}
+
+.pointDepart, .pointArrivee {
+    flex: 1;
+    text-align: left;
+    white-space: nowrap; 
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 5px ;
+    margin-bottom: 10px ;
+    text-align: center;
+    padding-top: 7px;
+}
+
+.heureDepart {
+    position: absolute;
+    left: 20px;
+    top: 35px;
+}
+
+.heureArrivee {
+    position: absolute;
+    top: 35px;
+    left: calc(45% + 30px);
+}
+
+.pointDepart {
+    position: absolute;
+    left: 20px;
+    top: 75px;
+    max-width: 35%;
+    
+}
+
+.pointArrivee {
+    position: absolute;
+    top: 75px;
+    left: calc(45% + 5px);
+    max-width: 35%;
+}
+
+/*Icone lien trajet --> conversations*/
+#convLink{
+    position: relative;
+    display: block !important;
+
+    max-width: 40px;
+    max-height: 100%;
+    left: 50vw;
+
+    z-index: 10;
+}
+
+/*#########--Icone trajet--#########*/
+
+.iconeTrajet {
+    position: relative;
+}
+.rond::before{
+    position: absolute;
+    content: '';
+    width: 10px;
+    height: 10px;
+    background-color: white;
+    border: solid 4px black;
+    border-radius: 40px;
+    z-index: 10;
+
+    top: 20px;
+    left: 42px;
+}
+
+.rond::after {
+    position: absolute;
+    content: '';
+    width: 10px;
+    height: 10px;
+    background-color: white;
+    border: solid 4px black;
+    border-radius: 40px;
+    z-index: 10;
+
+    top: 20px;
+    left: 45%;
+    margin-left: 50px;
+}
+
+.trait::before{
+    position: absolute;
+    content: '';
+    width: calc(45% + 10px);
+    height: 5px;
+    background-color: black;
+    z-index: 9;
+    min-width: 110px;
+    max-width: 450px;
+
+    top: 27px;
+    left: 50px;
+}
+
+@media all and (max-width:550px) {
+    /* Cas d'une fenêtre de largeur inférieure à 550px [mobile] */
+
+    .rond::before{
+        top: -3px;
+        left: 60px;
+    }
+    
+    .rond::after {
+        top: 31px;
+        left: 60px;
+        margin-left: 0;
+    }
+
+    .trait::before{
+        width: 5px;
+        height: 34px;
+        min-width: 0;
+    
+        top: 2px;
+        left: 66.5px;
+    }
+        
+    .trajet {
+        height: 100px;
+    }
+
+    .sansVehicule #autoRouge {
+        top: 20px;
+    }
+
+    #convLink {
+        top: 60px;
+
+    }
+
+    .heureDepart {
+        position: absolute;
+        top: 35px;
+        left: 5px;
+    }
+    
+    .heureArrivee {
+        position: absolute;
+        top: 69px;
+        left: 5px;
+    }
+    
+    .pointDepart {
+        position: absolute;
+        top: 28px;
+        left: 85px;
+        max-width: 50%;
+    }
+    
+    .pointArrivee {
+        position: absolute;
+        top: 62px;
+        left: 85px;
+        padding-left: 0px;
+        max-width: 50%;
+    }
+
+
+}
+
+/*---------- TRAJETS DETAILS ----------*/
+
+#detailsTrajet {
+    top: 80px;
+    height: auto;
+    padding-left: 30px;
+}
+
+#detailsTrajet > a {
+    position: absolute;
+    top: -82px;
+    left: 0px;
+    text-decoration: none;
+    max-width: 230px
+}
+
+#flecheRetour {
+    position: relative;
+    width: 50px;
+    height: 50px;
+}
+
+#retourTexte {
+    display: inline;
+    position: relative;
+    left: 10px;
+    bottom: 9px;
+    color: black;
+    font-size:xxx-large;
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+#detailsTrajet > h1 {
+    font-size: xx-large;
+    font-weight: bold;
+}
+
+#detailsTrajet > .iconeTrajet {
+    position: relative;
+    left: 0px;
+    top: 8px;
+    height: 95px;
+}
+
+#detailRond::before{
+    top: -3px;
+    left: 60px;
+}
+
+#detailRond::after{
+    top: 80px;
+    left: 60px;
+    margin-left: 0;
+}
+
+#detailTrait::before{
+    width: 5px;
+    height: 83px;
+    min-width: 0;
+
+    top: 2px;
+    left: 66.5px;
+}
+
+#detailsTrajetHeure {
+    position: absolute;
+    top: 73px;
+    left: 33px;
+    font-size:larger;
+}
+
+#detailsTrajetDepart {
+    position: absolute;
+    top: 73px;
+    left: 120px;
+    font-size:larger;
+}
+
+#detailsTrajetArrive {
+    position: absolute;
+    top: 157px;
+    left: 120px;
+    font-size:larger;
+}
+
+#detailsTrajet > ul {
+    position: relative;
+    top: -7px;
+}
+
+.detailTrajetListElm {
+    font-size: larger;
+    color: black;
+    height: 35px;
+}
+
+#detailTrajetVoitureAssigne {
+    position: relative;
+    left: 45px;
+    top: -20px;
+    height: 300px;
+}
+
+#detailTrajetVoitureAssigne > p {
+    height: 10px;
+    font-size: larger;
+}
+
+.btnTrajet {
+    color: white;
+    width:min-content;
+    position:relative;
+    margin: 0 auto;
+    bottom: 70px;
+}
+
+#trjRejoindre {
+    background-color:#1E74AB;
+}
+
+/*
+.trajet {
+    position: relative;
+    background-color: lightgrey;
+    border-radius: 15px;
+    padding: 5px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    width: 75%;
+    min-width: 320px;
+    max-width: 700px;
+    height: 120px;
+    text-decoration: none;
+    color: black !important;
+    display: flex;
+    flex-direction: column;
+}
+*/
+
+/*---------- CONVERSATIONS ----------*/
+
+#titlePage {
+    text-decoration: underline;
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    color: black;
+    margin-bottom: 15px;
+}
+
+
+.conversations{
+    background-color: lightgrey;
+    border-radius: 15px;
+    padding: 5px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    width: 75%;
+    min-width: 320px;
+    max-width: 700px;
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    color: black;
+}
+
+.titleConv {
+    font-size: 18px;
+    font-weight: bold;
+    color: black;
+    margin-left: 20px;
+    margin-top: 10px ;
+    margin-bottom: 5px ;
+}
+
+.messageContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.lastMessage {
+    flex: 1;
+    text-align: left;
+    white-space: nowrap; 
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-left: 20px;
+    margin-right: 10px;
+    margin-top: 5px ;
+    margin-bottom: 5px ;
+}
+
+.lastMessageTime{
+    text-align: right;
+    margin-right: 20px;
+    margin-top: 5px ;
+    margin-bottom: 5px ;
+    
+}
+
+
+
+/*---------- MESSAGES ----------*/
+
+#messageBody #titlePage {
+    position: fixed;
+    width: 100%;
+    padding-bottom: 20px;
+    padding-top: 20px;
+    background-color: white;
+    border-bottom: solid 1px rgb(0, 0, 0, 0.5);
+    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: row;
+    color: black;
+    text-align: center;
+    font-size: 20pt;
+    justify-content: center;
+    align-items: center;
+
+    z-index: 10;
+}
+
+#iconePoints{
+    max-width: 30px;
+    max-height: 30px;
+}
+
+#flecheRetour {
+    max-width: 30px;
+    max-height: 30px;
+    padding-top: 5px;
+}
+
+#lienDetailTrajet {
+    background-color: lightgrey;
+    max-width: 30px;
+    max-height: 30px;
+    margin-left: 30px;
+    border-radius: 15px;
+    text-align: center;
+
+}
+
+#lienConversations {
+    background-color: lightgrey;
+    width: 40px;
+    height: 40px;
+    margin-right: 50px;
+    border-radius: 20px;
+
+}
+
+#conversation {
+    position: relative;
+    border-radius: 10px;
+    box-shadow: 5px 5px 5px 5px rgb(0, 0, 0, 0.5);
+    padding: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 80px;
+    margin-bottom: 15px;
+    width: 60%;
+    min-width: 320px;
+    max-width: 700px;
+    height: 700px;
+    display: flex;
+    flex-direction: column;
+    text-decoration:none !important;
+    color: black;
+}
+
+#conversation > p {
+    margin: 5px 0 5px 0;
+}
+
+.heureRecu {
+    margin: 5px 5px 5px 5px !important;
+}
+
+.messageRecu {    
+    width: fit-content;
+    max-width: 70%;
+    height: fit-content;
+    border-radius: 7.5px;
+    background-color: #E9E9EB;
+    padding: 7.5px;
+    
+}
+
+.heureEnvoye {
+    position: relative;
+    float: right;
+    margin: 5px 5px 5px auto !important;
+}
+
+.messageEnvoye {
+    position: relative;
+    float: right;
+    margin: 0 0 0 auto !important;
+    border-radius: 7.5px;
+    background-color: #1E74AB;   
+    color: white; 
+    width: fit-content;
+    max-width: 70%;
+    height: fit-content;
+    padding: 7.5px;
+}
+
+.rejointQuitte {
+    font-weight: bold;
+    text-align: center;
+    margin: 10px !important;
+
+}
+
+#conversation form {
+    position: absolute;
+    top: 700px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    left: 0px;
+}
+
+
+#conversation input[type="text"] {
+    position: relative;
+    width: calc(100% - 60px);
+    border: black solid 1px;
+    border-radius: 5px;
+    max-height: 30px;
+    padding: 5px;
+    margin: 5px;
+}
+
+
+
+
+#conversation input[type="image"] {
+    max-width: 20px;
+    max-height: 20px;
+    border-radius: 5px;
+    padding: 5px;
+    background-color: #1E74AB;
+    margin: 5px;
+
+}
+
+
+
+@media all and (max-width:550px) {
+    /* Cas d'une fenêtre de largeur inférieure à 550px [mobile] */
+
+    #conversation {
+        padding: 0 20px 0 20px;
+        border: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        text-decoration:none !important;
+        color: black;
+        border-radius: 0;
+        box-shadow: 0 0 0 0;
+    }
+
+    .messageEnvoye {
+        right: 40px;
+        margin-left: auto !important; 
+        border-radius: 7.5px;
+        background-color: #1E74AB;   
+        color: white; 
+        width: fit-content;
+        max-width: 70%;
+        height: fit-content;
+        padding: 7.5px;
+    }
+
+    .heureEnvoye {
+        right: 40px;
+        margin-left: auto !important;
+        
+        
+    
+    }
+
+
+    #conversation form {
+        
+        width: calc(100% - 40px);
+        top: 680px;
+    }
+}
+
+/*---------- HISTORIQUE ----------*/
+
+.subTitlePage {
+    position: relative;
+    text-decoration: underline;
+    left: calc(30% - 100px);
+    font-size: 20px;
+    font-weight: bold;
+    color: black;
+    margin-bottom: 15px;
+}
+
+#searchFieldHistorique {
+    position: relative;
+    border: solid black 1px;
+    height: 50px;
+    width: 50%;
+    min-width: 300px;
+    max-width: 430px;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 15px;
+    
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 5px;
+    grid-auto-rows: minmax(30px, auto);
+}
+
+#searchFieldHistorique input[type="date"] {
+    border: 0;
+    font-size: 13pt;
+
+    width:80%;
+    max-width:500px;
+    padding: 7px;
+
+    grid-column: 1 / 3;
+    grid-row: 1;
+    margin-left: 10px;
+}
+
+#searchFieldHistorique input[type="image"] {
+    position: absolute;
+    grid-column: 3;
+    grid-row: 1;
+    margin-top: 5px;
+    border-left: 2px solid #333 !important;
+    right: 5px;
+
+    height: 40px;
+    width: 40px !important;
+}
+
+
+
+
+/*---------- PROFIL ----------*/
+
+#pflBody {
+
+    
+    position: absolute; 
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+
+    text-align: center;
+    
+    overflow: auto;
+}
+
+#pflCont {
+    width: 400px;
+    height: 65%;
+    margin: auto;
+    border-radius: 15pt;
+
+    position: relative;
+
+    /* Fond du profil */ 
+    background: rgba(207, 164, 34);
+    background: linear-gradient(45deg, rgba(255, 208, 37, 0.5) 0%, rgba(255, 255, 255, 0.5) 50%, rgba(0, 183, 255, 0.5) 100%);
+
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+}
+
+#pflCont a {
+    font-size: 16px;
+    color: black;
+}
+
+#pflItems > div {
+    display: none;
+}
+
+#pflItems > div:target {
+    display: block;
+}
+
+#pflBody h2 {
+    display: inline-block;
+}
+
+#pflPerso div {
+    display: inline-block;
+}
+
+.pflGras {
+    /* Nom des secteurs en gras */
+    font-weight: bolder;
+    font-size: 15pt !important;
+}
+
+#pflBody ul {
+    position: absolute;
+    top: 50px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+    /* Répartition homogène des éléments dans l'ul */
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+}
+
+#pflAPropos, #pflVehicules {
+    width: 49.5%;
+    margin: 0;
+    padding: 10px 0;
+}
+
+#pflVehicules {
+    background-color: rgba(128, 128, 128, 0.5);
+    border-top-right-radius: 15pt;
+}
+
+#pflAPropos {
+    border-top-left-radius: 15pt;
+}
+
+#pflAPropos:hover, #pflVehicules:hover {
+    cursor: pointer;
+}
+
+#pflVoiture, #pflPerso {
+    border-radius: 15pt;
+
+    padding: 5%;
+
+    font-size: 14pt;
+
+    text-align: left;
+}
+
+#pflVoiture {
+    display: none;
+}
+
+#pflAdd {
+    display: block;
+}
+
+#pflDecoBtn, #pflDecoConf, #pflValiderProfil, #pflValiderVoit {
+    background-color: rgb(249, 47, 47);
+    color: white;
+}
+
+#pflDecoBtn {
+    margin-top: 2%;
+}
+
+#pflPopupDeco {
+    top: 40%;
+    bottom: 40%;
+}
+
+#pflDecoConf, #pflAnnuler {
+    margin: 0 10px;
+}
+
+#pflAdd {
+    max-height: 10px;
+}
+
+#pflEditer {
+    position: absolute;
+    bottom: 30px;
+    right: 30px;
+
+    max-width: 45px;
+}
+
+#pflEditer:hover {
+    cursor: pointer;
+}
+
+
+#pflPopupPerso {
+    overflow: auto;
+}
+
+#pflPopupPerso .popupInput {
+    margin: 10px 0;
+}
+
+.editMDP {
+    /* Dans le popup de modification du profil, on peut changer le mdp seulement 
+    si on clique sur la cb */
+    display: none;
+}
+
+#cbEditMDP {
+    padding: 20px 0 !important;
+}
+
+#pflPopupPerso .popupButtons {
+    padding: 20px 0;
+}
+
+
+
+
+/*---------- HEADER ----------*/
+
+#banner {
+    /* Insertion de l'image de fond de la bannière d'entête */
+    background-image: url("../ressources/encre_rectangle.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    box-shadow: 2px 2px 15px grey;
+    
+    /* La bannière doit suivre le déplacement de l'utilisateur dans la page */
+    position: fixed;
+
+    /* Gestion de sa taille et de ses marges internes */
+    padding: 5px;
+    height: 50px;
+    width: 100% !important;
+
+    /* Ajustement des éléments de la bannière, répartition homogène */
+    display: flex;
+    justify-content: space-around;
+
+    font-size: 18pt;
+
+    z-index:10;
+}
+
+#banner a {
+    /* Lorsque la fenêtre est suffisamment grande, on affiche du texte dans les liens */
+    text-decoration: none;
+    color: white;
+    text-shadow: 2px 2px 2px black;
+
+    /* Gestion de la forme des cadre qui apparaîtrons derrière */
+    padding: 12px 10px;
+    border-radius: 5pt;
+}
+
+#banner a:hover {
+    color: black;
+    background-color: rgba(255, 255, 255, 0.7);
+    text-shadow: none !important;
+    box-shadow: 2px 2px 10px grey;
+}
+
+@media all and (max-width:750px) {
+    /* Cas d'une fenêtre de largeur inférieure à 550px [mobile] */
+
+    #banner a {
+        max-height: 40px;
+        min-width: 40px;
+        padding: 5px !important;
+    }
+
+    #accueil {
+        content: url("../ressources/accueil-blanc.png");
+    }
+    #trajets {
+        content: url("../ressources/trajets-blanc.png");
+    }
+    #conversations {
+        content: url("../ressources/conversations-blanc.png");
+    }
+    #historique {
+        content: url("../ressources/historique-blanc.png");
+    }
+    #profil {
+        content: url("../ressources/profil-blanc.png");
+    }
+    #interventions {
+        content: url("../ressources/interventions-blanc.png");
+    }
+
+    #accueil:hover {
+        content: url("../ressources/accueil-noir.png");
+    }
+    #trajets:hover {
+        content: url("../ressources/trajets-noir.png");
+    }
+    #conversations:hover {
+        content: url("../ressources/conversations-noir.png");
+    }
+    #historique:hover {
+        content: url("../ressources/historique-noir.png");
+    }
+    #profil:hover {
+        content: url("../ressources/profil-noir.png");
+    }
+    #interventions:hover {
+        content: url("../ressources/interventions-noir.png");
+    }
+
+}
+
+
+
+/*---------- FOOTER ----------*/
+
+#pied {
+    background-color: rgb(255, 255, 255, 0.65);
+    backdrop-filter: blur(3px);
+
+    height: 42px;
+    width: 100% !important;
+
+    position: fixed;
+    bottom: 0;
+    z-index: 10;
+}
+
+#pied img {
+    position: absolute;
+    right: 6px;
+    bottom: 6px;
+    max-height: 30px;
+}
+@import url('https://fonts.googleapis.com/css2?family=Inria+Sans:wght@400;700&display=swap');
+
+
+body {
+    /* Remises à zéro */
+    margin: 0;
+    padding: 0;
+    font-family: 'Inria Sans', sans-serif;
+    text-decoration: none;
+    color: black !important;
+}
+
+
+
+/*---------- POPUPS ----------*/
+
+.popup {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+    background-color: rgba(255, 255, 255, 0.5);
+
+    display: none;
+}
+
+.popup > div {
+    position: absolute;
+    top: 20%;
+    bottom: 20%;
+    left: 20%;
+    right: 20%;
+
+    background-color: white;
+
+    border-radius: 15pt;
+
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+
+    padding: 10px;
+}
+
+.popup h3 {
+    margin-left: 10px;
+}
+
+.popup form {
+    /* Répartition homogène des éléments dans la div */
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    align-items: center;
+
+    position: absolute;
+    top: 50px;
+    bottom: 10px;
+    left: 0;
+    right: 0;
+}
+
+.popupInput {
+
+    border: 0;
+    border-bottom: 1px solid gray;
+
+    font-size: 13pt;
+
+    width: 70%;
+    padding: 7px;
+}
+
+.popupInput:focus {
+    outline: none;
+}
+
+.popupButtons {
+    width: 100%;
+    text-align: center;
+}
+
+/*---------- BOUTONS ----------*/
+
+.btn {
+    /* Des angles arrondis et pas de bodure */
+    border-radius: 15px;
+    border: 0;
+
+    /* Traitement du texte */
+    font-size: 14pt;
+    font-weight: bold;
+
+    padding: 10px 40px;
+}
+
+.btn:hover {
+    transform: translatey(3px);
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+    cursor: pointer;
+}
+
+/*---------- LOGIN ----------*/
+
+#lgiBody {
+    /* Insertion de l'image de fond pour la version pc */
+    background-image: url("../ressources/voiture_fond.png");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
+}
+
+#lgiCont {
+    background-color: white;
+
+    /* La division qui contient le formulaire est en position absole à droite pour la version pc */
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+
+    /* Gestion de sa taille pour la version pc */
+    width: 40%;
+    min-width: 400px;
+
+    text-align: center;
+    font-family: Didot, Didot LT STD, Hoefler Text, Garamond, Times New Roman, serif; 
+}
+
+#lgiTittle {
+    margin: 7% 0;
+    text-shadow: 0.06em 0.06em 0.2em rgb(155, 155, 155);
+    /* Je ne sais pas encore comment rendre la taille du titre responsive */
+
+    font-size: 38pt;
+}
+
+#lgiTittle + hr {
+    border: 1.5px solid black;
+    border-radius: 5px;
+    margin-left: 7%;
+    margin-right: 7%;
+}
+
+#lgiForm {
+    height: 45%;
+    margin: 5% 0;
+
+    /* Répartition homogène des éléments dans le formulaire */
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    align-items: center;
+}
+
+.lgiInput {
+    border: 0;
+    border-bottom: 1px solid gray;
+
+    font-size: 15pt;
+
+    width: 70%;
+    padding: 7px;
+}
+
+.lgiInput:focus {
+    outline: none;
+}
+
+#lgiSubmit {
+    /* On ajoute une image de fond au bouton */
+    background-image: url("../ressources/encre_rectangle.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+
+    /* Des angles arrondis et pas de bodure */
+    border-radius: 15px;
+    border: 0;
+
+    /* Traitement du texte */
+    font-size: 15pt;
+    font-weight: bold;
+    color: white;
+    text-shadow: 0.06em 0.06em 0.2em rgb(0, 0, 0);
+
+    padding: 10px 40px;
+}
+
+#lgiSubmit:hover {
+    transform: translatey(3px);
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+    cursor: pointer;
+}
+
+#lgiForm + div {
+    margin-top: 5%;
+    color: gray;
+    font-size: 13pt;
+}
+
+#lgiSignUp {
+    text-align: right;
+    margin-top: 3%;
+}
+
+#lgiSignUp img {
+    max-height: 14pt;
+}
+
+#lgiSignUp a {
+    text-decoration: none !important;
+    color: black;
+    font-size: 14pt;
+
+    margin-right: 18%;
+}
+
+#lgiLogo {
+    max-height: 50px;
+
+    /* Son contenant est la fenêtre */
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+}
+
+@media all and (max-width:550px) {
+    /* Cas d'une fenêtre de largeur inférieure à 550px [mobile] */
+
+    #lgiCont {
+        width: 100%;
+    }
+}
+
+
+
+/*---------- SIGN UP ----------*/
+
+
+#sguBG {
+    /* Image de fond */
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+    /* Insertion de l'image de fond pour la version pc */
+    background-image: url("../ressources/encre.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
+}
+
+#sguCont {
+    font-family: Didot, Didot LT STD, Hoefler Text, Garamond, Times New Roman, serif; 
+    text-align: center;
+
+    background-color: rgba(255, 255, 255, 0.9);
+
+    border-radius: 15pt;
+
+    /* Son container est la fenêtre et c'est le conteneur du logo */
+    position: absolute;
+    top: 7%;
+    bottom: 7%;
+    left: 7%;
+    right: 7%;
+
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+
+    /* Gestion du dépassement de contenu */
+    overflow: auto;
+}
+
+#sguTitle {
+    font-size: 30pt;
+}
+
+#sguForm{
+    /* sguCont est son conteneur */
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 40px;
+    top: 120px;
+}
+
+#sguFormStandard {
+    /* Dans la configuration pc, les deux parties du formulaire sont côte à côte */
+    width: 49%;
+    height: 100%;
+    float: left;
+
+    /* Répartition homogène des éléments dans la div */
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    align-items: center;
+
+
+}
+
+#sguLicence label {
+    font-size: 14pt;
+}
+
+#sguFormAdress {
+    width: 49%;
+    height: 100%;
+
+    /* Répartition homogène des éléments dans la div */
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    align-items: center;
+}
+
+#sguFormAdress p {
+    font-size: 14pt;
+}
+
+.sguInput {
+    border: 0;
+    border-bottom: 1px solid gray;
+
+    font-size: 14pt;
+
+    width: 70%;
+    padding: 7px;
+
+    background-color: rgba(255, 255, 255, 0);
+}
+
+.sguInput:focus {
+    outline: none;
+}
+
+#sguSubmit {
+    background-color: rgb(0, 153, 255);
+    color: white;
+    display: block;
+}
+
+#sguLogo {
+    max-height: 20px;
+
+    position: absolute;
+    top: 10px;
+    right: 10px;
+
+    opacity: 0.8;
+}
+
+#sguValider {
+    background-color: rgb(0, 153, 255);
+    color: white;
+}
+
+#sguPopup {
+    top: 10% !important;
+    bottom: 10% !important;
+}
+
+@media all and (max-width:550px) {
+    /* Cas d'une fenêtre de largeur inférieure à 550px [mobile] */
+
+    #sguFormStandard {
+        /* Dans la configuration pc, les deux parties du formulaire sont côte à côte */
+        width: 100%;
+        height: 100%;
+    
+        /* Répartition homogène des éléments dans la div */
+        display: flex;
+        justify-content: space-around;
+        flex-direction: column;
+        align-items: center;
+    
+    
+    }
+    
+    #sguFormAdress {
+        width: 100%;
+        height: 100%;
+    
+        /* Répartition homogène des éléments dans la div */
+        display: flex;
+        justify-content: space-around;
+        flex-direction: column;
+        align-items: center;
+    
+    }
+
+}
+
+
+
+/*---------- ACCUEIL ----------*/
+
+/*#aclBody {
+    padding-left: 35%;
+    padding-right: 35%
+}*/
+
+#presApp {
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 20px;
+    min-width: 350px;
+    max-width: 800px;
+}
+
+#presApp hr {
+    width: 90%;
+}
+
+#aclBody > h1 {
+    text-align: center;
+    font-size: 45px;
+}
+
+#aclBody h2 {
+    text-shadow: 2px 4px 5px rgba(0, 0, 0, 0.5);
+    font-size: 35px;
+}
+
+#aclBody a {
+    position: relative;
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+    margin-top: 50px;
+    margin-left: 10%;
+    font-size: 30px;
+
+}
+
+.alignLeft {
+    position: relative;
+    text-align: left;
+    margin-left: 10%;
+    margin-right: 10%;
+
+}
+
+.alignRight {
+    position: relative;
+    text-align: right;
+    margin-left: 10%;
+    margin-right: 10%;
+
+}
+
+
+#presApp p {
+    font-style: italic;
+    margin-top: 30px;
+    margin-bottom: 15px;
+}
+
+/*---------- TRAJETS ----------*/
+
+#searchFieldTrajet {
+    position: relative;
+    border: solid black 1px;
+    height: 135px;
+    width: 50%;
+    min-width: 300px;
+    max-width: 430px;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 15px;
+    
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 5px;
     grid-auto-rows: minmax(40px, auto);
 }
 

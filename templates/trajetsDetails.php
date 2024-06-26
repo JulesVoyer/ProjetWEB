@@ -17,9 +17,9 @@ include_once("libs/maLibForms.php");
 $trajet = array(
     'date' => 'Ven. 28 Juin',
     'heureDepart' => '08:00',
-    'pointDepart' => 'Centrale',
-    'pointArrivee' => 'IG2I',
-    'participants' => ['Philipe', 'Pierre']
+    'pointDepart' => 'Centrale - Villeneuve d’Ascq',
+    'pointArrivee' => 'IG2I - Lens',
+    'participants' => ['Philipe', 'Pierre', 'Jean-Michel']
 );
 
 
@@ -48,13 +48,10 @@ $trajet = array(
         <p>Point d'arrivée: <?php echo $trajet['pointArrivee']; ?></p>
 
         <p>Participants : </p>
-        <ul>
-            <?php 
-                for ($i = 0; $i < count($trajet['participants']); $i++) {
-                    echo "<li> <a href='index.php?view=detailUtilisateur'>" . $trajet['participants'][$i] . "</a></li>";
-                }
-            ?>
-        </ul>
-        
+        <?php 
+        for ($i = 0; $i < count($trajet['participants']); $i++) {
+            echo "<p>" . $trajet['participants'][$i] . "</p>";
+        }
+        ?>
     </div>
 </div>
