@@ -42,6 +42,7 @@ $trajet = array(
     <!-- Classe trajet récupéré de la page trajet  -->
     <div id="detailsTrajet" class="trajet">
 
+
         <h1 id="detailsTrajetDate"><?php echo $trajet['date']; ?></h1>
 
         <div class="iconeTrajet">
