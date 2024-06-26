@@ -47,16 +47,16 @@ CREATE TABLE `vehicles` (
 
 -- app.user_rents_vehicule definition
 
-CREATE TABLE `user_rents_vehicule` (
+CREATE TABLE `user_rents_vehicle` (
   `id` int NOT NULL AUTO_INCREMENT,
   `user_id` int NOT NULL,
   `vehicle_id` int NOT NULL,
   `rental_date` date NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `user_rents_vehicule_users_FK` (`user_id`),
-  KEY `user_rents_vehicule_vehicules_FK` (`vehicle_id`),
-  CONSTRAINT `user_rents_vehicule_users_FK` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE,
-  CONSTRAINT `user_rents_vehicule_vehicules_FK` FOREIGN KEY (`vehicle_id`) REFERENCES `vehicles` (`id`) ON DELETE CASCADE
+  KEY `user_rents_vehicle_users_FK` (`user_id`),
+  KEY `user_rents_vehicle_vehicules_FK` (`vehicle_id`),
+  CONSTRAINT `user_rents_vehicle_users_FK` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `user_rents_vehicle_vehicules_FK` FOREIGN KEY (`vehicle_id`) REFERENCES `vehicles` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 
