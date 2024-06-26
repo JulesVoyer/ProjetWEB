@@ -17,24 +17,24 @@ include_once("libs/maLibForms.php");
 <div id="messageBody">
 
     <div id="msgTitlePage">
-        <a id="retourPagePrecedente" href="javascript:history.back()">
-            <img id="flecheRetour" src="ressources/flecheRetour.png" alt="Fleche">
+        <a id="msgRetourPagePrecedente" href="javascript:history.back()">
+            <img id="msgFlecheRetour" src="ressources/flecheRetour.png" alt="Fleche">
         </a>
         Nom du trajet
-        <a id="lienDetailTrajet" href="index.php?view=trajetsDetails">
+        <a id="msgLienDetailTrajet" href="index.php?view=trajetsDetails">
             <img id="iconePoints" src="ressources/autre.png" alt="Points">
         </a>
     </div>
     
     <div id="msgConversation">
         
-        <p class="heureRecu">11:40 - user1</p>
-        <p class="messageRecu">Salut !</p>
-        <p class="heureEnvoye">12:00 - moi</p>
-        <p class="messageEnvoye">Salut à tous, rdv devant Centrale demain à 8:50.</p>
-        <p class="rejointQuitte">user2 a rejoint le trajet</p>
-        <p class="heureRecu">12:05 - user2</p>
-        <p class="messageRecu">Salut ! On va bien à l'IG2I ?</p>
+        <p class="msgHeureRecu">11:40 - <span class="msgUser">user1</span></p>
+        <p class="msgRecu">Salut !</p>
+        <p class="msgHeureEnvoye">12:00 - moi</p>
+        <p class="msgEnvoye">Salut à tous, rdv devant Centrale demain à 8:50.</p>
+        <p class="msgRejointQuitte"><span class="msgUser">user2</span> a rejoint le trajet</p>
+        <p class="msgHeureRecu">12:05 - <span class="msgUser">user2</span></p>
+        <p class="msgRecu">Salut ! On va bien à l'IG2I ?</p>
                 
     </div>
 
