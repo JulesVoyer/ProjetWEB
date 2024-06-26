@@ -105,7 +105,7 @@ echo "<?xml version=\"1.0\" encoding=\"utf-8\" ?>";
 			// changement de rubriques
 			if ($("#pflLicence").html() == "Oui") {
 				$("#pflVehicules").click( function () {
-					selected = 2;
+					var selected = 2;
 					$("#pflVoiture").show();
 					$("#pflPerso").hide();
 					$("#pflAPropos").css("background-color", "rgba(128, 128, 128, 0.5)");
@@ -114,7 +114,7 @@ echo "<?xml version=\"1.0\" encoding=\"utf-8\" ?>";
 			}
 
 			$("#pflAPropos").click( function () {
-				selected = 1;
+				var selected = 1;
 				$("#pflVoiture").hide();
 				$("#pflPerso").show();
 				$("#pflVehicules").css("background-color", "rgba(128, 128, 128, 0.5)");
@@ -126,14 +126,26 @@ echo "<?xml version=\"1.0\" encoding=\"utf-8\" ?>";
 
 			//traitement des trajets
 
-			jTrajet = $("<href href=\"index.php?view=trajetsDetails\" class=\"trajet\"")
-			.add($("<img id="autoRouge" src="ressources/auto-rouge.png" alt="icone voiture rouge" style="display: none;"/>"))
-			.add($("<p class=\"dateTrajet\">DATE_DUMMY</p>"))
-			.add($("<div class=\"contTrajet\">")
-					.add($("<p class=\"nomTrajet\">NOM_DUMMY</p>")));
+			jTrajet = $(`<a href="index.php?view=trajetsDetails" class="trajet">
+							<img id="autoRouge" src="ressources/auto-rouge.png" alt="icone voiture rouge" style="display: none;"/>
+							<p class="dateTrajet">DATE_DUMMY</p>            
+
+							<div class="contTrajet">
+								<p class="heureDepart">HEURE_DUMMY</p>
+								<p class="pointDepart">DEPART_DUMMY</p>
+								<p class="pointArrivee">ARRIVEE_DUMMY</p>
+							</div>
+								
+							<div class="iconeTrajet">
+								<div class="rond"></div>
+								<div class="trait"></div>
+							</div>
+						</a>`);
+						
 
 
-			$("#imgRechercheTrajet").click( function () {
+			$("#imgRecherche").click( function () {
+				$("#trajetsList").append(jTrajet.clone());
 				var direction = $("#champDirection").val();
 				var date = $("#champDate").val();
 				var nbPassagers = $("#champNbPassagers").val();
@@ -144,21 +156,46 @@ echo "<?xml version=\"1.0\" encoding=\"utf-8\" ?>";
 					data["direction"] = "1";
 				}
 
-				if (date == "") {
-					$.ajax(
-						{
-							type: "GET",
-							url: "libs/data.php",
-							data: { direction: direction, 
-									date: date, 
-									nbPassagers: nbPassagers },
-							dataType: "json",
-							success: function (data) {
-								$("#listeTrajets").html(data);
-							}
-						}
-					)
+				//check if nbPassagers string can be converted to a number
+				if ($.trim(nbPassagers) !== "" && !isNaN(nbPassagers)) {
+					data["nbPassagers"] = nbPassagers;
 				}
+
+				var regexDate = /^\d{4}-\d{2}-\d{2}$/;
+
+				if (regexDate.test(date)) {
+					data["date"] = date;
+				}
+
+				$.ajax(
+					{
+						type: "GET",
+						url: "libs/data.php",
+						data: data,
+						dataType: "json",
+						success: function (rep) {
+							for (var i = 0; i < rep.length; i++) {
+								console.log(rep[i]);
+								var trajetClone = jTrajet.clone();
+								datetime = rep[i].departure_time;
+								driver = rep[i].driver_id;
+								vehicle = rep[i].vehicle_id;
+
+
+								trajetClone.find(".dateTrajet").html(rep[i].date);
+								trajetClone.find(".heureDepart").html(rep[i].heure);
+								trajetClone.find(".pointDepart").html(rep[i].depart);
+								trajetClone.find(".pointArrivee").html(rep[i].arrivee);
+								$("#trajetsList").append(trajet);
+
+							}							
+						},
+						error: function (error) {
+							console.log("error : " + error);
+						}
+					}
+				)
+				
 			}
 		)
 

@@ -31,27 +31,25 @@ include_once("libs/maLibForms.php");
             <input type="image" name="imgRecherche" src="ressources/loupe.png" alt="rechercheTrajet" id="imgRecherche">
         </div>
         
+        <div id="trajetsList">
+            <a href="index.php?view=trajetsDetails" class="trajet">
+                <img id="autoRouge" src="ressources/auto-rouge.png" alt="icone voiture rouge" style="display: none;"/>
+                <p class="dateTrajet">Ven. 28 Juin</p>            
 
-        <a href="index.php?view=trajetsDetails" class="trajet">
-        <img id="autoRouge" src="ressources/auto-rouge.png" alt="icone voiture rouge" style="display: none;"/>
-            <p class="dateTrajet">Ven. 28 Juin</p>            
-
-            <div class="contTrajet">
-                <p class="heureDepart">12:30</p>
-                <p class="pointDepart">Centrale - Villeneuve d'Ascq</p>
-                <p class="pointArrivee">IG2I - Lens</p>
-            </div>
-                
-
-            <div class="iconeTrajet">
-                <div class="rond"></div>
-                <div class="trait"></div>
-            </div>
-                
-        </a>
+                <div class="contTrajet">
+                    <p class="heureDepart">12:30</p>
+                    <p class="pointDepart">Centrale - Villeneuve d'Ascq</p>
+                    <p class="pointArrivee">IG2I - Lens</p>
+                </div>
+                    
+                <div class="iconeTrajet">
+                    <div class="rond"></div>
+                    <div class="trait"></div>
+                </div>
+            </a>
 
 
-        <a href="index.php?view=trajetsDetails" class="trajet">
+            <a href="index.php?view=trajetsDetails" class="trajet">
                 <img id="autoRouge" src="ressources/auto-rouge.png" alt="icone voiture rouge" style="display: none;"/>
                 
                 <p class="dateTrajet">Ven. 28 Juin</p>            
@@ -65,10 +63,9 @@ include_once("libs/maLibForms.php");
                 <div class="iconeTrajet">
                     <div class="rond"></div>
                     <div class="trait"></div>
-                </div>
-                    
+                </div>                
             </a>
-
+        </d>
             <!--<a href="http://localhost/WEB2.0/%5b04%5d%20Projet/ProjetWEB/index.php?view=conversations">
                 <img id="convLink" src="ressources/conversations-bleu.png" alt="icone voiture rouge" style="display: none;"/>
             </a> -->  
