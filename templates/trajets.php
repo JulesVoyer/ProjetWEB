@@ -247,12 +247,12 @@ include_once("libs/maLibForms.php");
             function getAvailableVehicles(){
                 $("#createTripAvailableVehiclesList").empty();
                 var datetime = $("#createTripDateTime").val()
-                var regexDateTime = /^\d{4}-\d{2}-\d{2} \d{2}:\d{2}$/ ;
-                if(!regesxDateTime.test(datetime)){
+                var regexDateTime = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}$/ ;
+                if(!regexDateTime.test(datetime)){
                     $("#createTripAvailableVehiclesList").append("<p>Veuillez choisir une date valide pour réserver un véhicule</p>");
                 }
                 else{
-                let[date, heure] =  datetime.split(" ");
+                let[date, heure] =  datetime.split("T");
                 
                 $.ajax(
                     {
