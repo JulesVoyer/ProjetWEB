@@ -246,7 +246,7 @@ function updateVehicleById($id,$name, $nb_seats, $code, $model) {
 	/**
 	 * Récupère les vehicules disponibles pour une date donnée.
 	 *
-	 * @param string $date La date pour laquelle on veut les vehicules disponibles.
+	 * @param string  $date La date pour laquelle on veut les vehicules disponibles.
 	 * @return array|false Un tableau associatif de vehicules disponibles ou false.
 	 */
 function getAvailableCentraleVehiclesByDate($date){
@@ -375,13 +375,22 @@ function getDraftTrips(){
  * @param string $direction La destination  des voyages à récupérer.
  * @return array Un tableau  associatif de tous les voyages en cours d'édition pour la date et la destination données, trié par date et ordre de priorité.
  */
-function getDraftTripsByDateAndDestination($date, $direction){
-	$SQL= "SELECT * FROM trips
-	WHERE status = 0 AND DATE(departure_time) = '$date' AND direction = '$direction'
-	ORDER BY departure_time DESC, (driver_id IS NULL) DESC, (vehicle_id IS NULL) DESC ;";
+function getDraftTripsByDateDestinationAndRemainingSeats($date, $direction, $wished_seats){
+	$direction_filter = is_null($direction) ?"": "AND direction = '$direction'";
+	$date_filter = is_null($date) ?"":"AND DATE(departure_time) = '$date'";
+	$seats_value = is_null($wished_seats) ?"1":"'$wished_seats'";
+	
+	$SQL= "SELECT * FROM trips t
+	JOIN trip_has_participant thp ON t.id = thp.trip_id
+	WHERE status = 0 ". $date_filter." ". $direction_filter ." 
+	GROUP BY t.id
+	HAVING t.nb_passengers - COUNT(thp.participant_id) >= '$wished_seats'
+	ORDER BY t.departure_time DESC, (t.driver_id IS NULL) DESC, (t.vehicle_id IS NULL) DESC ;";
 	$res = parcoursRs(SQLSelect($SQL));
 	return $res;
 }
+
+
 
 /**
  * Récupère tous les voyages en cours d'édition auxquels un utilisateur participe.

@@ -20,20 +20,24 @@ include_once("libs/maLibForms.php");
 
 
         <form action="controleur.php" method="post" id="searchFieldTrajet">
-            <input type="text" name="depart" placeholder="Départ" id="champDepart">
-            <input type="text" name="destination" placeholder="Destination" id="champDestination">
-            <input type="datetime-local" name="dateHeure" placeholder="Quand" id="champDateHeure">
-            <input type="text" name="nbPassagers" placeholder="..." id="champNbPassagers">
+            <select type = "select" name = "direction" id = "champDirection">
+                <option value = "-1" selected = "true" >Tous</option>
+                <option value = "0">Centrale -> IG2I</option>
+                <option value = "1">IG2I -> Centrale </option>
+
+            </select>
+            <input type="date" name="dateHeure" placeholder="Quand" id="champDate">
+            <input type="text" name="nbPassagers" placeholder="Places restantes" id="champNbPassagers">
             <input type="image" name="imgRecherche" src="ressources/loupe.png" alt="rechercheTrajet" id="imgRecherche">
         </form>
         
+
         <a href="index.php?view=trajetsDetails" class="trajet">
         <img id="autoRouge" src="ressources/auto-rouge.png" alt="icone voiture rouge" style="display: none;"/>
             <p class="dateTrajet">Ven. 28 Juin</p>            
 
             <div class="contTrajet">
                 <p class="heureDepart">12:30</p>
-                <p class="heureArrivee">13:00</p>
                 <p class="pointDepart">Centrale - Villeneuve d'Ascq</p>
                 <p class="pointArrivee">IG2I - Lens</p>
             </div>
@@ -54,7 +58,6 @@ include_once("libs/maLibForms.php");
 
                 <div class="contTrajet">
                     <p class="heureDepart">12:30</p>
-                    <p class="heureArrivee">13:00</p>
                     <p class="pointDepart">Centrale - Villeneuve d'Ascq</p>
                     <p class="pointArrivee">IG2I - Lens</p>
                 </div>
