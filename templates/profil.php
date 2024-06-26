@@ -23,25 +23,25 @@ include_once("libs/maLibForms.php");
 
         <div id="pflPerso">
             <ul>
-                <li><span>Prénom : </span>prénom</li>
-                <li><span>Nom : </span>nom</li>
-                <li><span>Pseudo : </span>pseudo</li>
+                <li><span class="pflGras">Prénom : </span><span id="pflPrenom">prénom</span></li>
+                <li><span class="pflGras">Nom : </span><span id="pflNom">nom</span></li>
+                <li><span class="pflGras">Pseudo : </span><span id="pflPseudo">pseudo</span></li>
                 <li>
-                    <span>Adresse : </span> 
-                    <div>XX, rue -nom de la rue- 
-                        <br />59650
-                        <br />Villeneuve d'Ascq
+                    <span class="pflGras">Adresse : </span> 
+                    <div><span id="pflNum">XX</span>, rue <span id="pflNomRue">-nom de la rue-</span>- 
+                        <br /><span id="pflCode">59650</span>
+                        <br /><span id="pflVille">Villeneuve d'Ascq</span>
                     </div>
                 </li>
-                <li><span>Permis : </span><span id="pflLicence">Oui</span></li>
+                <li><span class="pflGras">Permis : </span><span id="pflLicence">Oui</span></li>
             </ul>
         </div>
 
         <div id="pflVoiture">
             <ul>
-                <li><span>Voiture 1 : </span>-modèle- -couleur-</li>
-                <li><span>Voiture 2 : </span>-modèle- -couleur-</li>
-                <li><span>Voiture 3 : </span>-modèle- -couleur-</li>
+                <li><span class="pflGras">Voiture 1 : </span>-modèle- -couleur-</li>
+                <li><span class="pflGras">Voiture 2 : </span>-modèle- -couleur-</li>
+                <li><span class="pflGras">Voiture 3 : </span>-modèle- -couleur-</li>
             </ul>
         </div>
 
@@ -57,10 +57,50 @@ include_once("libs/maLibForms.php");
         <h3>Voulez-vous vous déconnecter ?</h3>
         <form action="controleur.php" methode="">
             <div class="popupButtons">
-                <input id="pflAnnuler" class="btn" type="button" name="annuler" value="Annuler" />   
+                <input class="btn pflAnnuler" type="button" name="annuler" value="Annuler" />   
                 <input id="pflDecoConf" class="btn" type="button" name="deconnexion" value="Déconnexion" /> 
             </div>  
         </form>
     </div>
 </div>
 
+<div class="popup" id="pflPopupEditionPerso">
+    <div id="pflPopupPerso">
+        <h3>Editer à propos :</h3>
+        <form action="controleur.php" methode="">
+            <input id="newPre" class="popupInput" type="text" name="newPre" placeholder="Prénom..." />
+            <input id="newNom" class="popupInput" type="text" name="newNom" placeholder="Nom... " />
+            <input id="newPseu" class="popupInput" type="text" name="newPseu" placeholder="Pseudo..." />
+            <h4>Adresse :</h4>
+            <input id="newNum" class="popupInput" type="text" name="newNum" placeholder="Numéro de rue..." />
+            <input id="newNomRue" class="popupInput" type="text" name="newNomRue" placeholder="Nom de rue..." />
+            <input id="newCode" class="popupInput" type="text" name="newCode" placeholder="Code postal..." />
+            <input id="newCity" class="popupInput" type="text" name="newCity" placeholder="Ville..." />
+            
+            <div id="cbEditMDP">
+                <label for="cbMDP">Modifier le mot de passe ?</label>
+                <input id="cbMDP" type="checkbox" name="modifMDP" />
+            </div>
+            <input class="popupInput editMDP" type="password" name="ancienMDP" placeholder="Ancien mot de passe..." />
+            <input class="popupInput editMDP" type="password" name="newMDP" placeholder="Nouveau mot de passe..." />
+            <input class="popupInput editMDP" type="password" name="confirmMDP" placeholder="Confimer le mot de passe..." />
+            <div class="popupButtons">
+                <input  class="btn pflAnnuler" type="button" name="annuler" value="Annuler" />   
+                <input id="pflValiderProfil" class="btn" type="button" name="valider" value="Valider" /> 
+            </div>  
+        </form>
+    </div>
+</div>
+
+<div class="popup" id="pflPopupEditionVoit">
+    <div id="pflPopupVoit">
+        <h3>Editer véhichules :</h3>
+        <p>Supprimer une voiture ?</p>
+        <form action="controleur.php" methode="">
+            <div class="popupButtons">
+                <input class="btn pflAnnuler" type="button" name="annuler" value="Annuler" />   
+                <input id="pflValiderVoit" class="btn" type="button" name="deconnexion" value="Déconnexion" /> 
+            </div>  
+        </form>
+    </div>
+</div>

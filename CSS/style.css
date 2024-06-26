@@ -555,7 +555,7 @@ body {
     flex-direction: column;
 }
 
-.trajet > a {
+.trajet > a:not(#detailsTrajet > a) {
     text-decoration: none;
     color: black;
     width: 75%;
@@ -576,22 +576,6 @@ body {
 
     top: 25px;
     left: calc(100% - 60px);
-
-}
-
-/*Icone lien trajet --> conversations*/
-#convLink{
-    position: relative;
-    display: block !important;
-
-    max-width: 40px;
-    max-height: 100%;
-
-    left: calc(37.5% - 60px);
-    
-    top: 70px;
-    z-index: 10;
-
 
 }
 
@@ -657,9 +641,17 @@ body {
     max-width: 35%;
 }
 
+/*Icone lien trajet --> conversations*/
+#convLink{
+    position: relative;
+    display: block !important;
 
+    max-width: 40px;
+    max-height: 100%;
+    left: 50vw;
 
-
+    z-index: 10;
+}
 
 /*#########--Icone trajet--#########*/
 
@@ -775,6 +767,65 @@ body {
 
 }
 
+/*---------- TRAJETS DETAILS ----------*/
+
+#detailsTrajet {
+    top: 80px;
+    height: auto;
+    padding-left: 30px;
+}
+
+#detailsTrajet > a {
+    position: absolute;
+    bottom: 450px;
+    left: 0px;
+    text-decoration: none;
+    max-width: 230px
+}
+
+#flecheRetour {
+    position: relative;
+    width: 50px;
+    height: 50px;
+}
+
+#retourTexte {
+    display: inline;
+    position: relative;
+    left: 10px;
+    bottom: 9px;
+    color: black;
+    font-size:xxx-large;
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+#detTraDa {
+    font-size: xx-large;
+    font-weight: bold;
+}
+
+/*
+.trajet {
+    position: relative;
+    background-color: lightgrey;
+    border-radius: 15px;
+    padding: 5px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    width: 75%;
+    min-width: 320px;
+    max-width: 700px;
+    height: 120px;
+    text-decoration: none;
+    color: black !important;
+    display: flex;
+    flex-direction: column;
+}
+*/
+
 /*---------- CONVERSATIONS ----------*/
 
 #titlePage {
@@ -784,8 +835,9 @@ body {
     font-weight: bold;
     color: black;
     margin-bottom: 15px;
-
 }
+
+
 .conversations{
     background-color: lightgrey;
     border-radius: 15px;
@@ -842,33 +894,63 @@ body {
 
 /*---------- MESSAGES ----------*/
 
-#lienDetailTrajet {
+#messageBody #titlePage {
+    position: fixed;
+    width: 100%;
+    padding-bottom: 20px;
+    padding-top: 20px;
+    background-color: white;
+    border-bottom: solid 1px rgb(0, 0, 0, 0.5);
+    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.5);
     display: flex;
     flex-direction: row;
-    border-radius: 15px;
-    width: 30px;
-    height: 30px;
-    text-align: center;
     color: black;
-    background-color: lightgrey;
+    text-align: center;
     font-size: 20pt;
+    justify-content: center;
+    align-items: center;
+
+    z-index: 10;
 }
 
-#lienDetailTrajet > p {
-    margin: -8px 0 0 0 !important;
+#iconePoints{
+    max-width: 30px;
+    max-height: 30px;
+}
+
+#flecheRetour {
+    max-width: 30px;
+    max-height: 30px;
+    padding-top: 5px;
+}
+
+#lienDetailTrajet {
+    background-color: lightgrey;
+    max-width: 30px;
+    max-height: 30px;
+    margin-left: 30px;
+    border-radius: 15px;
     text-align: center;
-    font-weight: normal;
-    text-decoration: none !important;
+
+}
+
+#lienConversations {
+    background-color: lightgrey;
+    width: 40px;
+    height: 40px;
+    margin-right: 50px;
+    border-radius: 20px;
 
 }
 
 #conversation {
     position: relative;
-    border: black solid 1px;
-    padding: 5px;
+    border-radius: 10px;
+    box-shadow: 5px 5px 5px 5px rgb(0, 0, 0, 0.5);
+    padding: 20px;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 15px;
+    margin-top: 80px;
     margin-bottom: 15px;
     width: 60%;
     min-width: 320px;
@@ -895,6 +977,7 @@ body {
     border-radius: 7.5px;
     background-color: #E9E9EB;
     padding: 7.5px;
+    
 }
 
 .heureEnvoye {
@@ -925,33 +1008,39 @@ body {
 
 #conversation form {
     position: absolute;
-    margin: 0 auto 0 auto;
-    top: 665px;
+    top: 700px;
     width: 100%;
-    left: -2.5px;
     display: flex;
-    flex-direction: row ;
-
+    justify-content: center;
+    align-items: center;
+    left: 0px;
 }
 
 
 #conversation input[type="text"] {
     position: relative;
-    width: 50%;
+    width: calc(100% - 60px);
     border: black solid 1px;
     border-radius: 5px;
-    padding: 7.5px;
+    max-height: 30px;
+    padding: 5px;
+    margin: 5px;
 }
 
-#conversation input[type="submit"] {
-    border: black solid 1px;
-    width: 20%;
+
+
+
+#conversation input[type="image"] {
+    max-width: 20px;
+    max-height: 20px;
     border-radius: 5px;
-    padding: 7.5px;
-    color: white;
+    padding: 5px;
     background-color: #1E74AB;
+    margin: 5px;
 
 }
+
+
 
 @media all and (max-width:550px) {
     /* Cas d'une fenêtre de largeur inférieure à 550px [mobile] */
@@ -965,6 +1054,8 @@ body {
         flex-direction: column;
         text-decoration:none !important;
         color: black;
+        border-radius: 0;
+        box-shadow: 0 0 0 0;
     }
 
     .messageEnvoye {
@@ -983,6 +1074,15 @@ body {
         right: 40px;
         margin-left: auto !important;
         
+        
+    
+    }
+
+
+    #conversation form {
+        
+        width: calc(100% - 40px);
+        top: 680px;
     }
 }
 
@@ -1046,9 +1146,7 @@ body {
 /*---------- PROFIL ----------*/
 
 #pflBody {
-    /* Fond du profil */ 
-    background: rgba(207, 164, 34);
-    background: linear-gradient(45deg, rgba(255, 208, 37, 0.7) 0%, rgba(255, 255, 255, 0.7) 50%, rgba(0, 183, 255, 0.7) 100%);
+
     
     position: absolute; 
     left: 0;
@@ -1069,7 +1167,9 @@ body {
 
     position: relative;
 
-    background-color: rgba(211, 211, 211, 0.5);
+    /* Fond du profil */ 
+    background: rgba(207, 164, 34);
+    background: linear-gradient(45deg, rgba(255, 208, 37, 0.5) 0%, rgba(255, 255, 255, 0.5) 50%, rgba(0, 183, 255, 0.5) 100%);
 
     box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
 }
@@ -1095,7 +1195,8 @@ body {
     display: inline-block;
 }
 
-#pflBody span {
+.pflGras {
+    /* Nom des secteurs en gras */
     font-weight: bolder;
     font-size: 15pt !important;
 }
@@ -1150,12 +1251,7 @@ body {
     display: block;
 }
 
-#pflLicence {
-    font-weight:lighter;
-    font-size: 14pt !important;
-}
-
-#pflDecoBtn, #pflDecoConf {
+#pflDecoBtn, #pflDecoConf, #pflValiderProfil, #pflValiderVoit {
     background-color: rgb(249, 47, 47);
     color: white;
 }
@@ -1188,6 +1284,30 @@ body {
 #pflEditer:hover {
     cursor: pointer;
 }
+
+
+#pflPopupPerso {
+    overflow: auto;
+}
+
+#pflPopupPerso .popupInput {
+    margin: 10px 0;
+}
+
+.editMDP {
+    /* Dans le popup de modification du profil, on peut changer le mdp seulement 
+    si on clique sur la cb */
+    display: none;
+}
+
+#cbEditMDP {
+    padding: 20px 0 !important;
+}
+
+#pflPopupPerso .popupButtons {
+    padding: 20px 0;
+}
+
 
 
 
@@ -1236,7 +1356,7 @@ body {
     box-shadow: 2px 2px 10px grey;
 }
 
-@media all and (max-width:550px) {
+@media all and (max-width:750px) {
     /* Cas d'une fenêtre de largeur inférieure à 550px [mobile] */
 
     #banner a {
@@ -1260,6 +1380,9 @@ body {
     #profil {
         content: url("../ressources/profil-blanc.png");
     }
+    #interventions {
+        content: url("../ressources/interventions-blanc.png");
+    }
 
     #accueil:hover {
         content: url("../ressources/accueil-noir.png");
@@ -1275,6 +1398,9 @@ body {
     }
     #profil:hover {
         content: url("../ressources/profil-noir.png");
+    }
+    #interventions:hover {
+        content: url("../ressources/interventions-noir.png");
     }
 
 }
