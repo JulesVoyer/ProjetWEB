@@ -39,7 +39,7 @@ include_once("libs/maLibForms.php");
         </div>
 
         <!-- TODO : refaire le FRONT !!! -->
-        <form id="createTrajet" class="creationForm" action = "controleur.php">
+        <form id="createTrajet" class="creationForm" action = "controleur.php" method = "post">
             <legend>Créez un trajet</legend>
             <input type="datetime-local" name="dateHeure" id="createTripDateTime">
 
@@ -69,6 +69,11 @@ include_once("libs/maLibForms.php");
                     <h3> Véhicules Disponibles à la location </h3>
 
                     <div id = "createTripAvailableVehiclesList">
+                    </div>
+                
+                    <div>
+                        <input type = "button" value = "Annuler" class = "btn" id = "createTripVehiclePopupClose">
+                        <input type = "button" value = "Valider" class = "btn" id = "createTripVehiclePopupValidate">
                     </div>
                 </div>
             </div>
@@ -201,8 +206,8 @@ include_once("libs/maLibForms.php");
                 }
             )
 
-            jVehicleRadio = $(`<input type="radio" name="vehicle" value="VEHICLE_ID" class = "objectRadio">
-                            <div class="vehicle">
+            jVehicleRadio = $(`<div class="vehicleRadio">
+                                <input type="radio" name="vehicle" value="" class = "objectRadio">                            
                                 <img src="ressources/auto-noir.png" alt="vehicle" class="icon">
                                 <p class="vehicleName">VEHICLE_NAME</p>
                                 <p class="vehicleSeats">VEHICLE_SEATS</p>
@@ -227,7 +232,6 @@ include_once("libs/maLibForms.php");
                                 Jclone.find(".vehicleSeats").append(" places");
                                 Jclone.find(".vehicle").data(rep[i]);
                                 Jclone.find("input").val(rep[i].id);
-                                Jclone.find("input").attr("name", "vehicle")
                                 $("#createTripMyVehiclesList").append(Jclone);
 
 
@@ -269,8 +273,8 @@ include_once("libs/maLibForms.php");
                                 Jclone.find(".vehicleSeats").html(rep[i].nb_seats);
                                 Jclone.find(".vehicleSeats").append(" places");
                                 Jclone.find(".vehicle").data(rep[i]);
-                                Jclone.find("input").val(rep[i].id);
-                                Jclone.find("input").attr("name", "vehicle")
+                                Jclone.val(rep[i].id);
+                                Jclone.attr("name", "vehicle")
                                 $("#createTripAvailableVehiclesList").append(Jclone);
 
                             }
@@ -293,10 +297,26 @@ include_once("libs/maLibForms.php");
                         getMyVehicles();
                         getAvailableVehicles();
                         $("#createTripVehiclePopup").show();
+
                     }
                 }
             )
 
+            $("#createTripVehiclePopupClose").click(function(){
+                $("input[name=vehicle]:checked").prop("checked", false);
+                $("#createTripVehiclePopup").hide();
+            })
+            
+            $("#createTripVehiclePopupValidate").click(function(){
+                var vehicle = $("input[name=vehicle]:checked").val();
+                console.log(vehicle)
+                if(vehicle){
+                    $("#createTripVehiclePopup").hide();
+                }
+                else{
+                    alert("Veuillez choisir un véhicule");
+                }
+            })
 
 
             // fin traitement des trajets
