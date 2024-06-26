@@ -23,6 +23,85 @@ if (! valider("connecte","SESSION")) {
     <!-- **** B O D Y **** -->
 <div id="locationBody">
     <br><br><br>
-    
+    azazazdadaz
+
+	<a href="index.php?view=trajetsDetails" class="trajet">
+        <img id="autoRouge" src="ressources/auto-rouge.png" alt="icone voiture rouge" style="display: none;"/>
+            <p class="dateTrajet">Ven. 28 Juin</p>            
+
+            <div class="contTrajet">
+                <p class="heureDepart">12:30</p>
+                <p class="heureArrivee">13:00</p>
+                <p class="pointDepart">Centrale - Villeneuve d'Ascq</p>
+                <p class="pointArrivee">IG2I - Lens</p>
+            </div>
+                
+
+            <div class="iconeTrajet">
+                <div class="rond"></div>
+                <div class="trait"></div>
+            </div>
+                
+        </a>
+
+
+        <a href="index.php?view=trajetsDetails" class="trajet">
+                <img id="autoRouge" src="ressources/auto-rouge.png" alt="icone voiture rouge" style="display: none;"/>
+                
+                <p class="dateTrajet">Ven. 28 Juin</p>            
+
+                <div class="contTrajet">
+                    <p class="heureDepart">12:30</p>
+                    <p class="heureArrivee">13:00</p>
+                    <p class="pointDepart">Centrale - Villeneuve d'Ascq</p>
+                    <p class="pointArrivee">IG2I - Lens</p>
+                </div>
+                    
+                <div class="iconeTrajet">
+                    <div class="rond"></div>
+                    <div class="trait"></div>
+                </div>
+                    
+            </a>
+
+			<a href="index.php?view=trajetsDetails" class="trajet">
+        <img id="autoRouge" src="ressources/auto-rouge.png" alt="icone voiture rouge" style="display: none;"/>
+            <p class="dateTrajet">Ven. 28 Juin</p>            
+
+            <div class="contTrajet">
+                <p class="heureDepart">12:30</p>
+                <p class="heureArrivee">13:00</p>
+                <p class="pointDepart">Centrale - Villeneuve d'Ascq</p>
+                <p class="pointArrivee">IG2I - Lens</p>
+            </div>
+                
+
+            <div class="iconeTrajet">
+                <div class="rond"></div>
+                <div class="trait"></div>
+            </div>
+                
+        </a>
+
+
+        <a href="index.php?view=trajetsDetails" class="trajet">
+                <img id="autoRouge" src="ressources/auto-rouge.png" alt="icone voiture rouge" style="display: none;"/>
+                
+                <p class="dateTrajet">Ven. 28 Juin</p>            
+
+                <div class="contTrajet">
+                    <p class="heureDepart">12:30</p>
+                    <p class="heureArrivee">13:00</p>
+                    <p class="pointDepart">Centrale - Villeneuve d'Ascq</p>
+                    <p class="pointArrivee">IG2I - Lens</p>
+                </div>
+                    
+                <div class="iconeTrajet">
+                    <div class="rond"></div>
+                    <div class="trait"></div>
+                </div>
+                    
+            </a>
+zdazdazdazdazd
     
 </div>

@@ -478,17 +478,19 @@ body {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-gap: 5px;
-    grid-auto-rows: minmax(30px, auto);
+    grid-auto-rows: minmax(40px, auto);
 }
 
 #searchfieldTrajet select,
 #searchFieldTrajet input[type="text"],
-#searchFieldTrajet input[type="datetime-local"] {
-    border: 0 ;
+#searchFieldTrajet input[type="date"] {
+    border: 1px solid gray !important;
+    border-radius: 5px;
+
     font-size: 13pt;
 
-    width:80%;
     max-width:500px;
+    height: fit-content;
     padding: 7px;
 }
 
@@ -498,8 +500,8 @@ body {
     margin-left: 10px;
     margin-top : 10px;
 
-    border-bottom: 1px solid gray !important;
-    border-radius: 10px 0 0 0;
+    border: 1px solid gray !important;
+    border-radius: 5px;
 }
 
 
@@ -507,17 +509,13 @@ body {
     grid-column: 1 / 3;
     grid-row: 2;
     margin-left: 10px;
-
-    border-bottom: 1px solid gray !important;
-
 }
 
 #champNbPassagers {
     grid-column: 1 / 3;
     grid-row: 3;
     margin-left: 10px;
-
-    border-radius: 0 0 0 10px;
+    margin-bottom: 10px;
 }
 
 #imgRecherche {
@@ -769,40 +767,56 @@ body {
 
 /*---------- TRAJETS DETAILS ----------*/
 
-#detailsTrajet {
-    top: 80px;
-    height: auto;
-    padding-left: 30px;
+#detailTrajetBody #titlePage {
+        position: fixed;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        background-color: white;
+        border-bottom: solid 1px rgb(0, 0, 0, 0.5);
+        box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.5);
+        z-index: 10;
 }
 
-#detailsTrajet > a {
-    position: absolute;
-    bottom: 450px;
-    left: 0px;
-    text-decoration: none;
-    max-width: 230px
+#detailTrajetBody #retourPagePrecedente {
+    position: relative;
+    left: -50px !important;
 }
 
-#flecheRetour {
+#detailTrajetBody #flecheRetour {
     position: relative;
     width: 50px;
     height: 50px;
 }
 
-#retourTexte {
-    display: inline;
+#detailTrajetBody #titlePage p {
     position: relative;
-    left: 10px;
-    bottom: 9px;
-    color: black;
-    font-size:xxx-large;
-    font-weight: bold;
-    text-decoration: underline;
+    left: -50px;
 }
 
-#detTraDa {
+#detailsTrajet {
+    top: 80px;
+    height: auto;
+    padding-left: 30px;
+    color: black;
+}
+
+#detailTrajetDate {
     font-size: xx-large;
     font-weight: bold;
+    margin: 10px 0 10px 0;
+}
+
+#detailsTrajet li a {
+    text-decoration: none;
+    color: black;
+}
+
+#detailsTrajet li a:hover {
+    text-decoration: underline;
+    color: black;
 }
 
 /*
@@ -934,7 +948,7 @@ body {
 
 }
 
-#lienConversations {
+#retourPagePrecedente {
     background-color: lightgrey;
     width: 40px;
     height: 40px;
@@ -1308,7 +1322,83 @@ body {
     padding: 20px 0;
 }
 
+/*---------- DETAIL UTILISATEUR ----------*/
 
+#detailUtilisateurBody #titlePage {
+position: fixed;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    background-color: white;
+    border-bottom: solid 1px rgb(0, 0, 0, 0.5);
+    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.5);
+    z-index: 10;
+}
+
+#detailUtilisateurBody #titlePage #retourPagePrecedente {
+    position: relative;
+    left: -50px !important;
+}
+
+#detailUtilisateurBody #titlePage p {
+    position: relative;
+    left: -50px !important;
+}
+
+#detailUtilisateur {
+    position: relative;
+    border-radius: 15px;
+    box-shadow: 5px 5px 5px 5px rgb(0, 0, 0, 0.5);
+    padding: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 100px;
+    margin-bottom: 15px;
+    width: 75%;
+    min-width: 320px;
+    max-width: 500px;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    text-decoration:none !important;
+    color: black;
+    background-color: lightgrey;
+}
+
+#detailUtilisateur > p {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-left: 10px;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+#nomUtilisateur {
+    font-size: 35px !important;
+    font-weight: bold;
+    width: 100%;
+    text-align: center;
+}
+
+#detailUtilisateur .rubrique {
+    font-size: 25px;
+    font-weight: bold;
+}
+
+#detailUtilisateur .info {
+    font-size: 25px;
+    font-weight: normal;
+}
+
+#detailUtilisateur li {
+    margin: 10px 0 10px 0;
+}
+
+#detailUtilisateur ul {
+    margin: 10px 0 10px 0;
+}
 
 
 /*---------- HEADER ----------*/
