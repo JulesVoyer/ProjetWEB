@@ -363,7 +363,7 @@ function getUsersInterventionsByDate($date) {
 function getDraftTrips(){
 	$SQL= "SELECT * FROM trips
 	WHERE status = 0
-	ORDER BY departure_time DESC, (driver_id IS NULL) DESC, (vehicle_id IS NULL) DESC ;";
+	ORDER BY departure_time ASC, (driver_id IS NULL) DESC, (vehicle_id IS NULL) DESC ;";
 	$res = parcoursRs(SQLSelect($SQL));
 	return $res;
 }
@@ -385,7 +385,7 @@ function getDraftTripsByDateDestinationAndRemainingSeats($date, $direction, $wis
 	WHERE status = 0 ". $date_filter." ". $direction_filter ." 
 	GROUP BY t.id
 	HAVING t.nb_passengers - COUNT(thp.participant_id) >= '$wished_seats'
-	ORDER BY t.departure_time DESC, (t.driver_id IS NULL) DESC, (t.vehicle_id IS NULL) DESC ;";
+	ORDER BY t.departure_time ASC, (t.driver_id IS NULL) DESC, (t.vehicle_id IS NULL) DESC ;";
 	$res = parcoursRs(SQLSelect($SQL));
 	return $res;
 }
@@ -402,7 +402,7 @@ function getDraftTripsByUserId($user_id){
 	$SQL= "SELECT t.* FROM trips t
 		JOIN trip_has_participant thp ON t.id = thp.trip_id
 	WHERE status = 0 AND thp.participant_id = '$user_id'
-	ORDER BY departure_time DESC;";
+	ORDER BY departure_time ASC;";
 	$res = parcoursRs(SQLSelect($SQL));
 	return $res;
 }
@@ -418,7 +418,7 @@ function getArchivedTripsByUserId( $user_id ) {
 	$SQL= "SELECT t.* FROM trips t 
 		JOIN trip_has_participant thp ON t.id = thp.trip_id
 	WHERE thp.participant_id = '$user_id' AND t.status = 2
-	ORDER BY departure_time ASC;";
+	ORDER BY departure_time DESC;";
 	$res = parcoursRs(SQLSelect($SQL));
 	return $res;
 }
