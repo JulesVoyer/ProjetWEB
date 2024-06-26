@@ -24,9 +24,8 @@ CREATE TABLE `users` (
 
 -- app.users data
 INSERT INTO app.users (username,password,display_name,driving_license,adress) VALUES
-   ('systeme','systeme','Systeme',1,'{}'),
-	 ('jules','julesweb','Jules VOYER',1,'{"city": "Lille", "code": 59800, "number": 1, "street": "rue du Chevalier Français"}'),
-	 ('test1','test','Test1',0,'{}');
+   ('systeme','systeme','Systeme',1,'{}');
+
 
 
 -- app.vehicles definition
@@ -137,7 +136,7 @@ CREATE TABLE `invites` (
 
 -- app.vehicles data
 INSERT INTO app.vehicles (name,nb_seats,code,model,owner_id) VALUES
-	 ('Titine',5,'127-AAT-35','307sw',1);
+	 ('KangooDuTurfuDeCentrale',7,'123-ABC-59','Kangoo',1);
 
 
 
