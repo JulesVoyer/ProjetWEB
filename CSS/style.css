@@ -1185,8 +1185,9 @@ body {
 }
 
 #searchFieldHistorique input[type="date"] {
-    border: 0;
+    border: 0 !important;
     font-size: 13pt;
+    border-radius: 5px;
 
     width:80%;
     max-width:500px;
@@ -1601,7 +1602,7 @@ body {
 }
 
 #lgiSignUp {
-    text-align: right;
+    text-align: center;
     margin-top: 3%;
 }
 
@@ -1613,8 +1614,6 @@ body {
     text-decoration: none !important;
     color: black;
     font-size: 14pt;
-
-    margin-right: 18%;
 }
 
 #lgiLogo {
