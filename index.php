@@ -30,7 +30,7 @@ $view = valider("view");
     // Sinon
 
 	// Si view est vide, on charge la vue accueil par défaut
-	//if ((!$view) || ($view == "login" || ($view == "signUp") )) $view = "accueil";
+	if ((!$view) || ($view == "login" || ($view == "signUp") )) $view = "accueil";
 
 	// Dans tous les cas, on affiche l'entete, qui contient les balises de structure de la page
 	include("templates/header.php");

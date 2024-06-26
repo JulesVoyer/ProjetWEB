@@ -124,6 +124,46 @@ echo "<?xml version=\"1.0\" encoding=\"utf-8\" ?>";
 
 			// fin traitement du profil
 
+			//traitement des trajets
+
+			jTrajet = $("<href href=\"index.php?view=trajetsDetails\" class=\"trajet\"")
+			.add($("<img id="autoRouge" src="ressources/auto-rouge.png" alt="icone voiture rouge" style="display: none;"/>"))
+			.add($("<p class=\"dateTrajet\">DATE_DUMMY</p>"))
+			.add($("<div class=\"contTrajet\">")
+					.add($("<p class=\"nomTrajet\">NOM_DUMMY</p>")));
+
+
+			$("#imgRechercheTrajet").click( function () {
+				var direction = $("#champDirection").val();
+				var date = $("#champDate").val();
+				var nbPassagers = $("#champNbPassagers").val();
+				data = {'action' : 'getDraftTrips'};
+				if (direction == "0") {
+					data["direction"] = "0";
+				} else if (direction == "1") {
+					data["direction"] = "1";
+				}
+
+				if (date == "") {
+					$.ajax(
+						{
+							type: "GET",
+							url: "libs/data.php",
+							data: { direction: direction, 
+									date: date, 
+									nbPassagers: nbPassagers },
+							dataType: "json",
+							success: function (data) {
+								$("#listeTrajets").html(data);
+							}
+						}
+					)
+				}
+			}
+		)
+
+
+			// fin traitement des trajets
 
 		} ); // fin ready
 
