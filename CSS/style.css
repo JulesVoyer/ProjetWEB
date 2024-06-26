@@ -1365,9 +1365,12 @@ body {
     box-sizing: border-box;
 }
 
+#itvListe li {
+    margin: 15px;
+}
+
 .itvIntervention {
     font-weight: bolder;
-    margin: 10px;
 }
 
 @media all and (max-width:480px) {
