@@ -1,6 +1,4 @@
 <?php
-session_start();
-
 /*
 Cette page génère les différentes vues de l'application en utilisant des templates situés dans le répertoire "templates". Un template ou 'gabarit' est un fichier php qui génère une partie de la structure XHTML d'une page. 
 
@@ -8,7 +6,6 @@ La vue à afficher dans la page index est définie par le paramètre "view" qui 
 
 Les formulaires de toutes les vues générées enverront leurs données vers la page data.php pour traitement. La page data.php redirigera alors vers la page index pour réafficher la vue pertinente, généralement la vue dans laquelle se trouvait le formulaire. 
 */
-
 include_once "libs/maLibUtils.php";
 include_once "libs/maLibForms.php";
 
@@ -16,8 +13,8 @@ include_once "libs/maLibForms.php";
 // on récupère le paramètre view éventuel 
 $view = valider("view"); 
 
-
-/*if (!valider("connecte","SESSION")) {
+//Si on est pas connecté
+if (!valider("connecte","SESSION")) {
 
 	// Si view est vide ou différent de signUp, on charge la vue login par défaut
 	if ($view != "signUp") $view = "login"; 
@@ -25,7 +22,7 @@ $view = valider("view");
     // Si l'utilisateur n'est pas connecté, on affiche la vue login
     include("templates/$view.php");
 
-} else {*/
+} else {
 
     // Sinon
 
@@ -52,6 +49,5 @@ $view = valider("view");
 	// Qui contient les coordonnées de la personne si elle est connectée
 
 	include("templates/footer.php");
-//}
+}
 	
-?>

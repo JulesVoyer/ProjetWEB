@@ -75,7 +75,7 @@ CREATE TABLE `intervention` (
 
 -- app.trip definition
 
-CREATE TABLE `trip` (
+CREATE TABLE `trips` (
   `id` int NOT NULL AUTO_INCREMENT,
   `departure_time` datetime NOT NULL,
   `driver_id` int DEFAULT NULL,
@@ -100,7 +100,7 @@ CREATE TABLE `trip_has_participant` (
   PRIMARY KEY (`id`),
   KEY `trip_has_participant_trip_FK` (`trip_id`),
   KEY `trip_has_participant_users_FK` (`participant_id`),
-  CONSTRAINT `trip_has_participant_trip_FK` FOREIGN KEY (`trip_id`) REFERENCES `trip` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `trip_has_participant_trip_FK` FOREIGN KEY (`trip_id`) REFERENCES `trips` (`id`) ON DELETE CASCADE,
   CONSTRAINT `trip_has_participant_users_FK` FOREIGN KEY (`participant_id`) REFERENCES `users` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
@@ -115,7 +115,7 @@ CREATE TABLE `messages` (
   PRIMARY KEY (`id`),
   KEY `messages_trip_FK` (`trip_id`),
   KEY `messages_users_FK` (`user_id`),
-  CONSTRAINT `messages_trip_FK` FOREIGN KEY (`trip_id`) REFERENCES `trip` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `messages_trip_FK` FOREIGN KEY (`trip_id`) REFERENCES `trips` (`id`) ON DELETE CASCADE,
   CONSTRAINT `messages_users_FK` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
@@ -129,7 +129,7 @@ CREATE TABLE `invites` (
   PRIMARY KEY (`id`),
   KEY `invites_trip_FK` (`trip_id`),
   KEY `invites_users_FK_1` (`target_id`),
-  CONSTRAINT `invites_trip_FK` FOREIGN KEY (`trip_id`) REFERENCES `trip` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `invites_trip_FK` FOREIGN KEY (`trip_id`) REFERENCES `trips` (`id`) ON DELETE CASCADE,
   CONSTRAINT `invites_users_FK_1` FOREIGN KEY (`target_id`) REFERENCES `users` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
@@ -142,7 +142,7 @@ INSERT INTO app.vehicles (name,nb_seats,code,model,owner_id) VALUES
 
 
 -- app.trip data
-INSERT INTO app.trip (departure_time,driver_id,vehicle_id,nb_passengers,status,meetup_point,direction) VALUES
+INSERT INTO app.trips (departure_time,driver_id,vehicle_id,nb_passengers,status,meetup_point,direction) VALUES
 	 ('2024-06-19 10:00:00',1,1,4,0,'{}',0);
 
 

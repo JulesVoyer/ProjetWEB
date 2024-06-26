@@ -105,7 +105,7 @@ echo "<?xml version=\"1.0\" encoding=\"utf-8\" ?>";
 			// changement de rubriques
 			if ($("#pflLicence").html() == "Oui") {
 				$("#pflVehicules").click( function () {
-					selected = 2;
+					var selected = 2;
 					$("#pflVoiture").show();
 					$("#pflPerso").hide();
 					$("#pflAPropos").css("background-color", "rgba(128, 128, 128, 0.5)");
@@ -114,7 +114,7 @@ echo "<?xml version=\"1.0\" encoding=\"utf-8\" ?>";
 			}
 
 			$("#pflAPropos").click( function () {
-				selected = 1;
+				var selected = 1;
 				$("#pflVoiture").hide();
 				$("#pflPerso").show();
 				$("#pflVehicules").css("background-color", "rgba(128, 128, 128, 0.5)");
@@ -124,46 +124,7 @@ echo "<?xml version=\"1.0\" encoding=\"utf-8\" ?>";
 
 			// fin traitement du profil
 
-			//traitement des trajets
 
-			jTrajet = $("<a href=\"index.php?view=trajetsDetails\" class=\"trajet\">")
-			.add($("<img id='autoRouge' src='ressources/auto-rouge.png' alt='icone voiture rouge' style='display: none;'/>"))
-			.add($("<p class=\"dateTrajet\">DATE_DUMMY</p>"))
-			.add($("<div class=\"contTrajet\">")
-					.add($("<p class=\"nomTrajet\">NOM_DUMMY</p>")));
-
-
-			$("#imgRechercheTrajet").click( function () {
-				var direction = $("#champDirection").val();
-				var date = $("#champDate").val();
-				var nbPassagers = $("#champNbPassagers").val();
-				data = {'action' : 'getDraftTrips'};
-				if (direction == "0") {
-					data["direction"] = "0";
-				} else if (direction == "1") {
-					data["direction"] = "1";
-				}
-
-				if (date == "") {
-					$.ajax(
-						{
-							type: "GET",
-							url: "libs/data.php",
-							data: { direction: direction, 
-									date: date, 
-									nbPassagers: nbPassagers },
-							dataType: "json",
-							success: function (data) {
-								$("#listeTrajets").html(data);
-							}
-						}
-					)
-				}
-			}
-		)
-
-
-			// fin traitement des trajets
 
 		} ); // fin ready
 

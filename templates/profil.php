@@ -58,7 +58,7 @@ include_once("libs/maLibForms.php");
         <form action="controleur.php" methode="">
             <div class="popupButtons">
                 <input class="btn pflAnnuler" type="button" name="annuler" value="Annuler" />   
-                <input id="pflDecoConf" class="btn" type="button" name="deconnexion" value="Déconnexion" /> 
+                <input id="pflDecoConf" class="btn" type="submit" name="action" value="Déconnexion" /> 
             </div>  
         </form>
     </div>
@@ -86,7 +86,7 @@ include_once("libs/maLibForms.php");
             <input class="popupInput editMDP" type="password" name="confirmMDP" placeholder="Confimer le mot de passe..." />
             <div class="popupButtons">
                 <input  class="btn pflAnnuler" type="button" name="annuler" value="Annuler" />   
-                <input id="pflValiderProfil" class="btn" type="button" name="valider" value="Valider" /> 
+                <input id="pflValiderProfil" class="btn" type="submit" name="action" value="Valider" /> 
             </div>  
         </form>
     </div>
@@ -99,8 +99,13 @@ include_once("libs/maLibForms.php");
         <form action="controleur.php" methode="">
             <div class="popupButtons">
                 <input class="btn pflAnnuler" type="button" name="annuler" value="Annuler" />   
-                <input id="pflValiderVoit" class="btn" type="button" name="deconnexion" value="Déconnexion" /> 
+                <input id="pflValiderVoit" class="btn" type="submit" name="action" value="Valider" /> 
             </div>  
         </form>
     </div>
 </div>
+
+
+<script>
+
+</script>
