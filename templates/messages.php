@@ -16,7 +16,7 @@ include_once("libs/maLibForms.php");
 
 <div id="messageBody">
 
-    <div id="titlePage">
+    <div id="msgTitlePage">
         <a id="retourPagePrecedente" href="javascript:history.back()">
             <img id="flecheRetour" src="ressources/flecheRetour.png" alt="Fleche">
         </a>

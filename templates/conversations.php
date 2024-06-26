@@ -16,7 +16,7 @@ include_once("libs/maLibForms.php");
 
 <div id="convBody">
         
-        <div id="titlePage">Mes conversations</div>
+        <div id="convTitlePage">Mes conversations</div>
 
         <a href="index.php?view=messages" class="conversations">
             <p class="titleConv">Nom de la conv</p>

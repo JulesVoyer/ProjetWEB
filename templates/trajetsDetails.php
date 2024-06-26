@@ -32,7 +32,7 @@ $trajet = array(
     <br/><br/><br/>    
     <!-- Section pour afficher les détails du trajet -->
 
-        <div id="titlePage">
+        <div id="tDtlTitlePage">
             <a id="retourPagePrecedente" href="javascript:history.back()">
                 <img id="flecheRetour" src="ressources/flecheRetour.png" alt="Fleche">
             </a>

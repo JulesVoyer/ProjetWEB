@@ -900,18 +900,13 @@ body {
     overflow: auto;
 }
 
-#convBody #titlePage {
-    margin-top: 15px;
-    
-}
-
-#titlePage {
+#convTitlePage {
     text-decoration: underline;
     text-align: center;
     font-size: 24px;
     font-weight: bold;
     color: black;
-    
+    margin-top: 15px;    
 }
 
 .conversations{
@@ -978,7 +973,7 @@ body {
     right: 0;
 }
 
-#titlePage {
+#msgTitlePage {
     position: absolute;
     top: 70px;
     
@@ -1165,7 +1160,7 @@ body {
 @media all and (max-width:550px) {
     /* Cas d'une fenêtre de largeur inférieure à 550px [mobile] */
      
-    #titlePage {
+    #msgTitlePage {
         position: absolute;
         top: 60px;
         left: 0;
@@ -1819,9 +1814,10 @@ body {
 }
 
 
+
 /*---------- TRAJETS DETAILS ----------*/
 
-#detailTrajetBody #titlePage {
+#detailTrajetBody #tDtlTitlePage {
         position: fixed;
         display: flex;
         flex-direction: row;
@@ -1845,7 +1841,7 @@ body {
     height: 50px;
 }
 
-#detailTrajetBody #titlePage p {
+#detailTrajetBody #tDtlTitlePage p {
     position: relative;
     left: -50px;
 }
@@ -1898,7 +1894,7 @@ body {
 
 /*---------- DETAIL UTILISATEUR ----------*/
 
-#detailUtilisateurBody #titlePage {
+#detailUtilisateurBody #uDtlTitlePage {
     position: fixed;
     display: flex;
     flex-direction: row;
@@ -1911,12 +1907,12 @@ body {
     z-index: 10;
 }
 
-#detailUtilisateurBody #titlePage #retourPagePrecedente {
+#detailUtilisateurBody #uDtlTitlePage #retourPagePrecedente {
     position: relative;
     left: -50px !important;
 }
 
-#detailUtilisateurBody #titlePage p {
+#detailUtilisateurBody #uDtlTitlePage p {
     position: relative;
     left: -50px !important;
 }

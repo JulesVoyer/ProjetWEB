@@ -33,7 +33,7 @@ $utilisateur = array(
 
     <br><br><br>
     
-    <div id="titlePage">
+    <div id="uDtlTitlePage">
             <a id="retourPagePrecedente" href="javascript:history.back()">
                 <img id="flecheRetour" src="ressources/flecheRetour.png" alt="Fleche">
             </a>
