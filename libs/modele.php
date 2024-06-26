@@ -288,6 +288,8 @@ function getCentraleVehicleAvailabilityByIdAndDate($vehicle_id, $date){
 	return ($result == 0);
 }
 
+
+
 /**
  * Insère une nouvelle réservation de vehicule dans la base de données.
  *
@@ -441,21 +443,25 @@ function getUpcomingTripsByUserId( $user_id ) {
 /**
  * Insère un nouveau voyage dans la base de données.
  *
- * @param datetime $departure_time l'heure de départ du voyage.
- * @param int $driver_id l'id du conducteur pour le voyage.
- * @param int $vehicle_id L'id du  véhicule pour le voyage.
- * @param int $nb_passengers Le nombre  de passagers max pour le voyage.
+ * @param string $departure_time l'heure de départ du voyage.
+ * @param int|null $driver_id l'id du conducteur pour le voyage.
+ * @param int|null $vehicle_id L'id du  véhicule pour le voyage.
+ * @param int|null $nb_passengers Le nombre  de passagers max pour le voyage.
  * @param int $direction La direction dun voyage
- * @return void
+ * @return int
  */
 function createTrip( $departure_time, $driver_id, $vehicle_id, $nb_passengers, $direction)
 {
+	$driver_id = is_null($driver_id) ? "NULL" : "'$driver_id'";
 
-	$departure_time_str = $departure_time->format('Y-m-d H:i:s');
+	$nb_passengers = is_null($nb_passengers) ? "NULL" : "'$nb_passengers'";
+
+	$vehicle_id = is_null($vehicle_id) ? "NULL" : "'$vehicle_id'";
+
 	$SQL= "INSERT INTO trips (departure_time, driver_id, vehicle_id, nb_passengers, status,  direction)
-	VALUES ('$departure_time_str', '$driver_id', '$vehicle_id', '$nb_passengers',0, '$direction');";
-	SQLInsert($SQL);
-	return;
+	VALUES ('$departure_time', $driver_id, $vehicle_id, $nb_passengers,0, '$direction');";
+	$id = SQLInsert($SQL);
+	return $id;
 }
 
 	/**

@@ -38,9 +38,14 @@ body {
 }
 
 .icon{
-    max-width: 25px;
-    height : auto;
+    width: auto ;
+    height : 25px;
+
+
 }
+
+
+
 
 
 /*--------- FIN AJAX ---------*/
@@ -418,6 +423,24 @@ body {
     display : inline-block;
 }
 
+
+.vehicleRadio{
+    display :flex;
+    flex-direction: row;
+    align-items: center;
+
+}
+
+.vehicleRadio img,
+.vehicleRadio p{
+    margin-left : 3px
+}
+
+#createTripVehiclePopup {
+    
+    align-content: center;
+}
+
 #createTrajet input[type="datetime-local"] {
     border: 1px solid black;
     font-size: 13pt;
@@ -596,6 +619,8 @@ body {
 .iconeTrajet {
     position: relative;
 }
+
+
 .rond::before{
     position: absolute;
     content: '';
