@@ -22,7 +22,12 @@ if(!$trip_id = valider("trip_id")){
     die("");
 }
 
+
 ?>
+<script>
+    console.log("synchro lignes debug");
+</script>
+
 
 
 <!-- **** B O D Y **** -->
@@ -77,16 +82,82 @@ if(!$trip_id = valider("trip_id")){
         </div>
 
         <input id="trjRejoindre" class="btn btnTrajet" type="button" value="Rejoindre" />
+        <input id="trjQuitter" class="btn btnTrajet" type="button" value="Quitter" />
     </div>
 </div>
 
 <script>
+    
+var tripId = <?php echo json_encode($trip_id); ?>;
+console.log("tripId = "+tripId);
+var userId = <?php echo json_encode($_SESSION['idUser']); ?>;
+console.log("userId = "+userId);
+
+
     $(document).ready(function(){
         // On récupère l'id du trajet dans l'url
         displayTrip();        
-
-
+        updateParticipationDisplay();
     });
+
+        $("#trjRejoindre").click(function(){
+            $.ajax({
+                url: './libs/data.php',
+                type: 'POST',
+                data: {
+                    action: 'joinTrip',
+                    trip_id: tripId,
+                    user_id: userId
+                },
+                success: function(){
+                    updateParticipationDisplay();
+                },
+                error : function(xhr, status, error) {
+                    console.log(xhr.responseText);
+                    console.log(status);
+                    console.log(error);
+                    alert("error");
+                }
+            });
+        });
+
+        $("#trjQuitter").click(function(){
+            $.ajax({
+                url: './libs/data.php',
+                type: 'POST',
+                data: {
+                    action: 'leaveTrip',
+                    trip_id:tripId,
+                    user_id:userId
+                },
+                success: function(){
+                    updateParticipationDisplay();
+                },
+                error : function(xhr, status, error) {
+                    console.log(xhr.responseText);
+                    console.log(status);
+                    console.log(error);
+                    alert("error");
+                }
+            });        
+        });
+
+    function updateParticipationDisplay(){
+        if (<?php echo checkParticipantAtTrip($_SESSION['idUser'], $trip_id); ?>){
+            $("#trjRejoindre").prop("disabled", true);
+            $("#trjQuitter").prop("disabled", false);
+            $("#trjRejoindre").hide();
+            $("#trjQuitter").show();
+        } else {
+            
+            $("#trjRejoindre").prop("disabled", false);
+            $("#trjQuitter").prop("disabled", true);
+            $("#trjRejoindre").show();
+            $("#trjQuitter").hide();
+        }
+        displayParticipants(<?php echo $trip_id; ?>);
+        displayRemainingSeats(<?php echo $trip_id; ?>);
+    }
     
 
     function displayTrip(){
@@ -121,8 +192,6 @@ if(!$trip_id = valider("trip_id")){
                 $("#detailsTrajetDepart").text(depart);
                 $("#detailsTrajetArrive").text(arrivee);
                 displayVehicle(data.vehicle_id);
-                displayParticipants(trip_id);
-                displayRemainingSeats(trip_id);
 
             },
             error : function(xhr, status, error) {

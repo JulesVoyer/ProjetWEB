@@ -879,6 +879,10 @@ body {
     background-color:#1E74AB;
 }
 
+#trjQuitter {
+    background-color : red !important;
+}
+
 /*
 .trajet {
     position: relative;
@@ -1894,6 +1898,7 @@ body {
     text-decoration: underline;
     color: black;
 }
+
 
 /*
 .trajet {
