@@ -17,6 +17,7 @@ if (isset($_GET['action'])){
 
     switch($_GET['action']){
         case 'getDraftTrips' : 
+            autoArchiveTrips();
             if (isset($_GET['direction'])) $direction = $_GET['direction'];else $direction = null;
             if (isset($_GET['date'])) $date = $_GET['date'];else $date = null;
             if (isset($_GET['nbPassagers'])) $nbPassagers = $_GET['nbPassagers'];else $nbPassagers = null;
