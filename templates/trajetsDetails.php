@@ -77,6 +77,7 @@ if(!$trip_id = valider("trip_id")){
         </div>
 
         <input id="trjRejoindre" class="btn btnTrajet" type="button" value="Rejoindre" />
+        <input id="trjQuitter" class="btn btnTrajet" type="button" value="Quitter" />
     </div>
 </div>
 
@@ -84,7 +85,10 @@ if(!$trip_id = valider("trip_id")){
     $(document).ready(function(){
         // On récupère l'id du trajet dans l'url
         displayTrip();        
-
+        if (<?php echo checkParticipantAtTrip($_SESSION['idUser'], $trip_id); ?>){
+            $("#trjRejoindre").prop("disabled", true);
+            $("#trjQuitter").prop("disabled", true);
+        }
 
     });
     
