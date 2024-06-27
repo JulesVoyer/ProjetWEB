@@ -54,7 +54,7 @@ function checkUsername($login){
 
 function getUserById($id)
 {
-	$SQL="SELECT * FROM users WHERE id='$id';";
+	$SQL="SELECT id, username, display_name, driving_license, adress FROM users WHERE id='$id';";
 
 	$result = parcoursRs(SQLSelect($SQL));
 	if (count($result)> 0)
@@ -492,12 +492,16 @@ function updateTripById($id, $departure_time, $driver_id, $vehicle_id, $nb_passe
  *
  * @param int $id L'identifiant du voyage.
  * @throws Exception Description de l'exception
- * @return array Les informations du voyage. 
+ * @return array|false Les informations du voyage. 
  */
 function getTripById($id){
 	$SQL= "SELECT * FROM trips WHERE id = '$id';";
 	$res = parcoursRs(SQLSelect($SQL));
-	return $res;
+	if (count($res)){
+		return $res[0];
+	}else {
+		return false;
+	}
 }
 
 /**
@@ -579,7 +583,7 @@ function deleteTripById($id) {
 	 * @return int Le nombre de places restantes pour le voyage.
 	 */
 function getRemainingSeatsForTrip($id) {
-	$SQL= "SELECT t.nb_passengers - COUNT(*) FROM trip t JOIN trip_has_participant thp ON t.id = thp.trip_id;";
+	$SQL= "SELECT t.nb_passengers - COUNT(thp.id) FROM trips t LEFT JOIN trip_has_participant thp ON t.id = thp.trip_id GROUP BY t.id HAVING t.id = '$id';";
 	$res = SQLGetChamp($SQL);
 	return $res;
 }
