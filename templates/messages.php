@@ -96,7 +96,7 @@ include_once("libs/maLibForms.php");
                     var lastMsgTime = lastMsgArrival[1].split(':');
                     if (day == lastMsgDate[2]) lastMsgArrival = lastMsgTime[0] + ":" + lastMsgTime[1];
                     else lastMsgArrival = lastMsgDate[2] + "-" + lastMsgDate[1] + "-" + lastMsgDate[0];
-                    console.log(lastMsgArrival);
+                    //console.log(lastMsgArrival);
                     var userId = oRep[i].user_id;
 
                     $(".msgNomTrajet").html(tripName);
@@ -131,8 +131,22 @@ include_once("libs/maLibForms.php");
             dataType: "json",
             success: function (oRep) {
                 console.log(oRep);
-                console.log(contenu);
 
+                var d = new Date();
+                var day = d.getDate();
+
+                var lastMsgArrival = oRep[0].send_time.split(' ');
+                var lastMsgDate = lastMsgArrival[0].split('-');
+                var lastMsgTime = lastMsgArrival[1].split(':');
+                if (day == lastMsgDate[2]) lastMsgArrival = lastMsgTime[0] + ":" + lastMsgTime[1];
+                else lastMsgArrival = lastMsgDate[2] + "-" + lastMsgDate[1] + "-" + lastMsgDate[0];
+                      
+                var annonce = lastMsgArrival + " - " + "moi";
+                var contenu = oRep[0].content;
+                jMsgHeureEnvoye.html(annonce);
+                jMsgEnvoye.html(contenu);
+                $("#msgConversation").append(jMsgHeureEnvoye.clone());
+                $("#msgConversation").append(jMsgEnvoye.clone());
             },
             error : function(xhs,status,error){
                 console.log(xhs);

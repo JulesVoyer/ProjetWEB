@@ -817,9 +817,9 @@ function sendMessageToTrip($user_id, $trip_id, $content) {
 }
 
 function getMessageById($id){
-	$sql = "SELECT * FROM messages WHERE id = '$id';";
-	$res = parcoursRs(SQLSelect($sql));
+	$SQL = "SELECT * FROM messages WHERE id = '$id';";
+	$res = parcoursRs(SQLSelect($SQL));
 	if($res){
-		return $res[0];
+		return $res;
 	}
 }

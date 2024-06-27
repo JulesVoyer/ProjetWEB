@@ -217,9 +217,8 @@ else if(isset($_POST["action"])){
                 $content = $_POST['contenu'];
                 $trip_id = $_POST['trip_id'];
 
-                
-                error_log('content = ' . $content);
-                $response = sendMessageToTrip($id, $trip_id, $content);
+                $idMsg = sendMessageToTrip($id, $trip_id, $content);
+                $response = getMessageById($idMsg);
             }
 
         break;  
