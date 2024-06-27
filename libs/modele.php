@@ -808,3 +808,11 @@ function sendMessageToTrip($user_id, $trip_id, $content) {
 	$id = SQLInsert($SQL);
 	return $id;
 }
+
+function getMessageById($id){
+	$sql = "SELECT * FROM messages WHERE id = '$id';";
+	$res = parcoursRs(SQLSelect($sql));
+	if($res){
+		return $res[0];
+	}
+}
