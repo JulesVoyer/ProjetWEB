@@ -662,6 +662,11 @@ function unsubscribeFromTrip($user_id, $trip_id)
 	$SQL= "DELETE FROM trip_has_participant
 	WHERE trip_id = '$trip_id' AND participant_id = '$user_id';";
 	SQLDelete($SQL);
+
+	$display_name = getUserById($user_id)[""];
+
+	sendMessageToTrip(1,$trip_id,"$display_name a quitté le trajet.");
+
 	return;
 }
 
