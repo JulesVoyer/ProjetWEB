@@ -640,6 +640,13 @@ function subscribeToTrip($user_id, $trip_id)
 	$SQL= "INSERT INTO trip_has_participant (trip_id, participant_id)
 	VALUES ('$trip_id', '$user_id');";
 	SQLInsert($SQL);
+
+	//Envoi du message de bienvenue
+
+	$display_name = getUserById($user_id)["display_name"];
+
+	sendMessageToTrip(1,$trip_id,"$display_name a rejoint le trajet.");
+
 	return;
 }
 
