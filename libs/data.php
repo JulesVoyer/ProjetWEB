@@ -115,6 +115,13 @@ if (isset($_GET['action'])){
 
         break;        
 
+        // PARTICIPANTS //
+
+        case 'checkParticipantAtTrip' : 
+            if($idUser =valider('idUser','SESSION') && $trip_id = valider('trip_id')) {
+                $response = checkParticipantAtTrip($idUser,$trip_id);
+            }
+
     }
     if ($response === null) {
         $response = []; // Assigne un tableau vide si $response est null

@@ -148,21 +148,36 @@ console.log("userId = "+userId);
 
     function updateParticipationDisplay(){
         
-        var isParticipant = <?php echo json_encode(checkParticipantAtTrip($user_id,$trip_id));?>;
-        if (isParticipant){
-            $("#trjRejoindre").prop("disabled", true);
-            $("#trjQuitter").prop("disabled", false);
-            $("#trjRejoindre").hide();
-            $("#trjQuitter").show();
-        } else {
-            
-            $("#trjRejoindre").prop("disabled", false);
-            $("#trjQuitter").prop("disabled", true);
-            $("#trjRejoindre").show();
-            $("#trjQuitter").hide();
-        }
-        displayParticipants(<?php echo $trip_id; ?>);
-        displayRemainingSeats(<?php echo $trip_id; ?>);
+        $.ajax(
+            {
+                type :"GET", 
+                data : {
+                    action : "checkParticipantAtTrip",
+                    user_id : userId,
+                    trip_id : tripId
+                },
+                url : "./libs/data.php",
+                dataType : "json",
+                success : function(rep){
+                    console.log(rep);
+                    if (rep){
+                        $("#trjRejoindre").prop("disabled", true);
+                        $("#trjQuitter").prop("disabled", false);
+                        $("#trjRejoindre").hide();
+                        $("#trjQuitter").show();
+                    } else {
+                        $("#trjRejoindre").prop("disabled", false);
+                        $("#trjQuitter").prop("disabled", true);
+                        $("#trjRejoindre").show();
+                        $("#trjQuitter").hide();
+                    }
+                    displayParticipants(<?php echo $trip_id; ?>);
+                    displayRemainingSeats(<?php echo $trip_id; ?>);
+                }
+            }
+        )
+
+
     }
     
 
