@@ -23,8 +23,7 @@ include_once("libs/maLibForms.php");
 
         <div id="pflPerso">
             <ul>
-                <li><span class="pflGras">Prénom : </span><span id="pflPrenom">prénom</span></li>
-                <li><span class="pflGras">Nom : </span><span id="pflNom">nom</span></li>
+                <li><span class="pflGras">Nom d'affichage : </span><span id="pflDisplayName">prénom</span></li>
                 <li><span class="pflGras">Pseudo : </span><span id="pflPseudo">pseudo</span></li>
                 <li>
                     <span class="pflGras">Adresse : </span> 
@@ -68,9 +67,8 @@ include_once("libs/maLibForms.php");
     <div id="pflPopupPerso">
         <h2>Editer à propos :</h2>
         <form action="controleur.php" methode="">
-            <input id="newPre" class="popupInput" type="text" name="newPre" placeholder="Prénom..." />
-            <input id="newNom" class="popupInput" type="text" name="newNom" placeholder="Nom... " />
-            <input id="newPseu" class="popupInput" type="text" name="newPseu" placeholder="Pseudo..." />
+            <input id="newDisp" class="popupInput" type="text" name="newDisp" placeholder="Nom d'affichage..." />
+            <input id="newPseu" class="popupInput" type="text" name="newPseu" placeholder="Identifiant..." />
             <h3>Adresse :</h3>
             <input id="newNum" class="popupInput" type="text" name="newNum" placeholder="Numéro de rue..." />
             <input id="newNomRue" class="popupInput" type="text" name="newNomRue" placeholder="Nom de rue..." />
@@ -151,8 +149,7 @@ include_once("libs/maLibForms.php");
         $("#pflBody").css("-webkit-filter", "blur(3px)");
         if (selected == 1) {
             /* Mettre les valeurs d'origine dans les champs d'entrée texte */
-            $("#newPre").val($("#pflPrenom").html());
-            $("#newNom").val($("#pflNom").html());
+            $("#newDisp").val($("#pflDisplayName").html());
             $("#newPseu").val($("#pflPseudo").html());
             $("#newNum").val($("#pflNum").html());
             $("#newNomRue").val($("#pflNomRue").html());
@@ -266,5 +263,27 @@ include_once("libs/maLibForms.php");
     // fin changement des rubriques
 
     // fin traitement du profil
+
+
+    function setUserInfo(){
+        $.ajax(
+            {
+                type : 'GET',
+                data : {action : 'getCurrentUser'},
+                url : './libs/data.php',
+                dataType : 'json',
+                success : function(oRep){
+                    console.log(oRep);
+
+                },
+                error : function(xhr, status, error) {
+                    console.log(xhr);
+                    console.log(status);
+                    console.log(error);
+                }
+
+            }
+        )
+    }
 
 </script>
