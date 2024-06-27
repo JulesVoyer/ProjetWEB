@@ -101,8 +101,10 @@
 			//fin création de compte
 
 			case "Créer un trajet" :
+				$trajet_cree = False;
 				if(valider("connecte", "SESSION")){
 					$id = valider("idUser","SESSION");
+					
 
 					if(valider("dateHeure") && valider("direction")){
 						$datetime = valider("dateHeure");
@@ -138,7 +140,7 @@
 											$nb_passagers = $vehicle['nb_seats'];
 											$trip_id = createTrip($datetime,$driver_id,$vehicle_id, $nb_passagers, $direction);
 											subscribeToTrip($id, $trip_id);
-											$qs = "?view=trajetsDetails&trip_id=$trip_id";
+											$trajet_cree = True;
 										}										
 									}
 									//si le véhicule n'appartient pas à centrale, et qu'il n'appartient pas à l'utilisateur 
@@ -151,8 +153,8 @@
 										// on garde le nombre de sièges, et ça part
 										$nb_passagers = $vehicle['nb_seats'];		
 										$trip_id = createTrip($datetime,$driver_id,$vehicle_id, $nb_passagers, $direction);
-										subscribeToTrip($id, $trip_id);				
-										$qs = "?view=trajetsDetails&trip_id=$trip_id";			
+										subscribeToTrip($id, $trip_id);			
+										$trajet_cree = True;	
 									}
 								}
 								//SI ON N'A PAS DE VEHICULE
@@ -160,7 +162,7 @@
 									//on crée un trajet en attente avec un chauffeur volontaire, et ça part
 									$trip_id = createTrip($datetime,$driver_id,null, 4, $direction);
 									subscribeToTrip($id, $trip_id);
-									$qs = "?view=trajetsDetails&trip_id=$trip_id";
+									$trajet_cree = True;
 								}
 							}		
 						}
@@ -169,7 +171,7 @@
 							//On crée un trajet coquille avec direction et date, et ça part
 							$trip_id = createTrip($datetime,null,null, 4, $direction);
 							subscribeToTrip($id, $trip_id);
-							$qs = "?view=trajetsDetails&trip_id=$trip_id";
+							$trajet_cree = True;
 							echo("     success !");
 							echo("		trip_id : $trip_id");
 						}
@@ -177,6 +179,18 @@
 					}else{
 						$qs = "?view=trajets&erreur=".urlencode("Veuillez renseigner une date et une direction");
 						echo("		erreur : Veuillez renseigner une date et une direction");
+					}
+				}
+				if ($trajet_cree){
+
+					$qs = "?view=trajetsDetails&trip_id=$trip_id";
+					$datetime = valider("dateHeure");
+					$date = date("Y-m-d", strtotime($datetime));
+					$targets = getAvailableCentraleVehiclesByDate($date);
+					
+
+					foreach ($targets as $target){
+						sendInviteToUser($target['id'], $trip_id);
 					}
 				}
 

@@ -1,7 +1,6 @@
 -- pour les versions Mysql antérieures à v8, 
 -- remplacer "utf8mb4_unicode_ci" par "utf8mb4_unicode_ci" dans le fichier.
--- et décommenter la ligne suivante : 
-
+CREATE DATABASE `app` ;
 USE app;
 
 

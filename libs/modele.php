@@ -258,15 +258,18 @@ function updateVehicleById($id,$name, $nb_seats, $code, $model) {
 	 * @return array|false Un tableau associatif de vehicules disponibles ou false.
 	 */
 function getAvailableCentraleVehiclesByDate($date){
-	$SQL= "SELECT 
+	$SQL= "WITH urv AS(SELECT * FROM user_rents_vehicle WHERE rental_date = '$date')	
+	SELECT 
 			v.* 
 		FROM 
 			vehicles v
 			LEFT JOIN 
-			user_rents_vehicle urv
+			urv
 				ON v.id = urv.vehicle_id
 		WHERE 
 			v.owner_id = 1
+			AND
+			urv.
 		GROUP BY 
 			v.id
 		HAVING 
@@ -353,15 +356,17 @@ function getInterventionsByUserId( $user_id ) {
  * Récupère les utilisateurs qui ont une intervention à une date donnée.
  *
  * @param string $date La date des de l'intervention.
+ * @param int $direction Le lieu de l'intervention.
  * @return array Un tableau de tous les utilisateurs qui ont une intervention à la date donnée.
  */
 
 
-function getUsersByInterventionDate($date) {
+function getUsersByInterventionDateAndDirection($date, $direction) {
 	$SQL= "SELECT u.* FROM 
 		interventions i
 		JOIN users u ON interventions.user_id = u.id
-	WHERE i.date = '$date';";
+	WHERE i.date = '$date'
+	AND i.direction = '$direction';";
 	$res = parcoursRs(SQLSelect($SQL));
 	return $res;
 }
