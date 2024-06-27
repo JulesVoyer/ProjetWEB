@@ -1,5 +1,5 @@
 <?php
-if($_SESSION == null) session_start();
+if(!isset($_SESSION)) session_start();
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
@@ -17,6 +17,7 @@ if (isset($_GET['action'])){
 
     switch($_GET['action']){
         case 'getDraftTrips' : 
+            autoArchiveTrips();
             if (isset($_GET['direction'])) $direction = $_GET['direction'];else $direction = null;
             if (isset($_GET['date'])) $date = $_GET['date'];else $date = null;
             if (isset($_GET['nbPassagers'])) $nbPassagers = $_GET['nbPassagers'];else $nbPassagers = null;
@@ -156,6 +157,17 @@ else if(isset($_POST["action"])){
 
         break;
 
+        case 'createIntervention' :
+
+            if(valider("connecte","SESSION")){
+                $id = $_SESSION['idUser'];
+                if(valider('lieu') && valider('date')){
+
+                    $lieu = valider('lieu');
+                    $date = valider('date');
+                    createIntervention($id, $date, $lieu);
+                }
+            }
 
     }
 }

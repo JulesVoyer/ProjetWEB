@@ -95,7 +95,7 @@ echo "<?xml version=\"1.0\" encoding=\"utf-8\" ?>";
                         <input class="sguInput" type="password" name="password_confirmation" placeholder="Confirmer le mot de passe..." />
                         <div id="sguLicence">
                             <label for="sguCB">Possédez-vous le permis ?</label>
-                            <input id="sguCB" type="checkbox" name="driving_license" />
+                            <input id="sguCB" type="checkbox" name="driving_license" value = "1" />
                         </div>
                     </div>
 
