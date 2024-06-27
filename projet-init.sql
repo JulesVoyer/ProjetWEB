@@ -24,7 +24,11 @@ CREATE TABLE `users` (
 
 -- app.users data
 INSERT INTO app.users (username,password,display_name,driving_license,adress) VALUES
-   ('systeme','systeme','Systeme',1,'{}');
+   ('systeme','systeme','Systeme',1,'{}'),
+   ('Dummy1','Dummy1','Dummy1',1,'{}'),
+   ('Dummy2','Dummy2','Dummy2',1,'{}'),
+   ('Dummy3','Dummy3','Dummy3',0,'{}'),
+   ('Dummy4','Dummy4','Dummy4',0,'{}');
 
 
 
@@ -142,15 +146,15 @@ INSERT INTO app.vehicles (name,nb_seats,code,model,owner_id) VALUES
 
 -- app.trip data
 INSERT INTO app.trips (departure_time,driver_id,vehicle_id,nb_passengers,status,meetup_point,direction) VALUES
-	 ('2024-06-19 10:00:00',1,1,4,0,'{}',0);
+	 ('2024-06-19 10:00:00',2,1,7,0,'{}',0);
 
 
 -- app.trip_has_participant data
 INSERT INTO app.trip_has_participant (trip_id,participant_id) VALUES
-   (1,1),
-   (1,2);
+   (1,2),
+   (1,5);
 
 -- app.messages data
 INSERT INTO app.messages (content,user_id,trip_id,send_time) VALUES
-	 ('Bonjour ! je crée ce trajet pour demain matin',1,1,'2024-06-18 18:26:43');
+	 ('Bonjour ! je crée ce trajet pour demain matin',2,1,'2024-06-18 18:26:43');
 
