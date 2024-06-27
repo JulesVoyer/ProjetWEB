@@ -151,6 +151,17 @@ else if(isset($_POST["action"])){
 
         break;
 
+        case 'createIntervention' :
+
+            if(valider("connecte","SESSION")){
+                $id = $_SESSION['idUser'];
+                if(valider('lieu') && valider('date')){
+
+                    $lieu = valider('lieu');
+                    $date = valider('date');
+                    createIntervention($id, $date, $lieu);
+                }
+            }
 
     }
 }
