@@ -38,10 +38,10 @@ include_once("libs/maLibForms.php");
                 
     </div>
 
-    <form id="msgForm" action="controleur.php">
+    <div id="msgForm">
         <input type="text" name="msgContenu" id="msgContenu" placeholder="Ecrivez un message..">
         <input type="image" id="msgEnvoyer" src="ressources/paperPlane.png" value="Envoyer" name="action">
-    </form>
+    </div>
 
     
 </div>
@@ -52,7 +52,12 @@ include_once("libs/maLibForms.php");
 ?>
 
 <script>
+    $("#msgConversation").scrollTop(500);
+
     // ----- AJAX ----- //
+
+
+    var tripId = <?php echo json_encode($tripId); ?>;
     
     // Message reçu
     var jMsgRecu = $("<p>").addClass("msgRecu");
@@ -116,7 +121,36 @@ include_once("libs/maLibForms.php");
         });
     } // fin getMessages() 
 
+    // envoie de messages
+    function postMessages(contenu) {
+
+        $.ajax({
+            type: "POST",	
+            url: "./libs/data.php",
+            data: {'action' : 'postMessages', 'trip_id' : tripId, 'contenu' : contenu},
+            dataType: "json",
+            success: function (oRep) {
+                console.log(oRep);
+                console.log(contenu);
+
+            },
+            error : function(xhs,status,error){
+                console.log(xhs);
+                console.log(status);
+                console.log(error);
+            }
+        });
+    } // fin getMessages() 
+
+
     // Récupération des messages au chargement de la page
     getMessages();
+
+    // poster un message au clic sur envoyer
+        $("#msgEnvoyer").click( function () {
+        var contenu = $("#msgContenu").val();
+
+        postMessages(contenu);
+    } ); // fin poster un message au clic sur envoyer
 
 </script>

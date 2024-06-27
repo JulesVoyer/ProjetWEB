@@ -187,5 +187,27 @@ else if(isset($_POST["action"])){
                     createIntervention($id, $date, $lieu);
                 }
             }
+        break;
+
+
+        // MESSAGES //
+
+        case 'postMessages' :
+            if(valider("connecte","SESSION"))
+            if(valider("trip_id"))
+            if(valider("content")) { 
+                $id = $_SESSION['idUser'];
+                $content = $_GET['contenu'];
+                $trip_id = $_GET['trip_id'];
+                
+                sendMessageToTrip($id, $trip_id, $content);
+            }
+
+        break;  
     }
+    if ($response === null) {
+        $response = []; // Assigne un tableau vide si $response est null
+    }
+
+    echo json_encode($response);
 }
