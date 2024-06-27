@@ -658,6 +658,15 @@ function unsubscribeFromTrip($user_id, $trip_id)
 	return;
 }
 
+function checkParticipantAtTrip($user_id, $trip_id){
+	$SQL= "SELECT * FROM trip_has_participant
+	WHERE trip_id = '$trip_id' AND participant_id = '$user_id';";
+	$res = SQLGetChamp($SQL);
+	return $res; 
+
+}
+
+
 
 
 // INVITES
