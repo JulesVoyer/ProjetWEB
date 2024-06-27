@@ -1,5 +1,5 @@
 <?php
-if($_SESSION == null) session_start();
+if(!isset($_SESSION)) session_start();
 
 // Ce fichier permet de tester les fonctions développées dans le fichier bdd.php (première partie)
 

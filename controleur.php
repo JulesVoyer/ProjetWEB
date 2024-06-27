@@ -1,5 +1,5 @@
 <?php
-	if($_SESSION == null) session_start();
+	if(!isset($_SESSION)) session_start();
 	ini_set('display_errors', 1);
 	error_reporting(E_ALL);
 	include_once "libs/maLibUtils.php";
