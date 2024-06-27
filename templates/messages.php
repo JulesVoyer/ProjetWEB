@@ -84,7 +84,7 @@ include_once("libs/maLibForms.php");
                 console.log(oRep);
 
                 var d = new Date();
-                var day = d.getDay();
+                var day = d.getDate();
 
                 // Je retire les messages qui sont là
                 $("#msgConversation").empty();
@@ -117,6 +117,11 @@ include_once("libs/maLibForms.php");
                         $("#msgConversation").append(jMsgRecu.clone());
                     }
                 }                						
+            },
+            error : function(xhs,status,error){
+                console.log(xhs);
+                console.log(status);
+                console.log(error);
             }
         });
     } // fin getMessages() 
@@ -135,14 +140,14 @@ include_once("libs/maLibForms.php");
                 var d = new Date();
                 var day = d.getDate();
 
-                var lastMsgArrival = oRep[0].send_time.split(' ');
+                var lastMsgArrival = oRep.send_time.split(' ');
                 var lastMsgDate = lastMsgArrival[0].split('-');
                 var lastMsgTime = lastMsgArrival[1].split(':');
                 if (day == lastMsgDate[2]) lastMsgArrival = lastMsgTime[0] + ":" + lastMsgTime[1];
                 else lastMsgArrival = lastMsgDate[2] + "-" + lastMsgDate[1] + "-" + lastMsgDate[0];
                       
                 var annonce = lastMsgArrival + " - " + "moi";
-                var contenu = oRep[0].content;
+                var contenu = oRep.content;
                 jMsgHeureEnvoye.html(annonce);
                 jMsgEnvoye.html(contenu);
                 $("#msgConversation").append(jMsgHeureEnvoye.clone());
@@ -156,9 +161,15 @@ include_once("libs/maLibForms.php");
         });
     } // fin getMessages() 
 
+    // boucle (rafraichissement des messages)
+    function boucle() {
+        getMessages();
+        setTimeout(boucle, 2000);
+    }
+
 
     // Récupération des messages au chargement de la page
-    getMessages();
+    boucle();
 
     // poster un message au clic sur envoyer
         $("#msgEnvoyer").click( function () {

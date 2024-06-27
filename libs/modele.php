@@ -825,6 +825,6 @@ function getMessageById($id){
 	$SQL = "SELECT * FROM messages WHERE id = '$id';";
 	$res = parcoursRs(SQLSelect($SQL));
 	if($res){
-		return $res;
+		return $res[0];
 	}
 }
