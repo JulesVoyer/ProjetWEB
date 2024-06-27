@@ -202,12 +202,13 @@ else if(isset($_POST["action"])){
         case 'postMessages' :
             if(valider("connecte","SESSION"))
             if(valider("trip_id"))
-            if(valider("content")) { 
+            if(valider("contenu")) { 
                 $id = $_SESSION['idUser'];
-                $content = $_GET['contenu'];
-                $trip_id = $_GET['trip_id'];
+                $content = $_POST['contenu'];
+                $trip_id = $_POST['trip_id'];
                 
-                sendMessageToTrip($id, $trip_id, $content);
+                error_log('content = ' . $content);
+                $reponse = sendMessageToTrip($id, $trip_id, $content);
             }
 
         break;  
@@ -215,6 +216,5 @@ else if(isset($_POST["action"])){
     if ($response === null) {
         $response = []; // Assigne un tableau vide si $response est null
     }
-
     echo json_encode($response);
 }
