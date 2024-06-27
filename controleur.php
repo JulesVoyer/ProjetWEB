@@ -1,5 +1,5 @@
 <?php
-	if($_SESSION == null) session_start();
+	if(!isset($_SESSION)) session_start();
 	ini_set('display_errors', 1);
 	error_reporting(E_ALL);
 	include_once "libs/maLibUtils.php";
@@ -52,7 +52,7 @@
 					$password = valider("password");
 					$password_confirmation = valider("password_confirmation");
 					$display_name = valider("display_name");
-					$driving_license = (valider("driving_license")=="on") ? 1 : 0;
+					$driving_license = valider("driving_license");
 					$street_number = valider("street_number");
 					$street = valider("street");
 					$city = valider("city");
@@ -108,8 +108,7 @@
 						$datetime = valider("dateHeure");
 						$direction =( valider("direction")=="c2i")?0:1;
 						//si l'utilisateur souhaite se déclarer conducteur
-						$conduit = (valider("conducteur")=="on");
-						if($conduit){
+						if($conduit = valider("conducteur")){
 							//on vérifie qu'il possède bien un permis de conduire, on le rejette sinon
 							if(!verifDriverLicenseById($id)){
 

@@ -925,7 +925,7 @@ body {
     font-size: 24px;
     font-weight: bold;
     color: black;
-    margin-top: 15px;    
+    margin-top: 15px; 
 }
 
 .convConversations{
@@ -952,6 +952,11 @@ body {
     margin-left: 20px;
     margin-top: 10px ;
     margin-bottom: 5px ;
+
+    white-space: nowrap; 
+    width: 90%; 
+    overflow: hidden;
+    text-overflow: ellipsis; 
 }
 
 .convMessageContainer {
@@ -1020,6 +1025,13 @@ body {
     border-top-right-radius: 15pt;
 
     box-sizing: border-box;
+}
+
+.msgNomTrajet {
+    white-space: nowrap; 
+    width: 70%; 
+    overflow: hidden;
+    text-overflow: ellipsis; 
 }
 
 #msgConversation {

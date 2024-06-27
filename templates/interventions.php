@@ -18,7 +18,7 @@ include_once("libs/maLibForms.php");
 
 	<div id="itvContent">
 		<h2 id="itvTitreCreer">Créer une nouvelle intervention :</h2>
-		<form id="itvNew" action="controleur.php" methode="" >
+		<form id="itvNew" >
 			<div id="itvNewLieu">
 				<h3>Lieu :</h3>
 				<select>
@@ -30,7 +30,7 @@ include_once("libs/maLibForms.php");
 				<h3>Date :</h3>
 				<input type="date" name="lieuIntervention" />
 			</div>
-			<input id="itvCreerBtn" class="btn" type="submit" name="action" value="Créer" />
+			<input id="itvCreerBtn" class="btn" type="button" name="action" value="Créer" />
 		</form>
 		<h2>Liste des interventions :</h2>
 		<ul id="itvListe">
@@ -41,3 +41,31 @@ include_once("libs/maLibForms.php");
 	</div>
 	
 </div>
+
+<script>
+
+	function createIntervention(){
+		lieu = $("#itvNewLieu select").val();
+		date = $("#itvNewDate input").val();
+
+		$.ajax(
+			{
+				type : 'POST',
+				data : {action : 'createIntervention', lieu : lieu, date : date},
+				url : './libs/data.php',
+				dataType : 'json',
+				success : function(){
+					console.log("intervention crée");
+				},
+				error : function(xhr, status, error) {
+					console.log(xhr);
+					console.log(status);
+					console.log(error);
+				}
+			}
+		)
+	}
+
+	$("#itvCreerBtn").click(createIntervention);
+
+</script>

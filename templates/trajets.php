@@ -50,7 +50,7 @@ include_once("libs/maLibForms.php");
             </select>
 
             <div>
-                <input type ="checkbox" name = "conducteur" id = "createTripConducteur">
+                <input type ="checkbox" name = "conducteur" id = "createTripConducteur" value = "1">
                 <label for="conducteur">Vous conduisez ?</label>
             </div>
 
