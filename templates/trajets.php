@@ -146,7 +146,7 @@ include_once("libs/maLibForms.php");
 
 
 
-                            trajetClone.attr("href", "index.php?view=trajetsDetails&id="+rep[i].id);
+                            trajetClone.attr("href", "index.php?view=trajetsDetails&trip_id="+rep[i].id);
                             trajetClone.data(rep[i]);
 
                             if(rep[i].vehicle_id === null){

@@ -1,4 +1,6 @@
 <?php
+if($_SESSION == null) session_start();
+
 // Ce fichier permet de tester les fonctions développées dans le fichier bdd.php (première partie)
 
 // Si la page est appelée directement par son adresse, on redirige en passant pas la page index
@@ -357,4 +359,40 @@ include_once("libs/maLibForms.php");
 
     } );
 
+jInfoVehicule= $(`li>
+                    <span class=\"pflGras pflVoitureX\">Nom voiture 1</span>  <span class=\"pflGras\"> : 
+                    -modèle- -couleur-</span>
+                </li>`)
+
+
+function setVehicleInfo(){
+    $.ajax(
+        {
+            type : 'GET',
+            data : {action : 'getMyVehicles'},
+            url : './libs/data.php',
+            dataType : 'json',
+            success : function(data){
+                console.log(data);
+                var vehicle_list = $("#pflVoiture ul");
+
+                for (var i = 0; i < data.length; i++) {
+                    var vehicle = data[i];
+                    var jclone = jInfoVehicule.clone();
+                    jclone.find(".pflVoitureX").html(vehicle.name);
+
+
+                    
+                }
+
+            },
+            error : function(xhr, status, error) {
+                console.log(xhr);
+                console.log(status);
+                console.log(error);
+            }
+
+        }
+    )
+}
 </script>
