@@ -134,7 +134,7 @@
 											$qs = "?view=trajets&erreur=".urlencode("Ce vehicule est indisponible à cette date");
 										}else{
 											//si oui, on réserve le véhicule pour la journée, on garde le nb de sièges; et ça part
-											bookVehicleByIds($vehicle_id, $id, $date);		
+											bookVehicleByIds($vehicle_id, $date, $id);		
 											$nb_passagers = $vehicle['nb_seats'];
 											$trip_id = createTrip($datetime,$driver_id,$vehicle_id, $nb_passagers, $direction);
 											subscribeToTrip($id, $trip_id);
