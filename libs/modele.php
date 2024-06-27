@@ -321,14 +321,13 @@ function bookVehicleByIds($vehicle_id, $rental_date, $user_id){
  * @param int $user_id L'ID de l'utilisateur qui va effectuer l'intervention.
  * @param string $date La date de l'intervention.
  * @param string $direction Le lieu de l'intervention.
- * @return void
+ * @return int L'id de l'intervention
  */
 function createIntervention($user_id, $date, $direction){
 	$SQL= "INSERT INTO interventions (user_id, date, direction)
-	VALUES ('$user_id', '$date', '$direction');
-	";
-	SQLInsert($SQL);
-	return;
+	VALUES ('$user_id', '$date', '$direction');";
+	$id =SQLInsert($SQL);
+	return $id;
 }
 
 /**
@@ -399,6 +398,7 @@ function getDraftTripsByDateDestinationAndRemainingSeats($date, $direction, $wis
 	$res = parcoursRs(SQLSelect($SQL));
 	return $res;
 }
+
 
 
 
