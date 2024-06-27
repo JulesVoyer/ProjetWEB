@@ -27,7 +27,7 @@ include_once("libs/maLibForms.php");
                 <li><span class="pflGras">Pseudo : </span><span id="pflPseudo">pseudo</span></li>
                 <li>
                     <span class="pflGras">Adresse : </span> 
-                    <div><span id="pflNum">XX</span>, rue <span id="pflNomRue">-nom de la rue-</span>- 
+                    <div><span id="pflNum">XX</span>, <span id="pflNomRue">-nom de la rue-</span>- 
                         <br /><span id="pflCode">59650</span>
                         <br /><span id="pflVille">Villeneuve d'Ascq</span>
                     </div>
@@ -272,8 +272,20 @@ include_once("libs/maLibForms.php");
                 data : {action : 'getCurrentUser'},
                 url : './libs/data.php',
                 dataType : 'json',
-                success : function(oRep){
-                    console.log(oRep);
+                success : function(data){
+                    console.log(data);
+                    adress = JSON.parse(data.adress)
+                    $("#pflDisplayName").html(data.display_name);
+                    $("#pflPseudo").html(data.username);
+                    $("#pflNum").html(adress.street_number);
+                    $("#pflNomRue").html(adress.street);
+                    $("#pflVille").html(adress.city);
+                    $("#pflCode").html(adress.city_code);
+
+                    if(data.driving_license==1){
+                    var license_value = "Oui"
+                    }else {"Non"}
+                    $("#pflLicence").html(license_value);
 
                 },
                 error : function(xhr, status, error) {
@@ -285,5 +297,64 @@ include_once("libs/maLibForms.php");
             }
         )
     }
+
+    setUserInfo();
+
+
+    function editUserInfo(){
+        $.ajax(
+            {
+                type : 'POST',
+                data : {action : 'updateUser',
+                        display_name : $("#newDisp").val(),
+                        username : $("#newPseu").val(),
+                        street_number : $("#newNum").val(),
+                        street : $("#newNomRue").val(),
+                        city : $("#newCity").val(),
+                        city_code : $("#newCode").val(),
+                    },
+                url : './libs/data.php',
+                dataType : 'json',
+                success : function(data){
+                    console.log(data);
+                },
+                error : function(xhr, status, error) {
+                    console.log(xhr);
+                    console.log(status);
+                    console.log(error);
+                }
+            });
+    }
+
+    function editPassword(){
+        $.ajax(
+            {
+                type : 'POST',
+                data : {action : 'updateUserPassword',
+                        ancienMDP : $("#ancienMDP").val(),
+                        newMDP : $("#newMDP").val(),
+                        confirmMDP : $("#confirmMDP").val()
+                    },
+                url : './libs/data.php',
+                dataType : 'json',
+                success : function(data){
+                    console.log(data);
+                },
+                error : function(xhr, status, error) {
+                    console.log(xhr);
+                    console.log(status);
+                    console.log(error);
+                }
+            });
+    }
+
+    $("#pflEditer").click( function () {
+        modifMDP = $("#cbMDP").is(":checked");
+        if(modifMDP){
+            editPassword();
+        }
+        editUserInfo();
+
+    } );
 
 </script>
