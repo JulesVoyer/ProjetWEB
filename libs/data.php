@@ -1,5 +1,9 @@
 <?php
 session_start();
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
+
+
 include_once("maLibUtils.php");
 include_once("modele.php");
 
@@ -32,6 +36,52 @@ if (isset($_GET['action'])){
             
             $date = $_GET['date'];
             $response = getAvailableCentraleVehiclesByDate($date);
+            }
+
+        break;
+
+        case 'getTrip' :
+
+            if(isset($_GET['trip_id'])){
+
+                $trip_id = $_GET['trip_id'];
+
+                $response = getTripById($trip_id);
+            }
+        break;
+
+        case 'getVehicle' :
+
+            if(isset($_GET['vehicle_id'])){
+                $vehicle_id = $_GET['vehicle_id'];
+                $response = getVehicleById($vehicle_id);
+            }
+
+        break;
+
+        case 'getUser' :
+
+            if(isset($_GET['user_id'])){
+                $user_id = $_GET['user_id'];
+                $response = getUserById($user_id);
+            }
+
+        break;
+
+        case 'getParticipants' :
+
+            if(isset($_GET['trip_id'])){
+                $trip_id = $_GET['trip_id'];
+                $response = getTripParticipants($trip_id);
+            }
+
+        break;
+
+        case 'getRemainingSeats' :
+
+            if(isset($_GET['trip_id'])){
+                $trip_id = $_GET['trip_id'];
+                $response = getRemainingSeatsForTrip($trip_id);
             }
 
         break;
