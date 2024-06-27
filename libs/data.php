@@ -93,7 +93,7 @@ if (isset($_GET['action'])){
             }
         break;  
 
-        // MESSAGES //
+        // CONVERSATIONS //
 
         case 'getConversations' :
             if(valider("connecte","SESSION")) { 
@@ -103,10 +103,16 @@ if (isset($_GET['action'])){
 
         break;
 
+        // MESSAGES //
 
+        case 'getMessages' :
+            if(valider("connecte","SESSION"))
+            if(valider("trip_id")) { 
+                $trip_id = $_GET['trip_id'];
+                $response = getMessagesByTripId($trip_id);
+            }
 
-
-        
+        break;        
 
     }
     if ($response === null) {

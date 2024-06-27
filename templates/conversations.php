@@ -110,6 +110,7 @@ include_once("libs/maLibForms.php");
 
 
     function getConversations() {
+        
         $.ajax({
             type: "GET",	
             url: "./libs/data.php",
@@ -127,37 +128,35 @@ include_once("libs/maLibForms.php");
                     // data.php renvoit les messages triés par heure d'arrivée, le plus récent en premier
                     
                     // je vide mes éléments
-                    $(jConvConversation).empty();
-                    $(jConvMessageContainer).empty();
+                    jConvConversation.empty();
+                    jConvMessageContainer.empty();
 
                     // Je remplis les couches les plus profondes en premier
-                    var title = oRep[i].direction + " " + oRep[i].departure_time;
+                    var tripName = oRep[i].direction + " " + oRep[i].departure_time;
                     var contenu = "User" + oRep[i].sender_id + " : " + oRep[i].content; //ici à changer le user, faire un getUser()
 
-                    $(jConvLastMessage).html(contenu);
-                    $(jConvLastMessageTime).html(oRep[i].last_message_time);
+                    jConvLastMessage.html(contenu);
+                    jConvLastMessageTime.html(oRep[i].last_message_time);
+                    jConvTitleConv.html(tripName);
 
 
                     // Puis le container
-                    $(jConvMessageContainer).append(jConvLastMessage.clone());
-                    $(jConvMessageContainer).append(jConvLastMessageTime.clone());
+                    jConvMessageContainer.append(jConvLastMessage.clone());
+                    jConvMessageContainer.append(jConvLastMessageTime.clone());
 
                     // Puis le lien 
-                    $(jConvConversation).append(jConvTitleConv.clone());
-                    $(jConvConversation).append(jConvMessageContainer.clone());
-                    $(jConvConversation).attr("href", "index.php?view=messages&trip_id=" + oRep[i].trip_id);
+                    jConvConversation.append(jConvTitleConv.clone());
+                    jConvConversation.append(jConvMessageContainer.clone());
+                    jConvConversation.attr("href", "index.php?view=messages&tripId=" + oRep[i].trip_id + "&tripName=" + tripName);
                     
                     // Puis on l'ajoute à la suite des conversations
                     $("#convBody").append(jConvConversation.clone());
-                }
-                						
+                }					
             }
         });
     } // fin getConversations
 
-    // Récupération des conversations au clic sur l'icon conversations
-    $("#conversations").click( function () {
-        getAllMessages();
-    } );
+    // Récupération des conversations au chargement de la page
+    getConversations();
 
 </script>

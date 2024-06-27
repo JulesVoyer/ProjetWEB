@@ -20,7 +20,7 @@ include_once("libs/maLibForms.php");
         <a id="msgRetourPagePrecedente" href="javascript:history.back()">
             <img id="msgFlecheRetour" src="ressources/flecheRetour.png" alt="Fleche">
         </a>
-        Nom du trajet
+        <span class="msgNomTrajet">Nom du trajet</span>
         <a id="msgLienDetailTrajet" href="index.php?view=trajetsDetails">
             <img id="iconePoints" src="ressources/autre.png" alt="Points">
         </a>
@@ -45,3 +45,65 @@ include_once("libs/maLibForms.php");
 
     
 </div>
+
+<script>
+    // ----- AJAX ----- //
+
+    // Nom du trajet
+
+    // Message reçu
+    var jMsgRecu = $("<p>").addClass("msgRecu");
+    // Heure et utilisateur du message reçu
+    var jmsgHeureRecu = $("<p>").addClass("msgHeureRecu");
+    // Message envoyé
+    var jMsgEnvoye = $("<p>").addClass("msgEnvoye");
+    // // Heure et moi du message envoyé
+    var jMsgHeureEnvoye = $("<p>").addClass("msgHeureEnvoye");
+
+    // récupérations des messages de la conversation
+
+    function getMessages() {
+        var tripId = <?php echo json_encode(valider("tripId")); ?>;
+        var nomTrajet = <?php echo json_encode(valider("tripName")); ?>;
+        var connectedUserId = <?php echo json_encode($_SESSION['idUser']); ?>;
+
+        $.ajax({
+            type: "GET",	
+            url: "./libs/data.php",
+            data: {'action' : 'getConversations', 'trip_id' : tripId},
+            dataType: "json",
+            success: function (oRep) {
+                console.log(oRep);
+
+                // Je retire les messages qui sont là
+                $("#msgConversation").empty();
+                
+                // Je parcours le tableau et j'ajoute les messages
+                for (i=0;i<oRep.length;i++) {
+                    
+                    var idUser = oRep[i].user_id;
+
+                    if (userId == connectedUserId) {
+                        var annonce = oRep[i].send_time + " - " + "moi";
+                        var contenu = oRep[i].content;
+                        jMsgHeureEnvoye.html(annonce);
+                        jMsgEnvoye.html(contenu);
+                        $("#msgConversation").append(jMsgHeureEnvoye.clone());
+                        $("#msgConversation").append(jMsgEnvoye.clone());
+                    } else {
+                        var annonce = oRep[i].send_time + " - " + "user" + userID;
+                        var contenu = oRep[i].content;
+                        jmsgHeureRecu.html(annonce);
+                        jMsgRecu.html(contenu);
+                        $("#msgConversation").append(jmsgHeureRecu.clone());
+                        $("#msgConversation").append(jMsgRecu.clone());
+                    }
+                }                						
+            }
+        });
+    } // fin getMessages() 
+
+    // Récupération des messages au chargement de la page
+    getMessages();
+
+</script>
