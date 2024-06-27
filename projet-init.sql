@@ -1,5 +1,5 @@
 -- pour les versions Mysql antérieures à v8, 
--- remplacer "utf8mb4_unicode_ci" par "utf8mb4_unicode_ci" dans le fichier.
+-- remplacer "utf8mb4_0900_ai_ci" par "utf8mb4_unicode_ci" dans le fichier.
 CREATE DATABASE `app` ;
 USE app;
 
@@ -19,7 +19,7 @@ CREATE TABLE `users` (
   `driving_license` tinyint(1) NOT NULL,
   `adress` json NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- app.users data
 INSERT INTO app.users (username,password,display_name,driving_license,adress) VALUES
@@ -39,15 +39,15 @@ INSERT INTO app.users (username,password,display_name,driving_license,adress) VA
 
 CREATE TABLE `vehicles` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `nb_seats` int NOT NULL,
-  `code` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `model` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `code` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `model` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   `owner_id` int NOT NULL DEFAULT 1,
   PRIMARY KEY (`id`),
   KEY `vehicules_users_FK` (`owner_id`),
   CONSTRAINT `vehicules_users_FK` FOREIGN KEY (`owner_id`) REFERENCES `users` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 
 -- app.user_rents_vehicule definition
@@ -62,7 +62,7 @@ CREATE TABLE `user_rents_vehicle` (
   KEY `user_rents_vehicle_vehicules_FK` (`vehicle_id`),
   CONSTRAINT `user_rents_vehicle_users_FK` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE,
   CONSTRAINT `user_rents_vehicle_vehicules_FK` FOREIGN KEY (`vehicle_id`) REFERENCES `vehicles` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 
 
@@ -76,7 +76,7 @@ CREATE TABLE `interventions` (
   PRIMARY KEY (`id`),
   KEY `intervention_users_FK` (`user_id`),
   CONSTRAINT `intervention_users_FK` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- app.trip definition
 
@@ -94,7 +94,7 @@ CREATE TABLE `trips` (
   KEY `trajet_users_FK` (`driver_id`),
   CONSTRAINT `trajet_users_FK` FOREIGN KEY (`driver_id`) REFERENCES `users` (`id`) ON DELETE CASCADE,
   CONSTRAINT `trajet_vehicles_FK` FOREIGN KEY (`vehicle_id`) REFERENCES `vehicles` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- app.trip_has_participant definition
 
@@ -107,7 +107,7 @@ CREATE TABLE `trip_has_participant` (
   KEY `trip_has_participant_users_FK` (`participant_id`),
   CONSTRAINT `trip_has_participant_trip_FK` FOREIGN KEY (`trip_id`) REFERENCES `trips` (`id`) ON DELETE CASCADE,
   CONSTRAINT `trip_has_participant_users_FK` FOREIGN KEY (`participant_id`) REFERENCES `users` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- app.messages definition
 
@@ -122,7 +122,7 @@ CREATE TABLE `messages` (
   KEY `messages_users_FK` (`user_id`),
   CONSTRAINT `messages_trip_FK` FOREIGN KEY (`trip_id`) REFERENCES `trips` (`id`) ON DELETE CASCADE,
   CONSTRAINT `messages_users_FK` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- app.invites definition
 
@@ -136,7 +136,7 @@ CREATE TABLE `invites` (
   KEY `invites_users_FK_1` (`target_id`),
   CONSTRAINT `invites_trip_FK` FOREIGN KEY (`trip_id`) REFERENCES `trips` (`id`) ON DELETE CASCADE,
   CONSTRAINT `invites_users_FK_1` FOREIGN KEY (`target_id`) REFERENCES `users` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 
 
