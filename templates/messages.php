@@ -46,11 +46,14 @@ include_once("libs/maLibForms.php");
     
 </div>
 
+<?php
+    $tripId = valider("tripId");
+    $tripName = valider("tripName");
+?>
+
 <script>
     // ----- AJAX ----- //
-
-    // Nom du trajet
-
+    
     // Message reçu
     var jMsgRecu = $("<p>").addClass("msgRecu");
     // Heure et utilisateur du message reçu
@@ -63,35 +66,45 @@ include_once("libs/maLibForms.php");
     // récupérations des messages de la conversation
 
     function getMessages() {
-        var tripId = <?php echo json_encode(valider("tripId")); ?>;
-        var nomTrajet = <?php echo json_encode(valider("tripName")); ?>;
+        var tripId = <?php echo json_encode($tripId); ?>;
+        var tripName = <?php echo json_encode($tripName); ?>;
         var connectedUserId = <?php echo json_encode($_SESSION['idUser']); ?>;
 
         $.ajax({
             type: "GET",	
             url: "./libs/data.php",
-            data: {'action' : 'getConversations', 'trip_id' : tripId},
+            data: {'action' : 'getMessages', 'trip_id' : tripId},
             dataType: "json",
             success: function (oRep) {
                 console.log(oRep);
+
+                var d = new Date();
+                var day = d.getDay();
 
                 // Je retire les messages qui sont là
                 $("#msgConversation").empty();
                 
                 // Je parcours le tableau et j'ajoute les messages
                 for (i=0;i<oRep.length;i++) {
-                    
-                    var idUser = oRep[i].user_id;
+                    var lastMsgArrival = oRep[i].send_time.split(' ');
+                    var lastMsgDate = lastMsgArrival[0].split('-');
+                    var lastMsgTime = lastMsgArrival[1].split(':');
+                    if (day == lastMsgDate[2]) lastMsgArrival = lastMsgTime[0] + ":" + lastMsgTime[1];
+                    else lastMsgArrival = lastMsgDate[2] + "-" + lastMsgDate[1] + "-" + lastMsgDate[0];
+                    console.log(lastMsgArrival);
+                    var userId = oRep[i].user_id;
+
+                    $(".msgNomTrajet").html(tripName);
 
                     if (userId == connectedUserId) {
-                        var annonce = oRep[i].send_time + " - " + "moi";
+                        var annonce = lastMsgArrival + " - " + "moi";
                         var contenu = oRep[i].content;
                         jMsgHeureEnvoye.html(annonce);
                         jMsgEnvoye.html(contenu);
                         $("#msgConversation").append(jMsgHeureEnvoye.clone());
                         $("#msgConversation").append(jMsgEnvoye.clone());
                     } else {
-                        var annonce = oRep[i].send_time + " - " + "user" + userID;
+                        var annonce = lastMsgArrival + " - " + "user" + userId;
                         var contenu = oRep[i].content;
                         jmsgHeureRecu.html(annonce);
                         jMsgRecu.html(contenu);
