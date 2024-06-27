@@ -1,5 +1,5 @@
 <?php
-session_start();
+if($_SESSION == null) session_start();
 
 // V1.0 du 18 mai 2018
 
