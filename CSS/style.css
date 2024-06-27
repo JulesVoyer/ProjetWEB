@@ -852,6 +852,21 @@ body {
     font-size: larger;
 }
 
+#noVehicleDeclaredDisclaimer {
+    position: relative;
+    left: 45px;
+    top: -20px;
+    height: 300px;
+    display : flex;
+    flex-direction: row !important;
+}
+
+#noVehicleDeclaredDisclaimer > p {
+    height: 10px;
+    font-size: larger;
+    display : inline-block !important;
+}
+
 .btnTrajet {
     color: white;
     width:min-content;

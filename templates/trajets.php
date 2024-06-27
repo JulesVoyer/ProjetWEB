@@ -39,14 +39,14 @@ include_once("libs/maLibForms.php");
         </div>
 
         <!-- TODO : refaire le FRONT !!! -->
-        <form id="createTrajet" class="creationForm" action = "controleur.php" method = "post">
+        <form id="createTrajet" class="creationForm" action = "controleur.php" method = "get">
             <legend>Créez un trajet</legend>
             <input type="datetime-local" name="dateHeure" id="createTripDateTime">
 
             <select type = "select" name = "direction" id = "createTripDirection">
                 <option  selected = "true" disable>Choisissez une direction</option>
-                <option value = "0">Centrale -> IG2I</option>
-                <option value = "1">IG2I -> Centrale</option>
+                <option value = "c2i">Centrale -> IG2I</option>
+                <option value = "i2c">IG2I -> Centrale</option>
             </select>
 
             <div>

@@ -1,5 +1,7 @@
 <?php
 	session_start();
+	ini_set('display_errors', 1);
+	error_reporting(E_ALL);
 	include_once "libs/maLibUtils.php";
 	include_once "libs/maLibSQL.pdo.php";
 	include_once "libs/maLibSecurisation.php"; 
@@ -99,15 +101,12 @@
 			//fin création de compte
 
 			case "Créer un trajet" :
-				echo("Créer un trajet");
 				if(valider("connecte", "SESSION")){
 					$id = valider("idUser","SESSION");
 
 					if(valider("dateHeure") && valider("direction")){
 						$datetime = valider("dateHeure");
-						$direction = valider("direction");
-						echo("		datetime : $datetime");
-						echo("		direction : $direction");
+						$direction =( valider("direction")=="c2i")?0:1;
 						//si l'utilisateur souhaite se déclarer conducteur
 						$conduit = (valider("conducteur")=="on");
 						if($conduit){
@@ -115,7 +114,6 @@
 							if(!verifDriverLicenseById($id)){
 
 								$qs = "?view=trajets&erreur=".urlencode("Vous ne pouvez pas vous déclarer comme conducteur si vous ne possédez pas le permis de conduire");
-								echo("		erreur : Vous ne pouvez pas vous déclarer comme conducteur si vous ne possédez pas le permis de conduire");
 							}
 							else
 							{
@@ -124,12 +122,9 @@
 
 								//on regarde si l'utilisateur a déclaré un véhicule
 								$vehicle_id = valider("vehicle") ? valider("vehicle") : null;	
-								echo("		vehicle_id : $vehicle_id");
-								
 								if(!is_null($vehicle_id)){
 									//si oui, on inspecte ce véhicule
 									$vehicle = getVehicleById($vehicle_id);
-									echo("		vehicle : ".json_encode($vehicle));
 									//si le véhicule appartient à Centrale
 									if($vehicle['owner_id'] == 1){
 										//on récupère la date du trajet
@@ -138,7 +133,6 @@
 										if(!getCentraleVehicleAvailabilityByIdAndDate($vehicle_id, $date)){
 											//sinon, on rejette
 											$qs = "?view=trajets&erreur=".urlencode("Ce vehicule est indisponible à cette date");
-											echo("		erreur : Ce vehicule est indisponible à cette date");											
 										}else{
 											//si oui, on réserve le véhicule pour la journée, on garde le nb de sièges; et ça part
 											bookVehicleByIds($vehicle_id, $id, $date);		
@@ -146,15 +140,12 @@
 											$trip_id = createTrip($datetime,$driver_id,$vehicle_id, $nb_passagers, $direction);
 											subscribeToTrip($id, $trip_id);
 											$qs = "?view=trajetsDetails&trip_id=$trip_id";
-											echo("     success !");
-											echo("		trip_id : $trip_id");
 										}										
 									}
 									//si le véhicule n'appartient pas à centrale, et qu'il n'appartient pas à l'utilisateur 
 									elseif($vehicle['owner_id'] != $id){
 										//on rejette
 										$qs = "?view=trajets&erreur=".urlencode("Ce vehicule ne vous appartient pas !");
-										echo("		erreur : Ce vehicule ne vous appartient pas !");
 									}
 									//si c'est le véhicule de l'utilisateur
 									else{
@@ -162,26 +153,22 @@
 										$nb_passagers = $vehicle['nb_seats'];		
 										$trip_id = createTrip($datetime,$driver_id,$vehicle_id, $nb_passagers, $direction);
 										subscribeToTrip($id, $trip_id);				
-										$qs = "?view=trajetsDetails&trip_id=$trip_id";				
-										echo("     success !");
-										echo("		trip_id : $trip_id");
+										$qs = "?view=trajetsDetails&trip_id=$trip_id";			
 									}
 								}
 								//SI ON N'A PAS DE VEHICULE
 								else{
 									//on crée un trajet en attente avec un chauffeur volontaire, et ça part
-									$trip_id = createTrip($datetime,$driver_id,null, null, $direction);
+									$trip_id = createTrip($datetime,$driver_id,null, 4, $direction);
 									subscribeToTrip($id, $trip_id);
 									$qs = "?view=trajetsDetails&trip_id=$trip_id";
-									echo("     success !");
-									echo("		trip_id : $trip_id");
 								}
 							}		
 						}
 						//SI L'UTILISATEUR NE S'EST PAS DECLARE COMME CONDUCTEUR
 						else {
 							//On crée un trajet coquille avec direction et date, et ça part
-							$trip_id = createTrip($datetime,null,null, null, $direction);
+							$trip_id = createTrip($datetime,null,null, 4, $direction);
 							subscribeToTrip($id, $trip_id);
 							$qs = "?view=trajetsDetails&trip_id=$trip_id";
 							echo("     success !");

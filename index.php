@@ -13,6 +13,9 @@ include_once "libs/maLibForms.php";
 // on récupère le paramètre view éventuel 
 $view = valider("view"); 
 
+if($erreur= valider('erreur')) {
+	echo "<div class='erreur' style = { 'color' : 'red'}>$erreur</div>";
+}
 //Si on est pas connecté
  if (!valider("connecte","SESSION")) {
 
