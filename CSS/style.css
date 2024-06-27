@@ -924,7 +924,7 @@ body {
     margin-top: 15px;    
 }
 
-.conversations{
+.convConversations{
     background-color: lightgrey;
     border-radius: 15px;
     padding: 5px;
@@ -941,7 +941,7 @@ body {
     color: black;
 }
 
-.titleConv {
+.convTitleConv {
     font-size: 18px;
     font-weight: bold;
     color: black;
@@ -950,13 +950,13 @@ body {
     margin-bottom: 5px ;
 }
 
-.messageContainer {
+.convMessageContainer {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-.lastMessage {
+.convLastMessage {
     flex: 1;
     text-align: left;
     white-space: nowrap; 
@@ -968,7 +968,7 @@ body {
     margin-bottom: 5px ;
 }
 
-.lastMessageTime{
+.convLastMessageTime {
     text-align: right;
     margin-right: 20px;
     margin-top: 5px ;

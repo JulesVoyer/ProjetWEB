@@ -93,6 +93,16 @@ if (isset($_GET['action'])){
             }
         break;  
 
+        // MESSAGES //
+
+        case 'getConversations' :
+            if(valider("connecte","SESSION")) { 
+                $id = $_SESSION['idUser'];
+                $response = getAllTripsLastMessages($id);
+            }
+
+        break;
+
 
 
 
