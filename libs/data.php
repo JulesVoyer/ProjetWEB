@@ -125,6 +125,15 @@ if (isset($_GET['action'])){
 
         break;
 
+        // INTERVENTIONS //
+
+        case 'getInterventions' :
+            if(valider('connecte','SESSION')){
+                $id = $_SESSION['idUser'];
+                $response = getInterventionsByUserId($id);
+            }
+        break;
+
     }
     if ($response === null) {
         $response = []; // Assigne un tableau vide si $response est null
@@ -186,7 +195,6 @@ else if(isset($_POST["action"])){
         break;
 
         case 'createIntervention' :
-
             if(valider("connecte","SESSION"))
             if(valider('lieu'))
             if (valider('date')) {
@@ -194,9 +202,8 @@ else if(isset($_POST["action"])){
                 $lieu = $_POST['lieu'];
                 $date = $_POST['date'];
                 
-                $response =createIntervention($id, $date, $lieu);
+                $response =createIntervention($id, $date, ($lieu == "I")?1:0);                
             }
-            
         break;
 
 

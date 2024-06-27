@@ -22,8 +22,8 @@ include_once("libs/maLibForms.php");
 			<div id="itvNewLieu">
 				<h3>Lieu :</h3>
 				<select>
-					<option name="lieu_intervention_IG2I" value="0">IG2I</option>
-					<option name="lieu_intervention_centrale" value="1">Centralle</option>
+					<option name="lieu_intervention_IG2I" value="I">IG2I</option>
+					<option name="lieu_intervention_centrale" value="C">Centralle</option>
 				</select>
 			</div>
 			<div id="itvNewDate">
@@ -34,8 +34,10 @@ include_once("libs/maLibForms.php");
 		</form>
 		<h2>Liste des interventions :</h2>
 		<ul id="itvListe">
+			<!-- DUMYY INTERVENTION --->
+<!--
 			<li><span class="itvIntervention">Intervention 1 : </span><span class="itvLieu">Centrale</span> <span class="date">26/06/24</span></li>
-			<li><span class="itvIntervention">Intervention 2 : </span><span class="itvLieu">Centrale</span> <span class="date">26/06/24</span></li>
+-->	
 		</ul>
 		</div>
 	</div>
@@ -44,6 +46,8 @@ include_once("libs/maLibForms.php");
 
 <script>
 
+	getInterventions();
+
 	function createIntervention(){
 		lieu = $("#itvNewLieu select").val();
 		date = $("#itvNewDate input").val();
@@ -51,12 +55,17 @@ include_once("libs/maLibForms.php");
 		$.ajax(
 			{
 				type : 'POST',
-				data : {action : 'createIntervention', lieu : lieu, date : date},
+				data : {
+					action : 'createIntervention', 
+					lieu : lieu, 
+					date : date
+				},
 				url : './libs/data.php',
 				dataType : 'json',
 				success : function(rep){
 					console.log(rep);
 					console.log("intervention créée");
+					getInterventions();
 				},
 				error : function(xhr, status, error) {
 					console.log(xhr);
@@ -67,6 +76,44 @@ include_once("libs/maLibForms.php");
 		)
 	}
 
-	$("#itvCreerBtn").click(createIntervention);
+
+	jIntervention = $(`<li>
+							<span class="itvIntervention">Intervention : </span>
+							<span class="itvLieu">Centrale</span> 
+							<span class="date">26/06/24</span>
+					  </li>`)
+
+	function getInterventions(){
+
+		$.ajax(
+			{
+				type : 'GET',
+				data : {
+					action : 'getInterventions'
+				},
+				url : './libs/data.php',
+				dataType : 'json',
+				success : function(rep){
+					console.log(rep);
+					console.log("interventions récupérées");
+					for (intervention of rep){
+						jClone = jIntervention.clone();
+						jClone.find(".itvLieu").html(intervention.lieu);
+						jClone.find(".date").html(intervention.date );
+						$("#itvListe").append(jClone);
+					}
+				},
+				error : function(xhr, status, error) {
+					console.log(xhr);
+					console.log(status);
+					console.log(error);
+				}
+			}
+		)
+	}
+
+	$("#itvCreerBtn").click(function(){
+		createIntervention();
+	});
 
 </script>

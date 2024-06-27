@@ -330,6 +330,7 @@ function createIntervention($user_id, $date, $direction){
 	return $id;
 }
 
+
 /**
  * Supprime une Intervention dans la base 
  *
@@ -342,6 +343,12 @@ function deleteInterventionById($id) {
 	return;
 }
 
+function getInterventionsByUserId( $user_id ) {
+	$SQL= "SELECT * FROM interventions WHERE user_id = '$user_id' AND date >= NOW();";
+	$res = parcoursRs(SQLSelect($SQL));
+	return $res;
+}
+
 /**
  * Récupère les utilisateurs qui ont une intervention à une date donnée.
  *
@@ -350,7 +357,7 @@ function deleteInterventionById($id) {
  */
 
 
-function getUsersInterventionsByDate($date) {
+function getUsersByInterventionDate($date) {
 	$SQL= "SELECT u.* FROM 
 		interventions i
 		JOIN users u ON interventions.user_id = u.id
