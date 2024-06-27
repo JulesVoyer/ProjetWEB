@@ -64,9 +64,9 @@ CREATE TABLE `user_rents_vehicle` (
 
 
 
--- app.intervention definition
+-- app.interventions definition
 
-CREATE TABLE `intervention` (
+CREATE TABLE `interventions` (
   `id` int NOT NULL AUTO_INCREMENT,
   `user_id` int NOT NULL,
   `date` date NOT NULL,
