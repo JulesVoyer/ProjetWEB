@@ -273,7 +273,7 @@ include_once("libs/maLibForms.php");
                                 Jclone.find(".vehicleSeats").html(rep[i].nb_seats);
                                 Jclone.find(".vehicleSeats").append(" places");
                                 Jclone.find(".vehicle").data(rep[i]);
-                                Jclone.val(rep[i].id);
+                                Jclone.find("input").val(rep[i].id);
                                 Jclone.attr("name", "vehicle")
                                 $("#createTripAvailableVehiclesList").append(Jclone);
 

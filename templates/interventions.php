@@ -54,8 +54,9 @@ include_once("libs/maLibForms.php");
 				data : {action : 'createIntervention', lieu : lieu, date : date},
 				url : './libs/data.php',
 				dataType : 'json',
-				success : function(){
-					console.log("intervention crée");
+				success : function(rep){
+					console.log(rep);
+					console.log("intervention créée");
 				},
 				error : function(xhr, status, error) {
 					console.log(xhr);
