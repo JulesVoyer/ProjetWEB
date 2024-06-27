@@ -566,7 +566,7 @@ function validateTripById($id) {
 function autoArchiveTrips() {
 	$SQL= "UPDATE trips
 	SET status = 2
-	WHERE DATE(DATEADD(departure_time, INTERVAL 1 DAY)) < NOW();";
+	WHERE DATE(DATE_ADD(departure_time, INTERVAL 1 DAY)) < NOW();";
 	$n=SQLUpdate($SQL);
 
 	return $n;
@@ -584,14 +584,14 @@ function deleteTripById($id) {
 }
 
 
-	/**
-	 * Récupère le nombre de places restantes pour un voyage
-	 *
-	 * @param int $id L'id du voyage.
-	 * @return int Le nombre de places restantes pour le voyage.
-	 */
+/**
+ * Récupère le nombre de places restantes pour un voyage
+ *
+ * @param int $id L'id du voyage.
+ * @return int Le nombre de places restantes pour le voyage.
+ */
 function getRemainingSeatsForTrip($id) {
-	$SQL= "SELECT t.nb_passengers - COUNT(thp.id) FROM trips t LEFT JOIN trip_has_participant thp ON t.id = thp.trip_id GROUP BY t.id HAVING t.id = '$id';";
+	$SQL= "SELECT t.nb_passengers - COUNT(thp.id) AS nb FROM trips t LEFT JOIN trip_has_participant thp ON t.id = thp.trip_id GROUP BY t.id HAVING t.id = '$id';";
 	$res = SQLGetChamp($SQL);
 	return $res;
 }
@@ -663,7 +663,7 @@ function unsubscribeFromTrip($user_id, $trip_id)
 	WHERE trip_id = '$trip_id' AND participant_id = '$user_id';";
 	SQLDelete($SQL);
 
-	$display_name = getUserById($user_id)[""];
+	$display_name = getUserById($user_id)["display_name"];
 
 	sendMessageToTrip(1,$trip_id,"$display_name a quitté le trajet.");
 
@@ -800,7 +800,7 @@ function getMessagesByTripId( $trip_id ) {
  */
 function sendMessageToTrip($user_id, $trip_id, $content) {
 	$SQL= "INSERT INTO messages (content,user_id, trip_id, send_time)
-	VALUES ('$user_id', '$trip_id', '$content',NOW());";
+	VALUES (  '$content','$user_id','$trip_id',NOW());";
 	SQLInsert($SQL);
 	return;
 }
