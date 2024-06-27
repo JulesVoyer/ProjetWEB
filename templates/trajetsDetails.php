@@ -12,6 +12,7 @@ if (basename($_SERVER["PHP_SELF"]) == "trajetsDetails.php")
 	die("");
 }
 
+
 include_once("libs/modele.php");
 include_once("libs/maLibUtils.php");
 include_once("libs/maLibForms.php"); 
@@ -24,6 +25,9 @@ if(!$trip_id = valider("trip_id")){
 
 
 ?>
+<?php  $idUser = valider('idUser', "SESSION"); ?>
+
+
 <script>
     console.log("synchro lignes debug");
 </script>
@@ -116,7 +120,7 @@ console.log("userId = "+userId);
                     console.log(xhr.responseText);
                     console.log(status);
                     console.log(error);
-                    alert("error");
+                    alert(error);
                 }
             });
         });
@@ -137,13 +141,15 @@ console.log("userId = "+userId);
                     console.log(xhr.responseText);
                     console.log(status);
                     console.log(error);
-                    alert("error");
+                    alert(error);
                 }
             });        
         });
 
     function updateParticipationDisplay(){
-        if (<?php echo checkParticipantAtTrip($_SESSION['idUser'], $trip_id); ?>){
+        
+        var isParticipant = <?php echo json_encode(checkParticipantAtTrip($user_id,$trip_id));?>;
+        if (isParticipant){
             $("#trjRejoindre").prop("disabled", true);
             $("#trjQuitter").prop("disabled", false);
             $("#trjRejoindre").hide();
@@ -198,7 +204,7 @@ console.log("userId = "+userId);
                 console.log(xhr.responseText);
                 console.log(status);
                 console.log(error);
-                alert("error");
+                alert(error);
             }
         });
     }
@@ -263,7 +269,7 @@ console.log("userId = "+userId);
                                 console.log(xhr.responseText);
                                 console.log(status);
                                 console.log(error);
-                                alert("error");
+                                alert(error);
                             }
                         }
                     )
@@ -319,7 +325,7 @@ console.log("userId = "+userId);
                                     console.log(xhr.responseText);
                                     console.log(status);
                                     console.log(error);
-                                    alert("error");
+                                    alert(error);
                                 }
                             }
                         )
@@ -329,7 +335,7 @@ console.log("userId = "+userId);
                     console.log(xhr.responseText);
                     console.log(status);
                     console.log(error);
-                    alert("error");
+                    alert(error);
                 }
             }
         )
@@ -354,7 +360,7 @@ console.log("userId = "+userId);
                     console.log(xhr.responseText);
                     console.log(status);
                     console.log(error);
-                    alert("error");
+                    alert(error);
                 }
             }
         )
