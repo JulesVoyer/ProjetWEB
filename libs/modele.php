@@ -800,11 +800,11 @@ function getMessagesByTripId( $trip_id ) {
  * @param int $user_id L'id de l'utilisateur qui envoie le message.
  * @param int $trip_id L'id du voyage auquel le message est associé.
  * @param string $content Le contenu du message.
- * @return void
+ * @return int
  */
 function sendMessageToTrip($user_id, $trip_id, $content) {
 	$SQL= "INSERT INTO messages (content,user_id, trip_id, send_time)
 	VALUES (  '$content','$user_id','$trip_id',NOW());";
-	SQLInsert($SQL);
-	return;
+	$id = SQLInsert($SQL);
+	return $id;
 }
