@@ -40,9 +40,13 @@ include_once("libs/maLibForms.php");
 
         <div id="pflVoiture">
             <ul>
-                <li><span class="pflGras pflVoitureX">Nom voiture 1</span><span class="pflGras"> : </span>-modèle- -couleur-</li>
-                <li><span class="pflGras pflVoitureX">Nom voiture 2</span><span class="pflGras"> : </span>-modèle- -couleur-</li>
-                <li><span class="pflGras pflVoitureX">Nom voiture 3</span><span class="pflGras"> : </span>-modèle- -couleur-</li>
+                <!--- DUMYY VEHICLE--->
+<!--            <li>
+                    <span class=\"pflGras pflVoitureX\">Nom voiture 1</span>  <span class=\"pflGras\"> : </span>
+                    -modèle- -couleur-
+                </li>
+-->
+
             </ul>
         </div>
 
@@ -350,7 +354,7 @@ include_once("libs/maLibForms.php");
             });
     }
 
-    $("#pflEditer").click( function () {
+    $("#pflValiderProfil").click( function () {
         modifMDP = $("#cbMDP").is(":checked");
         if(modifMDP){
             editPassword();
@@ -359,9 +363,9 @@ include_once("libs/maLibForms.php");
 
     } );
 
-jInfoVehicule= $(`li>
-                    <span class=\"pflGras pflVoitureX\">Nom voiture 1</span>  <span class=\"pflGras\"> : 
-                    -modèle- -couleur-</span>
+jInfoVehicule= $(`<li>
+                    <span class=\"pflGras pflVoitureX\">Nom voiture 1</span>  <span class=\"pflGras\"> : </span>
+                    -modèle- -couleur-
                 </li>`)
 
 
@@ -381,6 +385,7 @@ function setVehicleInfo(){
                     var jclone = jInfoVehicule.clone();
                     jclone.find(".pflVoitureX").html(vehicle.name);
 
+                    vehicle_list.append(jclone);
 
                     
                 }
@@ -395,4 +400,8 @@ function setVehicleInfo(){
         }
     )
 }
+
+setVehicleInfo();
+
+
 </script>
