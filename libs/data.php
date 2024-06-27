@@ -118,9 +118,12 @@ if (isset($_GET['action'])){
         // PARTICIPANTS //
 
         case 'checkParticipantAtTrip' : 
-            if($idUser =valider('idUser','SESSION') && $trip_id = valider('trip_id')) {
+            if(valider('connecte','SESSION') && $trip_id = valider('trip_id')) {
+                $idUser = $_SESSION['idUser'];
                 $response = checkParticipantAtTrip($idUser,$trip_id);
             }
+
+        break;
 
     }
     if ($response === null) {
@@ -164,7 +167,6 @@ else if(isset($_POST["action"])){
 
         break;
 
-        case 'quitTrip':
         case 'leaveTrip':
             if(valider('connecte','SESSION')){
                 $id = $_SESSION['idUser'];
@@ -185,15 +187,16 @@ else if(isset($_POST["action"])){
 
         case 'createIntervention' :
 
-            if(valider("connecte","SESSION")){
+            if(valider("connecte","SESSION"))
+            if(valider('lieu'))
+            if (valider('date')) {
                 $id = $_SESSION['idUser'];
-                if(valider('lieu') && valider('date')){
-
-                    $lieu = valider('lieu');
-                    $date = valider('date');
-                    createIntervention($id, $date, $lieu);
-                }
+                $lieu = $_POST['lieu'];
+                $date = $_POST['date'];
+                
+                $response =createIntervention($id, $date, $lieu);
             }
+            
         break;
 
 
@@ -206,9 +209,10 @@ else if(isset($_POST["action"])){
                 $id = $_SESSION['idUser'];
                 $content = $_POST['contenu'];
                 $trip_id = $_POST['trip_id'];
+
                 
                 error_log('content = ' . $content);
-                $reponse = sendMessageToTrip($id, $trip_id, $content);
+                $response = sendMessageToTrip($id, $trip_id, $content);
             }
 
         break;  
