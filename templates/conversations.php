@@ -98,7 +98,7 @@ include_once("libs/maLibForms.php");
     // récupération des conversations
 
     // Lien vers les messages
-    var jConvConversation = $("<a>").attr("href", "index.php?view=messages").addClass("convConversations");
+    var jConvConversation = $("<a>").addClass("convConversations");
     // Titre de la conversation 
     var jConvTitleConv = $("<p>").addClass("convTitleConv");
     // Le container
@@ -145,6 +145,7 @@ include_once("libs/maLibForms.php");
                     // Puis le lien 
                     $(jConvConversation).append(jConvTitleConv.clone());
                     $(jConvConversation).append(jConvMessageContainer.clone());
+                    $(jConvConversation).attr("href", "index.php?view=messages&trip_id=" + oRep[i].trip_id);
                     
                     // Puis on l'ajoute à la suite des conversations
                     $("#convBody").append(jConvConversation.clone());
