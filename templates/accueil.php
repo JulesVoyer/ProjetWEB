@@ -37,3 +37,10 @@ include_once("libs/maLibForms.php");
     </div>
 
 </div>
+
+<script>
+    // On récupère le pseudo de l'utilisateur connecté
+    var pseudo = "<?php echo $_SESSION['pseudo']; ?>";
+    // On remplace le texte "Pseudo" par le pseudo de l'utilisateur
+    document.querySelector("h1").innerHTML = "Bienvenue " + pseudo;
+</script>

@@ -13,8 +13,11 @@ include_once "libs/maLibForms.php";
 // on récupère le paramètre view éventuel 
 $view = valider("view"); 
 
+if($erreur= valider('erreur')) {
+	echo "<div class='erreur' style = { 'color' : 'red'}>$erreur</div>";
+}
 //Si on est pas connecté
-/* if (!valider("connecte","SESSION")) {
+ if (!valider("connecte","SESSION")) {
 
 	// Si view est vide ou différent de signUp, on charge la vue login par défaut
 	if ($view != "signUp") $view = "login"; 
@@ -22,7 +25,7 @@ $view = valider("view");
     // Si l'utilisateur n'est pas connecté, on affiche la vue login
     include("templates/$view.php");
 
-} else { */
+} else { 
 
     // Sinon
 
@@ -49,5 +52,5 @@ $view = valider("view");
 	// Qui contient les coordonnées de la personne si elle est connectée
 
 	include("templates/footer.php");
-//}
+}
 	

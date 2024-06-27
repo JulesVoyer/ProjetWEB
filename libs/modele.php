@@ -54,7 +54,7 @@ function checkUsername($login){
 
 function getUserById($id)
 {
-	$SQL="SELECT * FROM users WHERE id='$id';";
+	$SQL="SELECT id, username, display_name, driving_license, adress FROM users WHERE id='$id';";
 
 	$result = parcoursRs(SQLSelect($SQL));
 	if (count($result)> 0)
@@ -116,18 +116,26 @@ function createAccount($username, $password, $display_name, $driving_license, $s
  * @param string $city_code le nouveau code postal
  * @return int le nombre de lignes mises à jour par l'opération
  */
-function updateUserById($id, $username, $password, $display_name, $driving_license, $street_number, $street, $city, $city_code){
+function updateUserById($id, $username, $display_name, $street_number, $street, $city, $city_code){
 	$SQL= "UPDATE users
 	SET username = '$username',
-		password = '$password',
 		display_name = '$display_name',
-		driving_license = '$driving_license',
 		adress = '{
 			\"street_number\" : \"$street_number\", 
 			\"street\" : \"$street\" , 
 			\"code\" : \"$city_code\" ,
 			\"city\" : \"$city\"
 		}'
+	WHERE id = '$id';
+	";
+
+	$n = SQLUpdate($SQL);
+	return $n;
+}
+
+function updateUserPasswordById($id, $password){
+	$SQL= "UPDATE users
+	SET password = '$password'
 	WHERE id = '$id';
 	";
 
@@ -488,6 +496,23 @@ function updateTripById($id, $departure_time, $driver_id, $vehicle_id, $nb_passe
 }
 
 /**
+ * Récupère un voyage en fonction de son identifiant.
+ *
+ * @param int $id L'identifiant du voyage.
+ * @throws Exception Description de l'exception
+ * @return array|false Les informations du voyage. 
+ */
+function getTripById($id){
+	$SQL= "SELECT * FROM trips WHERE id = '$id';";
+	$res = parcoursRs(SQLSelect($SQL));
+	if (count($res)){
+		return $res[0];
+	}else {
+		return false;
+	}
+}
+
+/**
  * Mettre à jour le conducteur d'un voyage.
  * @param int $user_id l'ID de l'utilisateur qui deviendra le conducteur.
  * @param int $trip_id L'ID du voyage.
@@ -566,7 +591,7 @@ function deleteTripById($id) {
 	 * @return int Le nombre de places restantes pour le voyage.
 	 */
 function getRemainingSeatsForTrip($id) {
-	$SQL= "SELECT t.nb_passengers - COUNT(*) FROM trip t JOIN trip_has_participant thp ON t.id = thp.trip_id;";
+	$SQL= "SELECT t.nb_passengers - COUNT(thp.id) FROM trips t LEFT JOIN trip_has_participant thp ON t.id = thp.trip_id GROUP BY t.id HAVING t.id = '$id';";
 	$res = SQLGetChamp($SQL);
 	return $res;
 }

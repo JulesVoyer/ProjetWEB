@@ -23,12 +23,11 @@ include_once("libs/maLibForms.php");
 
         <div id="pflPerso">
             <ul>
-                <li><span class="pflGras">Prénom : </span><span id="pflPrenom">prénom</span></li>
-                <li><span class="pflGras">Nom : </span><span id="pflNom">nom</span></li>
+                <li><span class="pflGras">Nom d'affichage : </span><span id="pflDisplayName">prénom</span></li>
                 <li><span class="pflGras">Pseudo : </span><span id="pflPseudo">pseudo</span></li>
                 <li>
                     <span class="pflGras">Adresse : </span> 
-                    <div><span id="pflNum">XX</span>, rue <span id="pflNomRue">-nom de la rue-</span>- 
+                    <div><span id="pflNum">XX</span>, <span id="pflNomRue">-nom de la rue-</span>- 
                         <br /><span id="pflCode">59650</span>
                         <br /><span id="pflVille">Villeneuve d'Ascq</span>
                     </div>
@@ -68,9 +67,8 @@ include_once("libs/maLibForms.php");
     <div id="pflPopupPerso">
         <h2>Editer à propos :</h2>
         <form action="controleur.php" methode="">
-            <input id="newPre" class="popupInput" type="text" name="newPre" placeholder="Prénom..." />
-            <input id="newNom" class="popupInput" type="text" name="newNom" placeholder="Nom... " />
-            <input id="newPseu" class="popupInput" type="text" name="newPseu" placeholder="Pseudo..." />
+            <input id="newDisp" class="popupInput" type="text" name="newDisp" placeholder="Nom d'affichage..." />
+            <input id="newPseu" class="popupInput" type="text" name="newPseu" placeholder="Identifiant..." />
             <h3>Adresse :</h3>
             <input id="newNum" class="popupInput" type="text" name="newNum" placeholder="Numéro de rue..." />
             <input id="newNomRue" class="popupInput" type="text" name="newNomRue" placeholder="Nom de rue..." />
@@ -151,8 +149,7 @@ include_once("libs/maLibForms.php");
         $("#pflBody").css("-webkit-filter", "blur(3px)");
         if (selected == 1) {
             /* Mettre les valeurs d'origine dans les champs d'entrée texte */
-            $("#newPre").val($("#pflPrenom").html());
-            $("#newNom").val($("#pflNom").html());
+            $("#newDisp").val($("#pflDisplayName").html());
             $("#newPseu").val($("#pflPseudo").html());
             $("#newNum").val($("#pflNum").html());
             $("#newNomRue").val($("#pflNomRue").html());
@@ -266,5 +263,98 @@ include_once("libs/maLibForms.php");
     // fin changement des rubriques
 
     // fin traitement du profil
+
+
+    function setUserInfo(){
+        $.ajax(
+            {
+                type : 'GET',
+                data : {action : 'getCurrentUser'},
+                url : './libs/data.php',
+                dataType : 'json',
+                success : function(data){
+                    console.log(data);
+                    adress = JSON.parse(data.adress)
+                    $("#pflDisplayName").html(data.display_name);
+                    $("#pflPseudo").html(data.username);
+                    $("#pflNum").html(adress.street_number);
+                    $("#pflNomRue").html(adress.street);
+                    $("#pflVille").html(adress.city);
+                    $("#pflCode").html(adress.city_code);
+
+                    if(data.driving_license==1){
+                    var license_value = "Oui"
+                    }else {"Non"}
+                    $("#pflLicence").html(license_value);
+
+                },
+                error : function(xhr, status, error) {
+                    console.log(xhr);
+                    console.log(status);
+                    console.log(error);
+                }
+
+            }
+        )
+    }
+
+    setUserInfo();
+
+
+    function editUserInfo(){
+        $.ajax(
+            {
+                type : 'POST',
+                data : {action : 'updateUser',
+                        display_name : $("#newDisp").val(),
+                        username : $("#newPseu").val(),
+                        street_number : $("#newNum").val(),
+                        street : $("#newNomRue").val(),
+                        city : $("#newCity").val(),
+                        city_code : $("#newCode").val(),
+                    },
+                url : './libs/data.php',
+                dataType : 'json',
+                success : function(data){
+                    console.log(data);
+                },
+                error : function(xhr, status, error) {
+                    console.log(xhr);
+                    console.log(status);
+                    console.log(error);
+                }
+            });
+    }
+
+    function editPassword(){
+        $.ajax(
+            {
+                type : 'POST',
+                data : {action : 'updateUserPassword',
+                        ancienMDP : $("#ancienMDP").val(),
+                        newMDP : $("#newMDP").val(),
+                        confirmMDP : $("#confirmMDP").val()
+                    },
+                url : './libs/data.php',
+                dataType : 'json',
+                success : function(data){
+                    console.log(data);
+                },
+                error : function(xhr, status, error) {
+                    console.log(xhr);
+                    console.log(status);
+                    console.log(error);
+                }
+            });
+    }
+
+    $("#pflEditer").click( function () {
+        modifMDP = $("#cbMDP").is(":checked");
+        if(modifMDP){
+            editPassword();
+        }
+        editUserInfo();
+
+    } );
 
 </script>
