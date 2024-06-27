@@ -21,6 +21,7 @@ if (isset($_GET['action'])){
             if (isset($_GET['date'])) $date = $_GET['date'];else $date = null;
             if (isset($_GET['nbPassagers'])) $nbPassagers = $_GET['nbPassagers'];else $nbPassagers = null;
 
+            autoArchiveTrips();
             $response = getDraftTripsByDateDestinationAndRemainingSeats($date, $direction, $nbPassagers);       
         break;
 
@@ -79,8 +80,7 @@ if (isset($_GET['action'])){
 
         case 'getRemainingSeats' :
 
-            if(isset($_GET['trip_id'])){
-                $trip_id = $_GET['trip_id'];
+            if($trip_id = valider('trip_id')){
                 $response = getRemainingSeatsForTrip($trip_id);
             }
 
@@ -154,6 +154,25 @@ else if(isset($_POST["action"])){
                 }
             }
 
+        break;
+
+        case 'quitTrip':
+        case 'leaveTrip':
+            if(valider('connecte','SESSION')){
+                $id = $_SESSION['idUser'];
+                if($trip=valider('trip_id')){
+                    unsubscribeFromTrip($id, $trip);
+                }
+            }
+        break;
+
+        case 'joinTrip' :
+            if(valider('connecte','SESSION')){
+                $id = $_SESSION['idUser'];
+                if($trip=valider('trip_id')){
+                    subscribeToTrip($id, $trip);
+                }
+            }
         break;
 
 
