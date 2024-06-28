@@ -919,7 +919,7 @@ body {
     overflow: auto;
 }
 
-#convTitlePage, #convTitleInvit {
+#convTitleConv, #convTitleInvit {
     text-decoration: underline;
     text-align: center;
     font-size: 24px;
@@ -945,6 +945,10 @@ body {
     color: black;
 }
 
+#convContInvit, #convContConv {
+    width: 100%;
+}
+
 .convTitleConv, .convTitleInvit {
     font-size: 18px;
     font-weight: bold;
@@ -959,9 +963,15 @@ body {
     text-overflow: ellipsis; 
 }
 
-.convMessageContainer, .convInvitContainer {
+.convInvitContainer {
     display: flex;
     justify-content: space-between;
+    align-items: center;
+}
+
+.convInvitContainer {
+    display: flex;
+    justify-content: space-around;
     align-items: center;
 }
 

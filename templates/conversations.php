@@ -15,13 +15,83 @@ include_once("libs/maLibForms.php");
 ?>
 
 <div id="convBody">
-        
     <div id="convTitleInvit">Mes invitations</div>
-    <div class="convInvitations">
-        <p class="convTitleInvit">Un titre de conversation</p>
-        <div class="convInvitContainer">
-            <input type="button" class="convBtnRefuse btn" value="Refuser" />
-            <input type="button" class="convBtnAccept btn" value="Accepter" />
+
+    <div id="convContInvit">
+        <div class="convInvitations">
+            <p class="convTitleInvit">Un titre de conversation</p>
+            <div class="convInvitContainer">
+                <input type="button" class="convBtnRefuse btn" value="Refuser" />
+                <input type="button" class="convBtnAccept btn" value="Accepter" />
+            </div>
+        </div>
+        <div class="convInvitations">
+            <p class="convTitleInvit">Un titre de conversation</p>
+            <div class="convInvitContainer">
+                <input type="button" class="convBtnRefuse btn" value="Refuser" />
+                <input type="button" class="convBtnAccept btn" value="Accepter" />
+            </div>
+        </div>
+        <div class="convInvitations">
+            <p class="convTitleInvit">Un titre de conversation</p>
+            <div class="convInvitContainer">
+                <input type="button" class="convBtnRefuse btn" value="Refuser" />
+                <input type="button" class="convBtnAccept btn" value="Accepter" />
+            </div>
+        </div>
+        <div class="convInvitations">
+            <p class="convTitleInvit">Un titre de conversation</p>
+            <div class="convInvitContainer">
+                <input type="button" class="convBtnRefuse btn" value="Refuser" />
+                <input type="button" class="convBtnAccept btn" value="Accepter" />
+            </div>
+        </div>
+    </div>
+
+    <div id="convTitleConv">Mes conversations</div>
+
+    <div id="convContConv">
+        <div class="convConversations">
+            <p class="convTitleConv">Un titre de conversation</p>
+            <div class="convMessageContainer">
+                <p class="convLastMessage">User : Dernier message Dernier message Dernier message Dernier message</p>
+                <p class="convLastMessageTime">10:00</p>
+            </div>
+        </div>
+        <div class="convConversations">
+            <p class="convTitleConv">Un titre de conversation</p>
+            <div class="convMessageContainer">
+                <p class="convLastMessage">User : Dernier message</p>
+                <p class="convLastMessageTime">10:00</p>
+            </div>
+        </div>
+        <div class="convConversations">
+            <p class="convTitleConv">Un titre de conversation</p>
+            <div class="convMessageContainer">
+                <p class="convLastMessage">User : Dernier message</p>
+                <p class="convLastMessageTime">10:00</p>
+            </div>
+        </div>
+        <div class="convConversations">
+            <p class="convTitleConv">Un titre de conversation</p>
+            <div class="convMessageContainer">
+                <p class="convLastMessage">User : Dernier message</p>
+                <p class="convLastMessageTime">10:00</p>
+            </div>
+        </div>
+        <div class="convConversations">
+            <p class="convTitleConv">Un titre de conversation</p>
+            <div class="convMessageContainer">
+                <p class="convLastMessage">User : Dernier message</p>
+                <p class="convLastMessageTime">10:00</p>
+            </div>
+        </div>
+        <div class="convConversations">
+            <p class="convTitleConv">Un titre de conversation</p>
+            <div class="convMessageContainer">
+                <p class="convLastMessage">User : Dernier message</p>
+                <p class="convLastMessageTime">10:00</p>
+            </div>
         </div>
     </div>
     
@@ -44,15 +114,11 @@ include_once("libs/maLibForms.php");
     // Le container
     var jConvMessageContainer = $("<div>").addClass("convInvitContainer");
     // les boutons
-    var jBtnRefuser = $("<input[type='button'>").addClass("btn").addClass("convBtnRefuse").val("Refuser");
-    var jBtnAccept = $("<input[type='button'>").addClass("btn").addClass("convBtnAccept").val("Accepter");
+    var jBtnRefuser = $("<input>").attr("type", "button").addClass("btn").addClass("convBtnRefuse").val("Refuser");
+    var jBtnAccept = $("<input>").attr("type", "button").addClass("btn").addClass("convBtnAccept").val("Accepter");
 
     // récupération des conversations
 
-    // titre de la page
-    var title = $("<div>")
-                    .attr("id", "convTitlePage")
-                    .html("Mes conversations");
     // Lien vers les messages
     var jConvConversation = $("<a>").addClass("convConversations");
     // Titre de la conversation 
@@ -79,9 +145,7 @@ include_once("libs/maLibForms.php");
                 var day = d.getDay();
 
                 // Je retire les conversations qui sont là
-                $("#convBody").empty();
-                $("#convBody").append(title.clone());
-
+                $("#convContConv").empty();
                 
                 // Je parcours le tableau et j'ajoute les conversations
                 for (i=0;i<oRep.length;i++) {
@@ -128,7 +192,7 @@ include_once("libs/maLibForms.php");
                     jConvConversation.attr("href", "index.php?view=messages&tripId=" + oRep[i].trip_id + "&tripName=" + tripName);
                     
                     // Puis on l'ajoute à la suite des conversations
-                    $("#convBody").append(jConvConversation.clone());
+                    $("#convContConv").append(jConvConversation.clone());
                 }					
             },
             error: function (xhr, status, error) {
