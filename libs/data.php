@@ -134,6 +134,24 @@ if (isset($_GET['action'])){
             }
         break;
 
+        // MY TRIPS //
+
+        case 'getMyDraftTrips' : 
+            if(valider('connecte','SESSION')){
+                $id = $_SESSION['idUser'];
+                autoArchiveTrips();
+                $response = getDraftTripsByUserId($id);
+            }
+        break;
+
+        case 'getMyArchivedTrips' : 
+            if(valider('connecte','SESSION')){
+                $id = $_SESSION['idUser'];
+                autoArchiveTrips();
+                $response = getArchivedTripsByUserId($id);
+            }
+        break;
+
     }
     if ($response === null) {
         $response = []; // Assigne un tableau vide si $response est null
