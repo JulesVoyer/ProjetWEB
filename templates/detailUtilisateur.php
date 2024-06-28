@@ -17,13 +17,18 @@ $interventions[] = array('date' => '2024-06-26', 'direction' => '1');
 $interventions[] = array('date' => '2024-06-27', 'direction' => '2');
 $interventions[] = array('date' => '2024-06-28', 'direction' => '1');
 
+if (!$id=valider("user_id")){
+    header("Location:../index.php?view=accueil");
+    die("");
+}
+
+$utilisateur = getUserById($id);
 
 $utilisateur = array(
-    'Nom' => 'LE GLAZ',
-    'Prénom' => 'Isabelle',
-    'Permis' => 'Oui',
-    'nbTrajet' => '5',
-    'interventions' => $interventions
+    'Nom' => $utilisateur['display_name'],
+    'Permis' => ($utilisateur['driving_license'] == 1) ? 'Oui' : 'Non',
+    'nbTrajet' => getUserTripCount($id),
+    'interventions' => getInterventionsByUserId($id),
 )
 
 ?>
