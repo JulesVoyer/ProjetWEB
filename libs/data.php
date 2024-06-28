@@ -277,6 +277,25 @@ else if(isset($_POST["action"])){
             }
         break;
 
+        case 'refuseInvitation' : 
+            if(valider('connecte','SESSION'))
+            if(valider('trip_id')) {
+                $id = $_SESSION['idUser'];
+                $trip_id = $_POST['trip_id'];
+                declineInvite($id,$trip_id);
+            }
+
+        break;
+
+        case 'acceptInvitation' :
+            if(valider('connecte','SESSION'))
+            if(valider('trip_id')) {
+                $id = $_SESSION['idUser'];
+                $trip_id = $_POST['trip_id'];
+                acceptInvite($id,$trip_id);
+                subscribeToTrip($id,$trip_id);
+            }
+        break;
         
 
         

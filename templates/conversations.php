@@ -114,8 +114,58 @@ include_once("libs/maLibForms.php");
     // Le container
     var jConvInvitContainer = $("<div>").addClass("convInvitContainer");
     // les boutons
-    var jBtnRefuser = $("<input>").attr("type", "button").addClass("btn").addClass("convBtnRefuse").val("Refuser");
-    var jBtnAccept = $("<input>").attr("type", "button").addClass("btn").addClass("convBtnAccept").val("Accepter");
+    var jBtnRefuser = $("<input>")
+        .attr("type", "button")
+        .addClass("btn")
+        .addClass("convBtnRefuse")
+        .val("Refuser")
+        .click( function () {
+                console.log("on souahite refuser");
+                $.ajax({
+
+                    type: "POST",	
+                    url: "./libs/data.php",
+                    data: {action : 'refuseInvitation', 
+                        trip_id : $(this).parent().data("trip_id")},
+                    dataType: "json",
+                    success: function (oRep) {
+                        console.log(oRep);
+                        getInvitations();
+                    },
+                    error: function (xhr, status, error) {
+                        console.log("Status de l'erreur : " + status);
+                        console.log("error : " + error);
+                        console.log("Réponse complète : " + xhr.responseText);
+
+                    }
+                });
+            });
+    var jBtnAccept = $("<input>")
+        .attr("type", "button")
+        .addClass("btn")
+        .addClass("convBtnAccept")
+        .val("Accepter")
+        .click( function () {
+        console.log("on souahite accepter");
+        $.ajax({
+
+            type: "POST",	
+            url: "./libs/data.php",
+            data: {action : 'acceptInvitation', 
+                trip_id : $(this).parent().data("trip_id")},
+            dataType: "json",
+            success: function (oRep) {
+                console.log(oRep);
+                getInvitations();
+            },
+            error: function (xhr, status, error) {
+                console.log("Status de l'erreur : " + status);
+                console.log("error : " + error);
+                console.log("Réponse complète : " + xhr.responseText);
+
+            }
+        });
+    });
 
     function getInvitations() {
         
@@ -133,8 +183,8 @@ include_once("libs/maLibForms.php");
                 for (i=0;i<oRep.length;i++) {
 
                     // je vide mes éléments
-                    jConvConversation.empty();
-                    jConvMessageContainer.empty();
+                    jConvInvitations.empty();
+                    jConvInvitContainer.empty();
 
                     // Je remplis les couches les plus profondes en premier
                     var tripName = false;
@@ -155,8 +205,9 @@ include_once("libs/maLibForms.php");
                     jConvTitleInvit.html(tripName);
 
                     // Puis le container
-                    jConvMessageContainer.append(jBtnRefuser.clone());
-                    jConvMessageContainer.append(jBtnAccept.clone());
+                    jConvInvitContainer.append(jBtnRefuser.clone(true));
+                    jConvInvitContainer.append(jBtnAccept.clone(true));
+                    jConvInvitContainer.data("trip_id", oRep[i].trip_id);
 
                     // Puis le lien 
                     jConvInvitations.append(jConvTitleInvit.clone());
@@ -267,4 +318,51 @@ include_once("libs/maLibForms.php");
     // Récupération des conversations au chargement de la page
     getConversations();
 
+
+    $("#convBtnRefuse").click( function () {
+        console.log("on souahite refuser");
+        $.ajax({
+
+            type: "POST",	
+            url: "./libs/data.php",
+            data: {action : 'refuseInvitation', 
+                trip_id : $(this).parent().data("trip_id")},
+            dataType: "json",
+            success: function (oRep) {
+                console.log(oRep);
+                getInvitations();
+            },
+            error: function (xhr, status, error) {
+                console.log("Status de l'erreur : " + status);
+                console.log("error : " + error);
+                console.log("Réponse complète : " + xhr.responseText);
+
+            }
+        });
+    })
+
+$(document).on(("click"), ".convBtnAccept", function() {
+    
+})
+    $("#convBtnAccept").click( function () {
+        console.log("on souahite accepter");
+        $.ajax({
+
+            type: "POST",	
+            url: "./libs/data.php",
+            data: {action : 'acceptInvitation', 
+                trip_id : $(this).parent().data("trip_id")},
+            dataType: "json",
+            success: function (oRep) {
+                console.log(oRep);
+                getInvitations();
+            },
+            error: function (xhr, status, error) {
+                console.log("Status de l'erreur : " + status);
+                console.log("error : " + error);
+                console.log("Réponse complète : " + xhr.responseText);
+
+            }
+        });
+    })
 </script>
