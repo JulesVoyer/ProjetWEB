@@ -260,6 +260,14 @@ function updateVehicleById($id,$name, $nb_seats, $code, $model) {
 	return $n;
 }
 
+
+function deleteVehicleById($id){
+	$SQL= "DELETE FROM vehicles WHERE id = '$id';";
+	$result = SQLDelete($SQL);
+	return $result;
+
+}
+
 	/**
 	 * Récupère les vehicules disponibles pour une date donnée.
 	 *
