@@ -152,10 +152,13 @@ if (isset($_GET['action'])){
             }
         break;
 
+
+        // INVITATIONS //
+
         case 'getInvitations' :
             if(valider('connecte','SESSION')){
                 $id = $_SESSION['idUser'];
-                $result = getPendingInvitesForUser($id);
+                $response = getPendingInvitesForUser($id);
             }
         break;
 

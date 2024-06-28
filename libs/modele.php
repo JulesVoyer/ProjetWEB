@@ -736,8 +736,9 @@ function sendInviteToUser($user_id, $trip_id) {
  * @return array Un tableau associatif de toutes les invitations en attente pour l'utilisateur.
  */
 function getPendingInvitesForUser($user_id) {
-	$SQL= "SELECT * FROM invites
-	WHERE target_id = '$user_id' AND status = 0;";
+	$SQL= "SELECT i.*, t.departure_time, t.direction FROM invites i JOIN trips t 
+	ON i.trip_id = t.id
+	WHERE i.target_id = '$user_id' AND i.status = 0;";
 	$res = parcoursRs(SQLSelect($SQL));
 	return $res;
 }
