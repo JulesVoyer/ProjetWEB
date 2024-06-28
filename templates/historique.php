@@ -22,10 +22,15 @@ include_once("libs/maLibForms.php");
         <div action="controleur.php" method="post" id="searchFieldHistorique">
             <input type="date" name="date" placeholder="Quand" id="champDate">
             <input type="image" name="imgRecherche" src="ressources/loupe.png" alt="rechercheHistorique" id="imgRecherche">
+            <input type="button" class ="btn" value="clear" id="btnClear">
         </div>
 
-        <div id = "MyDraftTrips" class="subTitlePage">Mes trajets à venir</div>
-        <div id= "MyArchivedTrips" class="subTitlePage"> Mes trajets </div>
+        <div id = "MyDraftTrips" class="subTitlePage">Mes trajets à venir
+            <div id = "draftTripsList"></div>
+        </div>
+        <div id= "MyArchivedTrips" class="subTitlePage"> Mes trajets 
+            <div id = "archivedTripsList"></div>
+        </div>
 
         
     
@@ -63,6 +68,7 @@ include_once("libs/maLibForms.php");
             data: {'action' : 'getMyDraftTrips'},
             dataType: "json",
             success: function (rep) {
+                $("#draftTripsList").empty();
                 console.log(rep)
                 for (var i = 0; i < rep.length; i++) {
                     var trajetClone = jTrajet.clone();
@@ -100,7 +106,7 @@ include_once("libs/maLibForms.php");
                     trajetClone.find(".heureDepart").html(heure);
                     trajetClone.find(".pointDepart").html(depart);
                     trajetClone.find(".pointArrivee").html(arrivee);
-                    $("#MyDraftTrips").append(trajetClone);
+                    $("#draftTripsList").append(trajetClone);
 
                 }
             },
@@ -119,6 +125,8 @@ include_once("libs/maLibForms.php");
             data: {'action' : 'getMyArchivedTrips'},
             dataType: "json",
             success: function (rep) {
+                $("#archivedTripsList").empty();
+
                 console.log(rep)
                 for (var i = 0; i < rep.length; i++) {
                     var trajetClone = jTrajet.clone();
@@ -156,7 +164,7 @@ include_once("libs/maLibForms.php");
                     trajetClone.find(".heureDepart").html(heure);
                     trajetClone.find(".pointDepart").html(depart);
                     trajetClone.find(".pointArrivee").html(arrivee);
-                    $("#MyArchivedTrips").append(trajetClone);
+                    $("#archivedTripsList").append(trajetClone);
 
                 }
             },
@@ -169,4 +177,35 @@ include_once("libs/maLibForms.php");
         })
     }
     
+
+    function filterElementsByDate(){
+        var date = $("#champDate").val();
+        console.log("date recherche :" + date);
+        $("#draftTripsList").children().each(function() {
+            let trajet = $(this); // Convertit l'élément en objet jQuery
+            console.log("date trajet :" + trajet.find(".dateTrajet").html());
+            if(trajet.find(".dateTrajet").html() != date){
+                trajet.hide();
+            }
+        });
+
+        $("#archivedTripsList").children().each(function() {
+            let trajet = $(this); // Convertit l'élément en objet jQuery
+            if(trajet.find(".dateTrajet").html() != date){
+                trajet.hide();
+            }
+        });
+    }   
+
+    $("#imgRecherche").click(function(){
+        filterElementsByDate();
+    });
+
+    $("#btnClear").click(function(){
+        $("#champDate").val("");
+        $("#draftTripsList .trajet").show();
+        $("#archivedTripsList .trajet").show();
+
+    });
+
     </script>
