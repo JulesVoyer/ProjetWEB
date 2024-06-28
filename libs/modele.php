@@ -143,6 +143,15 @@ function updateUserPasswordById($id, $password){
 	return $n;
 }
 
+
+
+function getUserTripCount($user){
+	$sql = "SELECT COUNT(*) as nb FROM trip_has_participant WHERE participant_id = '$user';";
+
+	$result = SQLGetChamp($sql);
+	return $result;
+}
+
 /**
  * supprimer un utilisateur de la base de données
  *
@@ -362,12 +371,13 @@ function getInterventionsByUserId( $user_id ) {
 function getUsersByInterventionDateAndDirection($date, $direction) {
 	$SQL= "SELECT u.* FROM 
 		interventions i
-		JOIN users u ON interventions.user_id = u.id
+		JOIN users u ON i.user_id = u.id
 	WHERE i.date = '$date'
 	AND i.direction = '$direction';";
 	$res = parcoursRs(SQLSelect($SQL));
 	return $res;
 }
+
 
 
 // TRIPS

@@ -186,7 +186,8 @@
 					$qs = "?view=trajetsDetails&trip_id=$trip_id";
 					$datetime = valider("dateHeure");
 					$date = date("Y-m-d", strtotime($datetime));
-					$targets = getAvailableCentraleVehiclesByDate($date);
+					$targets = getUsersByInterventionDateAndDirection($date,  $direction);
+					
 					
 
 					foreach ($targets as $target){
