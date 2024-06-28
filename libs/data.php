@@ -152,6 +152,13 @@ if (isset($_GET['action'])){
             }
         break;
 
+        case 'getInvitations' :
+            if(valider('connecte','SESSION')){
+                $id = $_SESSION['idUser'];
+                $result = getPendingInvitesForUser($id);
+            }
+        break;
+
     }
     if ($response === null) {
         $response = []; // Assigne un tableau vide si $response est null
@@ -247,6 +254,29 @@ else if(isset($_POST["action"])){
                 $vehicle_id = $_POST['vehicle_id'];
                 $response = deleteVehicleById($vehicle_id);
             }
+        break;
+
+        case 'createVehicle' : 
+            if(valider('connecte','SESSION'))
+            if(valider('vehicle_name'))
+            if(valider('vehicle_nb_seats')){
+
+
+                $code = valider('code')?$_POST['code']:null;
+                $model = valider('model')? $_POST['model'] :null;
+
+                $id = $_SESSION['idUser'];
+                $vehicle_name = $_POST['vehicle_name'];
+                $vehicle_nb_seats = $_POST['vehicle_nb_seats'];
+                $response = createVehicle($vehicle_name, $vehicle_nb_seats, $code, $model, $id);
+                $response = ["msg"=>"jtebez"];
+                
+            }
+        break;
+
+        
+
+        
     }
     if ($response === null) {
         $response = []; // Assigne un tableau vide si $response est null

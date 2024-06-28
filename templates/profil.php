@@ -90,7 +90,7 @@ include_once("libs/maLibForms.php");
             <input class="popupInput editMDP" type="password" name="confirmMDP" placeholder="Confimer le mot de passe..." />
             <div class="popupButtons">
                 <input  class="btn pflAnnuler" type="button" name="annuler" value="Annuler" />   
-                <input id="pflValiderProfil" class="btn" type="submit" name="action" value="Valider" /> 
+                <input id="pflValiderProfil" class="btn" type="button" name="action" value="Valider" /> 
             </div>  
         </form>
     </div>
@@ -111,13 +111,13 @@ include_once("libs/maLibForms.php");
                 <label class="pflPopupLabel" for="cbAj">Ajouter un véhicule ?</label>
                 <input id="cbAj" type="checkbox" name="ajouterV" />
             </div>
-            <input id="newNum" class="popupInput iptAjV" type="text" name="vehicle_name" placeholder="Nom du véhicule..." />
-            <input id="newNomRue" class="popupInput iptAjV" type="text" name="vehicle_nb_seats" placeholder="Nombre de places..." />
-            <input id="newCode" class="popupInput iptAjV" type="text" name="model" placeholder="Modèle... (optionnel)" />
-            <input id="newCity" class="popupInput iptAjV" type="text" name="code" placeholder="Immatriculation... (optionnel)" />
+            <input id="newVehicleName" class="popupInput iptAjV" type="text" name="vehicle_name" placeholder="Nom du véhicule..." />
+            <input id="newVehicleSeatnb" class="popupInput iptAjV" type="text" name="vehicle_nb_seats" placeholder="Nombre de places..." />
+            <input id="newVehicleModel" class="popupInput iptAjV" type="text" name="model" placeholder="Modèle... (optionnel)" />
+            <input id="newVehicleCode" class="popupInput iptAjV" type="text" name="code" placeholder="Immatriculation... (optionnel)" />
             <div class="popupButtons">
                 <input class="btn pflAnnuler" type="button" name="annuler" value="Annuler" />   
-                <input id="pflValiderVoit" class="btn" type="submit" name="action" value="Valider" /> 
+                <input id="pflValiderVoit" class="btn" type="button" name="action" value="Valider" /> 
             </div>  
         </form>
     </div>
@@ -202,7 +202,7 @@ include_once("libs/maLibForms.php");
 
                 jDivVehicule.empty();
                 jDivVehicule.append(jRadVehicule.clone()
-                                        .val("")
+                                        .val($(this).data("id"))
                                         .attr("id", $(this).html()));
                 jDivVehicule.append(jLblVehicule.clone()
                                         .html($(this).html())
@@ -365,7 +365,7 @@ include_once("libs/maLibForms.php");
 
 jInfoVehicule= $(`<li>
                     <span class=\"pflGras pflVoitureX\">Nom voiture 1</span>  <span class=\"pflGras\"> : </span>
-                    -modèle- -couleur-
+                    <p class =
                 </li>`)
 
 
@@ -384,6 +384,7 @@ function setVehicleInfo(){
                     var vehicle = data[i];
                     var jclone = jInfoVehicule.clone();
                     jclone.find(".pflVoitureX").html(vehicle.name);
+                    jclone.find(".pflVoitureX").data("id", vehicle.id);
 
                     vehicle_list.append(jclone);
 
@@ -403,5 +404,74 @@ function setVehicleInfo(){
 
 setVehicleInfo();
 
+function createVehicle (){
+    if($("#cbAj").is(":checked")){
+        $.ajax(
+            {
+                type : 'POST',
+                data : {action : 'createVehicle',
+                        vehicle_name : $("#newVehicleName").val(),
+                        vehicle_nb_seats : $("#newVehicleSeatnb").val(),
+                        model : $("#newVehicleModel").val(),
+                        code : $("#newVehicleCode").val()
+                    },
+                url : './libs/data.php',
+                dataType : 'json',
+                success : function(data){
+                    console.log(data);
+                    $("#pflVoiture ul ").empty();
+
+                    setVehicleInfo();
+                },
+                error : function(xhr, status, error) {
+                    console.log(xhr);
+                    console.log(status);
+                    console.log(error);
+                }
+            });
+    }
+}
+
+function deleteVehicle (){
+    if($("#cbSuppr").is(":checked")){
+        $.ajax(
+            {
+                type : 'POST',
+                data : {action : 'deleteVehicle',
+                        vehicle_id : $("input[name='possessedV']:checked").val()
+                    },
+                url : './libs/data.php',
+                dataType : 'json',
+                success : function(data){
+                    console.log(data);
+                    $("#pflVoiture ul ").empty();
+
+                    setVehicleInfo();
+                },
+                error : function(xhr, status, error) {
+                    console.log(xhr);
+                    console.log(status);
+                    console.log(error);
+                }
+            });
+    }
+
+}
+
+$("#pflValiderVoit").click( function () {
+
+    if($("#cbSuppr").is(":checked")){
+        deleteVehicle();
+    }
+    if($("#cbAj").is(":checked")){
+        createVehicle();
+    }
+
+    $("#pflBody").css("filter", "blur(0)");
+    $("#pflBody").css("-webkit-filter", "blur(0)");
+    $("#pflPopupEditionVoit").hide();
+
+
+} );
 
 </script>

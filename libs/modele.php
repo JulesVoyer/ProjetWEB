@@ -179,10 +179,10 @@ function verifDriverLicenseById($id){
  *
  * @param string $name  le nom du vehicule
  * @param int $nb_seats le nombre de places du vehicule
- * @param string $code l'immatriculation du vehicule
- * @param string $model le modele du vehicule
+ * @param string|null $code l'immatriculation du vehicule
+ * @param string|null $model le modele du vehicule
  * @param int $owner_id l'id de l'utilisateur
- * @return void
+ * @return int
  */
 function createVehicle($name, $nb_seats, $code, $model, $owner_id) {
 	// $code et $model peuvent etre NULL, si l'utilisateur ne les a pas renseignés, et on veut les laisser NULL en base
@@ -191,8 +191,8 @@ function createVehicle($name, $nb_seats, $code, $model, $owner_id) {
 
 	$SQL= "INSERT INTO vehicles (name, nb_seats, code, model, owner_id)
 	VALUES ('$name', '$nb_seats', $code_value, $model_value, '$owner_id');";
-	SQLInsert($SQL);
-	return;
+	$id=SQLInsert($SQL);
+	return$id;
 	}
 
 /**
@@ -844,3 +844,7 @@ function getMessageById($id){
 		return $res[0];
 	}
 }
+
+
+//INVITES
+
