@@ -67,6 +67,10 @@ include_once("libs/maLibForms.php");
     var jMsgEnvoye = $("<p>").addClass("msgEnvoye");
     // // Heure et moi du message envoyé
     var jMsgHeureEnvoye = $("<p>").addClass("msgHeureEnvoye");
+    //Notification système
+    var jMsgSysteme = $("<p>").addClass("msgSysteme");
+    // Heure du message système
+    var jMsgHeureSysteme = $("<p>").addClass("msgHeureSysteme");
 
     // récupérations des messages de la conversation
 
@@ -108,7 +112,16 @@ include_once("libs/maLibForms.php");
                         jMsgEnvoye.html(contenu);
                         $("#msgConversation").append(jMsgHeureEnvoye.clone());
                         $("#msgConversation").append(jMsgEnvoye.clone());
-                    } else {
+                    } else if(userId == 1){
+                        var annonce = lastMsgArrival;
+                        var contenu = oRep[i].content;
+                        jMsgHeureSysteme.html(annonce);
+                        jMsgSysteme.html(contenu);
+                        $("#msgConversation").append(jMsgHeureSysteme.clone());
+                        $("#msgConversation").append(jMsgSysteme.clone());
+                    }
+                    else
+                    {
                         var annonce = lastMsgArrival + " - " + "user" + userId;
                         var contenu = oRep[i].content;
                         jmsgHeureRecu.html(annonce);
