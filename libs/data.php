@@ -220,7 +220,7 @@ else if(isset($_POST["action"])){
                 $lieu = $_POST['lieu'];
                 $date = $_POST['date'];
                 
-                $response =createIntervention($id, $date, ($lieu == "I")?1:0);                
+                $response =createIntervention($id, $date, ($lieu == "I")?0:1);                
             }
         break;
 
@@ -240,6 +240,13 @@ else if(isset($_POST["action"])){
             }
 
         break;  
+
+        case 'deleteVehicle':
+            if(valider('connecte','SESSION'))
+            if(valider('vehicle_id')){
+                $vehicle_id = $_POST['vehicle_id'];
+                $response = deleteVehicleById($vehicle_id);
+            }
     }
     if ($response === null) {
         $response = []; // Assigne un tableau vide si $response est null
