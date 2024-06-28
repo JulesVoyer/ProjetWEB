@@ -268,8 +268,6 @@ function getAvailableCentraleVehiclesByDate($date){
 				ON v.id = urv.vehicle_id
 		WHERE 
 			v.owner_id = 1
-			AND
-			urv.
 		GROUP BY 
 			v.id
 		HAVING 
