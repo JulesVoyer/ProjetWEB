@@ -16,12 +16,36 @@ include_once("libs/maLibForms.php");
 
 <div id="convBody">
         
-        <div id="convTitlePage">Mes conversations</div>
+    <div id="convTitleInvit">Mes invitations</div>
+    <div class="convInvitations">
+        <p class="convTitleInvit">Un titre de conversation</p>
+        <div class="convInvitContainer">
+            <input type="button" class="convBtnRefuse btn" value="Refuser" />
+            <input type="button" class="convBtnAccept btn" value="Accepter" />
+        </div>
+    </div>
     
 </div>
 
 <script>
     /* ---- AJAX ----- */
+
+    // récupération des invitations
+
+    // Invitations
+    // titre invitations
+    var titleInvit = $("<div>")
+                    .attr("id", "convTitleInvit")
+                    .html("Mes invitations");
+    // structure invitations
+    var jConvInvitations = $("<div>").addClass("convInvitations");
+    // Titre de l'invitation 
+    var jConvTitleConv = $("<p>").addClass("convTitleInvit");
+    // Le container
+    var jConvMessageContainer = $("<div>").addClass("convInvitContainer");
+    // les boutons
+    var jBtnRefuser = $("<input[type='button'>").addClass("btn").addClass("convBtnRefuse").val("Refuser");
+    var jBtnAccept = $("<input[type='button'>").addClass("btn").addClass("convBtnAccept").val("Accepter");
 
     // récupération des conversations
 
