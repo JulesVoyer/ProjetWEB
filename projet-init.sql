@@ -24,7 +24,7 @@ INSERT INTO app.users (username,password,display_name,driving_license,adress) VA
   ('Maxime','web','FOLSCHETTE Maxime',0,'{}'),
   ('Diego','web','CATTARUZZA Diego',1,'{}'),
   ('Khaled','web','MESGHOUNI Khaled',0,'{}'),
-  ('Maxime','web','OGIER Maxime',1,'{}'),
+  ('Maxime1','web','OGIER Maxime',1,'{}'),
   ('Christophe','web','SUEUR Christophe',0,'{}'),
   ('Emmanuel','web','DELMOTTE Emmanuel',1,'{}'),
   ('Michel','web','HECQUET Michel',0,'{}'),
@@ -139,8 +139,8 @@ CREATE TABLE `invites` (
 -- app.vehicles data
 INSERT INTO app.vehicles (name,nb_seats,code,model,owner_id) VALUES
   ('KangooDuTurfuDeCentrale',7,'123-ABC-59','Kangoo',1),
-  ('Titine',5,'AB-123-CD','Clio3',2),
-  ('TwingoBlanche',4,'CD-123-EF','Twingo',4),
+  ('Titine',5,'AB-123-CD','Clio3',1),
+  ('Twingo Blanche',4,'CD-123-EF','Twingo',2),
   ('BerlingoGris',3,'EF-123-GH','Berlingo',6),
   ('C3Rouge',5,'GH-123-IJ','CitroenC3',8);
 
@@ -148,15 +148,18 @@ INSERT INTO app.vehicles (name,nb_seats,code,model,owner_id) VALUES
 
 -- app.trip data
 INSERT INTO app.trips (departure_time,driver_id,vehicle_id,nb_passengers,status,meetup_point,direction) VALUES
-  ('2024-06-19 07:30:00',1,1,7,0,'{}',0),
+  ('2024-06-28 07:30:00',1,1,7,0,'{}',0),
   ('2024-06-20 09:00:00',2,2,5,0,'{}',1),
   ('2024-06-21 08:30:00',4,3,4,0,'{}',1),
-  ('2024-06-28 13:00:00',6,4,3,0,'{}',0);
+  ('2024-07-01 13:00:00',6,4,3,0,'{}',0),
+  ('2024-07-02 14:00:00',1,1,3,0,'{}',1),
+  ('2024-07-03 17:00:00',1,1,3,0,'{}',0);
 
 
--- app.trip_has_participant data
+-- app.trip_has_participant datautf8mb4_0900_ai_ci
 INSERT INTO app.trip_has_participant (trip_id,participant_id) VALUES
-  (1,1),
+  (1,2),
+  (1,3),  
   (2,2),
   (2,3),
   (3,4),
@@ -164,5 +167,18 @@ INSERT INTO app.trip_has_participant (trip_id,participant_id) VALUES
 
 -- app.messages data
 INSERT INTO app.messages (content,user_id,trip_id,send_time) VALUES
-  ('Bonjour ! je crée ce trajet pour demain matin',2,1,'2024-06-18 18:26:43');
+  ('Bonjour ! je crée ce trajet pour demain matin',3,1,'2024-06-27 18:26:00'),
+  ('Bonjour, est-ce possible de décaler le trajet à 7:40 ?',2,1,'2024-06-27 18:27:00'),
+  ("Ce n'est pas possible, désolé.",3,1,'2024-06-27 18:29:00'),
+  ("J'ai un rdv important à 8h, je ne peux pas y être en retard",3,1,'2024-06-27 18:30:00'),
+  ('Pas de soucis , je comprends.',2,1,'2024-06-27 18:35:00'),
+  ('Je vous laisse Quitter le trajet alors. Bonne journée',3,1,'2024-06-27 18:47:00');
 
+
+
+  -- app.interventions data
+INSERT INTO  app.interventions (user_id,date ,direction) VALUES
+  (2,'2024-06-28 08:00:00',0),
+  (2,'2024-06-01 14:00:00',1),
+  (2,'2024-06-03 9:00:00',0),
+  (2,'2024-06-05 15:00:00',0);
