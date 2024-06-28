@@ -152,6 +152,15 @@ if (isset($_GET['action'])){
             }
         break;
 
+        // INVITATIONS //
+
+        case 'getInvitations' :
+            if(valider('connecte','SESSION')){
+                $id = $_SESSION['idUser'];
+                $response = getPendingInvitesForUser($id);
+            }
+        break;
+
     }
     if ($response === null) {
         $response = []; // Assigne un tableau vide si $response est null

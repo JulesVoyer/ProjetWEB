@@ -110,12 +110,71 @@ include_once("libs/maLibForms.php");
     // structure invitations
     var jConvInvitations = $("<div>").addClass("convInvitations");
     // Titre de l'invitation 
-    var jConvTitleConv = $("<p>").addClass("convTitleInvit");
+    var jConvTitleInvit = $("<p>").addClass("convTitleInvit");
     // Le container
-    var jConvMessageContainer = $("<div>").addClass("convInvitContainer");
+    var jConvInvitContainer = $("<div>").addClass("convInvitContainer");
     // les boutons
     var jBtnRefuser = $("<input>").attr("type", "button").addClass("btn").addClass("convBtnRefuse").val("Refuser");
     var jBtnAccept = $("<input>").attr("type", "button").addClass("btn").addClass("convBtnAccept").val("Accepter");
+
+    function getInvitations() {
+        
+        $.ajax({
+            type: "GET",	
+            url: "./libs/data.php",
+            data: {'action' : 'getInvitations'},
+            dataType: "json",
+            success: function (oRep) {
+                console.log(oRep);
+
+                // Je retire les invitations qui sont là
+                $("#convContInvit").empty();
+                
+                for (i=0;i<oRep.length;i++) {
+
+                    // je vide mes éléments
+                    jConvConversation.empty();
+                    jConvMessageContainer.empty();
+
+                    // Je remplis les couches les plus profondes en premier
+                    var tripName = false;
+
+                    var departure = oRep[i].departure_time.split(' ');
+                    var departureDate = departure[0].split('-');
+                    departureDate = departureDate[2] + "-" + departureDate[1] + "-" + departureDate[0];
+                    var departureTime = departure[1].split(':');
+                    departureTime = departureTime[0] + ":" + departureTime[1];
+                    
+                    if (oRep[i].direction) {
+                        tripName = "IG2I -> Centrale Lille, départ : " + departureDate + " à " + departureTime;
+                    } else {
+                        tripName = "Centrale Lille -> I2GI, départ : " + departureDate + " à " + departureTime;
+                    }
+                    var contenu = "User" + oRep[i].sender_id + " : " + oRep[i].content; //ici à changer le user, faire un getUser()
+
+                    jConvTitleInvit.html(tripName);
+
+                    // Puis le container
+                    jConvMessageContainer.append(jBtnRefuser.clone());
+                    jConvMessageContainer.append(jBtnAccept.clone());
+
+                    // Puis le lien 
+                    jConvInvitations.append(jConvTitleInvit.clone());
+                    jConvInvitations.append(jConvInvitContainer.clone());
+                    
+                    // Puis on l'ajoute à la suite des conversations
+                    $("#convContInvit").append(jConvInvitations.clone());
+                }	
+            },
+            error: function (xhr, status, error) {
+                console.log("Status de l'erreur : " + status);
+                console.log("error : " + error);
+                console.log("Réponse complète : " + xhr.responseText);
+
+            }
+        });
+    } // fin getInvitations
+
 
     // récupération des conversations
 
@@ -204,6 +263,7 @@ include_once("libs/maLibForms.php");
         });
     } // fin getConversations
 
+    getInvitations();
     // Récupération des conversations au chargement de la page
     getConversations();
 

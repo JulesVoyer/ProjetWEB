@@ -963,7 +963,7 @@ body {
     text-overflow: ellipsis; 
 }
 
-.convInvitContainer {
+.convMessageContainer {
     display: flex;
     justify-content: space-between;
     align-items: center;
