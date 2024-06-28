@@ -23,7 +23,7 @@ include_once("libs/maLibForms.php");
 				<h3>Lieu :</h3>
 				<select>
 					<option name="lieu_intervention_IG2I" value="I">IG2I</option>
-					<option name="lieu_intervention_centrale" value="C">Centralle</option>
+					<option name="lieu_intervention_centrale" value="C">Centrale</option>
 				</select>
 			</div>
 			<div id="itvNewDate">
@@ -85,6 +85,7 @@ include_once("libs/maLibForms.php");
 
 	function getInterventions(){
 
+		$("#itvListe").empty();
 		$.ajax(
 			{
 				type : 'GET',
@@ -97,8 +98,13 @@ include_once("libs/maLibForms.php");
 					console.log(rep);
 					console.log("interventions récupérées");
 					for (intervention of rep){
+						if(intervention.direction == 0){
+							lieu = 'IG2I';
+						}else{
+							lieu = 'Centrale';
+						}
 						jClone = jIntervention.clone();
-						jClone.find(".itvLieu").html(intervention.lieu);
+						jClone.find(".itvLieu").html(lieu);
 						jClone.find(".date").html(intervention.date );
 						$("#itvListe").append(jClone);
 					}
