@@ -362,7 +362,7 @@ function deleteInterventionById($id) {
 }
 
 function getInterventionsByUserId( $user_id ) {
-	$SQL= "SELECT * FROM interventions WHERE user_id = '$user_id' AND date >= NOW();";
+	$SQL= "SELECT * FROM interventions WHERE user_id = '$user_id' AND date >= NOW() ORDER BY date DESC;";
 	$res = parcoursRs(SQLSelect($SQL));
 	return $res;
 }
